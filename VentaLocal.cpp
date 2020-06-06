@@ -7,9 +7,9 @@ void VentaLocal::eliminarProducto(string codigo){
 //this->ventaProductos es un Set(VentaProducto*), pseudoatibuto
     list<VentaProducto*> lstVtaProd = getVentaProductos();
     for (list<VentaProducto*>::iterator vp=lstVtaProd.begin(); vp != lstVtaProd.end(); ++vp){
-        vp
+        string cod = (*vp)->getCodigoProducto();
         if(cod == codigo){
-            this->ventaProductos.erase(vp);
+            lstVtaProd.erase(vp);
             //delete vp; ^-- se elimina aqui?
         
         }
