@@ -12,12 +12,12 @@ string ProductoMenu::getCodigoComun(){
     return this->comun->getCodigo();
 }
 
-/*void ProductoMenu::asignarComun(String codigo){
-    ManejadorProducto mP = ManejadorProducto::getInstancia();
-    Producto c = mP->getProducto(c);
+/*void ProductoMenu::asignarComun(string codigo){
+    ManejadorProducto* mP = ManejadorProducto::getInstancia();
+    Comun *c = mP->getProducto(codigo); //casteo dinamico
     this->setComun(c);
-    //this->comun=c;
-} falta arreglar*/
+    this->comun=c;
+} //falta arreglar*/
 
 float ProductoMenu::getPrecio(){
     //this->comun es un Comun*, pseudoatibuto

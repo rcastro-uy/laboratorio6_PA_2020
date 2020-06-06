@@ -25,9 +25,6 @@ void Producto::setDescripcion(string desc){
 string Producto::getDescripcion(){
     return this->descripcion;
 }
-TipoProducto Producto::getTipoProducto(){
-    //return this->tipo;
-}
 DtProductoBase Producto::getDtProductoBase(){
     DtProductoBase prod;
     prod.setCodigo(this->codigo);
