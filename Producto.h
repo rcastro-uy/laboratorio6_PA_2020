@@ -1,8 +1,7 @@
 #ifndef PRODUCTO
 #define PRODUCTO
 #include <stdio.h>
-#include <iostream>
-#include "tipoProducto.h"
+#include "TipoProducto.h"
 #include "DtProductoBase.h"
 using namespace std;
 
@@ -11,20 +10,19 @@ class Producto{
         string codigo;
         float precio;
         string descripcion;
-        TipoProducto tipo;
     public:
         Producto();
-        Producto(string,float,string,TipoProducto);
+        Producto(string,float,string);
         void setCodigo(string);
         string getCodigo();
         void setPrecio(float);
         float getPrecio();
         void setDescripcion(string);
         string getDescripcion();
-        void setTipoProducto(TipoProducto);
-        TipoProducto getTipoProducto();
-        DtProductoBase getDtProductoBase();
         ~Producto();
+    
+        DtProductoBase getDtProductoBase();
+        virtual TipoProducto getTipoProducto()=0;
         
 };
 #endif

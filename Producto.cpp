@@ -1,11 +1,10 @@
 #include "Producto.h"
 
 Producto::Producto(){}
-Producto::Producto(string codigo,float precio,string desc,TipoProducto tipo){
+Producto::Producto(string codigo,float precio,string desc){
     this->codigo = codigo;
     this->precio = precio;
     this->descripcion = desc;
-    this->tipo = tipo;
 }
 
 void Producto::setCodigo(string codigo){
@@ -26,11 +25,8 @@ void Producto::setDescripcion(string desc){
 string Producto::getDescripcion(){
     return this->descripcion;
 }
-void Producto::setTipoProducto(TipoProducto tipo){ //tiene que pasar el para crearlo o se lo da? DUDA
-    this->tipo =tipo;
-}
 TipoProducto Producto::getTipoProducto(){
-    return this->tipo;
+    //return this->tipo;
 }
 DtProductoBase Producto::getDtProductoBase(){
     DtProductoBase prod;
