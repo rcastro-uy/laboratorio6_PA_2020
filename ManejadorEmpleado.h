@@ -9,6 +9,7 @@ using namespace std;
 class ManejadorEmpleado{
     private:
         static ManejadorEmpleado* instancia;
+        map<string,Empleado*> empleados;
         ManejadorEmpleado();
     public:
         static ManejadorEmpleado* getInstancia();

@@ -9,6 +9,7 @@ using namespace std;
 class ManejadorMesa{
     private:
         static ManejadorMesa* instancia;
+        list<Mesa*> mesas;
         ManejadorMesa();
     public:
         static ManejadorMesa* getInstancia();
