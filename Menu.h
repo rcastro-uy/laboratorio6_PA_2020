@@ -2,6 +2,7 @@
 #define MENU
 #include "Producto.h"
 #include "Comun.h"
+#include "DtProducto.h"
 #include <list>
 using namespace std;
 
