@@ -11,6 +11,7 @@ using namespace std;
 class VentaLocal: public Venta{
     public:
         VentaLocal();
+        VentaLocal(string, list<VentaProducto*>);
         bool tieneElProducto (string);
         void agregarProducto (DtProductoCantidad);
         void incrementar (DtProductoCantidad);
@@ -18,6 +19,7 @@ class VentaLocal: public Venta{
         string getNombreMozo();
         float getSubTotalVenta();
         list<DtProductoFactura*> getDtProductoFactura();
+        void eliminarProducto (string);
         ~VentaLocal();
 };
 
