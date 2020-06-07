@@ -1,6 +1,7 @@
 #include "ManejadorMesa.h"
 #include "Mesa.h"
 #include <list>
+#include <map>
 #include <iostream>
 
 using namespace std;
@@ -16,24 +17,24 @@ ManejadorMesa* ManejadorMesa:: getInstancia(){
 
 list<Mesa*> ManejadorMesa:: getMesas(){
     list<Mesa*> lstMesas;
-    for (list<Mesa*>::iterator it=this->mesas.begin();it!=mesas.end(); ++it){
+    for (map<int,Mesa*>::iterator it=this->mesas.begin();it!=mesas.end(); ++it){
         lstMesas.push_back(it->second);
     }
-    return lstEmpleados;
+    return lstMesas;
 }
 
-Mesa* ManejadorMesa:: getMesa(int mesas){
-    list<Mesa*>::iterator it = this->mesas.find(mesas);
+Mesa* ManejadorMesa:: getMesa(int me){
+    map<int,Mesa*>::iterator it = this->mesas.find(me);
     return it->second;
 }
 
-void ManejadorMesa:: removerMesa(Mesa*){
-    map<string,Empleado*>::iterator it = this->empleados.find(empleado);
-    this->empleados.erase(it);
+void ManejadorMesa:: removerMesa(Mesa* me){
+    map<int,Mesa*>::iterator it = this->mesas.find(me);
+    this->mesas.erase(it);
 }
 
-void ManejadorMesa:: agregarMesa(Mesa* mesas){
-    mesas.insert(std::pair<string,Empleado*>(empleados->getidEmpleado(),empleado))
+void ManejadorMesa:: agregarMesa(Mesa* me){
+    mesas.insert(std::pair<int,Mesa*>(mesas->getidMesa(), me));
 }
 
 ManejadorMesa::~ManejadorMesa(){}

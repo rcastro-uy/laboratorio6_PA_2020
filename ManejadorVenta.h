@@ -3,12 +3,14 @@
 #include "Venta.h"
 #include <iostream>
 #include <list>
+#include <map>
 
 using namespace std;
 
 class ManejadorVenta{
     private:
         static ManejadorVenta* instancia;
+        map<string,Venta*> ventas;
         ManejadorVenta();
     public:
         static ManejadorVenta* getInstancia();

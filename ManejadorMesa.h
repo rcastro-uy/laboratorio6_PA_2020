@@ -3,13 +3,14 @@
 #include "Mesa.h"
 #include <iostream>
 #include <list>
+#include <map>
 
 using namespace std;
 
 class ManejadorMesa{
     private:
         static ManejadorMesa* instancia;
-        list<Mesa*> mesas;
+        map<int,Mesa*> mesas;
         ManejadorMesa();
     public:
         static ManejadorMesa* getInstancia();

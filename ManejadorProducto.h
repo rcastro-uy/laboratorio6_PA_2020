@@ -3,12 +3,14 @@
 #include "Producto.h"
 #include <iostream>
 #include <list>
+#include <map>
 
 using namespace std;
 
 class ManejadorProducto{
     private:
         static ManejadorProducto* instancia;
+        map<string,Producto*> productos;
         ManejadorProducto();
     public:
         static ManejadorProducto* getInstancia();
