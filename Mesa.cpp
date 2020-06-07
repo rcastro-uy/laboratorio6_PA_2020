@@ -10,13 +10,13 @@ bool Mesa::tieneVenta(){
     return vl==NULL;
     //return this->ventaLocal==NULL;
 }
-void Mesa::agregarProducto(DtProductoCantidad pc){
+/*void Mesa::agregarProducto(DtProductoCantidad pc){
     bool tieneElProducto = this->ventaLocal->tieneElProducto(pc.codigo);
     if(tieneElProducto)
         this->ventaLocal->incrementar(pc);
     else
         this->ventaLocal->agregarProducto(pc);
-}
+}*/
 list<DtProducto> Mesa::listarProductos(){
     list<DtProducto> dtproductos = this->ventaLocal->listarProductos();
     return dtproductos;
