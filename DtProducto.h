@@ -7,15 +7,15 @@ using namespace std;
 class DtProducto{
     private:
         float precio;
-        string cantidad;
+        int cantidad;
         
     public:
         DtProducto();
-        DtProducto(float,string);
+        DtProducto(float,int);
         void setPrecio(float);
         float getPrecio();
-        void setCantidad(string);
-        string getCantidad();
+        void setCantidad(int);
+        int getCantidad();
         ~DtProducto();
 };
 #endif

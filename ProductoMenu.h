@@ -15,6 +15,7 @@ class ProductoMenu{
         string getCodigoComun();
         void asignarComun(string);
         float getPrecio();
+        Comun* getComun();
         ~ProductoMenu();
 };
 #endif

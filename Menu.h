@@ -1,14 +1,14 @@
 #ifndef MENU
 #define MENU
 #include "Producto.h"
-#include "Comun.h"
-#include "DtProducto.h"
+#include "ProductoMenu.h"
+#include "DtProductoCantidad.h"
 #include <list>
 using namespace std;
 
 class Menu: public Producto{
     private:
-        list<Comun*> comunes;
+        list<ProductoMenu*> listaProductos;
     public:
         int cantComunes;
 
@@ -17,9 +17,9 @@ class Menu: public Producto{
         void setCantComunes(int);
         int getCantComunes();
         TipoProducto getTipoProducto();
-        int eliminarComun(Comun,string);
+        int eliminarComun(ProductoMenu,string);
         void decrementarCantComunes(int);
-        void agregarComunes(list<DtProducto>);
+        void agregarComunes(list<DtProductoCantidad>);
         void calcularPrecio();
         void incrementarPrecio(float);
         void aplicarDescuento();

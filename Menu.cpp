@@ -19,11 +19,11 @@ void Menu::incrementarCantComunes(int cant){
 void Menu::decrementarCantComunes(int cant){
     this->cantComunes = this->cantComunes - cant;  
 }
-int Menu::eliminarComun(Comun pro,string codigo){
-    for (list<Comun*>::iterator it=this->comunes.begin(); it != this->comunes.end(); it++){
-        string cod=(*it)->getCodigo();
+int Menu::eliminarComun(ProductoMenu pro,string codigo){
+    for (list<ProductoMenu*>::iterator it=this->listaProductos.begin(); it != this->listaProductos.end(); it++){
+        string cod=(*it)->getComun()->getCodigo();
         if(cod==codigo){
-            this->comunes.remove(*it);
+            this->listaProductos.remove(*it);
             delete *it;
             this->decrementarCantComunes(1);//this->cantComunes--;
         }
@@ -44,17 +44,17 @@ void Menu::aplicarDescuento(){
     setPrecio(p);
     //this->precio=this->precio*0.90;
 }
-/*void Menu::agregarComunes(list<DtProducto> productosComunes){
-    for (list<Comun*>::iterator it=this->comunes.begin(); it != this->comunes.end(); it++){
-        Comun* pm = new Comun((*it)->cantidad);
-        pm->asignarComun(pc.codigo);
-        this->productosMenu.add(pm);
+void Menu::agregarComunes(list<DtProductoCantidad> productosComunes){
+    for (list<DtProductoCantidad>::iterator it=productosComunes.begin(); it != productosComunes.end(); it++){
+        ProductoMenu* pm = new ProductoMenu(it->getCantidad());
+        pm->asignarComun(it->getCodigo());
+        this->listaProductos.push_back(pm);
         this->incrementarCantComunes(1);//this->cantComunes++;
     }
-}*/
+}
 
 void Menu::calcularPrecio(){
-    for (list<Comun*>::iterator it=this->comunes.begin(); it != this->comunes.end(); it++){
+    for (list<ProductoMenu*>::iterator it=this->listaProductos.begin(); it != this->listaProductos.end(); it++){
         float precioCom = (*it)->getPrecio();
         this->incrementarPrecio(precioCom);
     }
