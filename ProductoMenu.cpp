@@ -12,14 +12,16 @@ string ProductoMenu::getCodigoComun(){
     return this->comun->getCodigo();
 }
 
-/*void ProductoMenu::asignarComun(string codigo){
+void ProductoMenu::asignarComun(string codigo){
     ManejadorProducto* mP = ManejadorProducto::getInstancia();
+    if(mP->getProducto(codigo)->getTipoProducto() == TipoProducto.COMUN){
     Comun *c = mP->getProducto(codigo); //casteo dinamico
     this->setComun(c);
     this->comun=c;
-} //falta arreglar*/
+    }
+} //falta arreglar
 
 float ProductoMenu::getPrecio(){
-    //this->comun es un Comun*, pseudoatibuto
+    //this->comun es un Comun*, pseudoatributo
     return this->comun->getPrecio()*this->cantidad;
 }
