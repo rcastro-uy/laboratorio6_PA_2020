@@ -14,12 +14,26 @@ ManejadorVenta* ManejadorVenta:: getInstancia(){
     return instancia;
 }
 
-list<Empleado*> ManejadorVenta:: getEmpleados(){}
+list<Venta*> ManejadorVenta:: getVentas(){
+    list<Venta*> lstVentas;
+    for (map<string,Venta*>::iterator it=this->ventas.begin();it!=ventas.end(); ++it){
+        lstVentas.push_back(it->second);
+    }
+    return lstVentas;
+}
 
-Empleado* ManejadorVenta:: getEmpleado(string){}
+Venta* ManejadorVenta:: getVenta(string v){
+    map<string,Venta*>::iterator it = this->ventas.find(v);
+    return it->second;
+}
 
-void ManejadorVenta:: removerEmpleado(Empleado*){}
+void ManejadorVenta:: removerVenta(Venta* v){
+    map<string,Venta*>::iterator it = this->ventas.find(v);
+    this->ventas.erase(it);
+}
 
-void ManejadorVenta:: agregarEmpleado(Empleado*){}
+void ManejadorVenta:: agregarVenta(Venta* v){
+    ventas.insert(std::pair<string,Venta*>(ventas->getidEmpleado(), v));
+}
 
 ManejadorVenta::~ManejadorVenta(){}

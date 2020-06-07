@@ -2,7 +2,7 @@
 #define MANEJADOREMPLEADO
 #include "Empleado.h"
 #include <iostream>
-#include <list>
+#include <map>
 
 using namespace std;
 
