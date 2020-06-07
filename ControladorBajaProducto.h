@@ -2,7 +2,8 @@
 #define CONTROLADORBAJAPRODUCTO
 #include "iostream"
 #include "string"
-#include "list"
+#include <list>
+#include "DtProductoBase.h"
 
 using namespace std;
 
@@ -14,7 +15,7 @@ private:
 public:
     ControladorBajaProducto();
     void eliminarProducto();
-    list<DtProductoBase> listarProductos();
+    list<DtProductoBase*> listarProductos();
     void seleccionarProducto(string); 
     void cancelarBajaProducto(); 
 

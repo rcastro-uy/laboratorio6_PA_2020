@@ -2,7 +2,9 @@
 #define CONTROLADORAGREGARPRODUCTO
 #include "iostream"
 #include "string"
-#include "list"
+#include <list>
+#include "DtProductoBase.h"
+#include "DtProductoCantidad.h"
 
 using namespace std;
 
@@ -15,7 +17,7 @@ private:
 public:
     ControladorAgregarProducto();
 
-    list<DtProductoBase> listarProductos();
+    list<DtProductoBase*> listarProductos();
     void seleccionarProducto();
     void seleccionarMesa(int);
     void confirmarAgregarProductoVenta();
@@ -25,3 +27,4 @@ public:
 };
 
 
+#endif

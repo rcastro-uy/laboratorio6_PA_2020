@@ -1,6 +1,8 @@
-#include "ControladorAgregarVenta.h"
+#include "ControladorAgregarProducto.h"
 
-Set(DtProductoBase) listarProductos(){
+
+
+list<DtProductoBase> ControladorAgregarProducto::listarProductos(){
     ManejadorProducto mP=ManejadorProduto::getInstancia();
     Set(Producto) productos=mP->getProductos();
     Set(DtProductoBase) dtproductos;

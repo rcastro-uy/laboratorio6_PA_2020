@@ -1,4 +1,7 @@
 #include "ControladorAltaProducto.h"
+#include "DtProducto.h"
+#include "DtProductoBase.h"
+
 
 Set(DtProductoBase) listarProductos(){
     ManejadorProducto mP=ManejadorProduto::getInstancia();

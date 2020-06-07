@@ -2,7 +2,10 @@
 #define CONTROLADORQUITARPRODUCTO
 #include "iostream"
 #include "string"
-#include "list"
+#include <list>
+#include "DtProducto.h"
+#include "DtProductoCantidad.h"
+
 
 using namespace std;
 
@@ -15,8 +18,8 @@ private:
 public:
     ControladorQuitarProducto();
 
-    list<DtProducto> listarProductos(int);
-    void seleccionarProductoEliminar;
+    list<DtProducto*> listarProductos(int);
+    void seleccionarProductoEliminar();
     void cancelarQuitarProductoVenta();
     void confirmarQuitarProductoVenta();
 
