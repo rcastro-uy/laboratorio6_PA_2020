@@ -6,11 +6,11 @@ Mesa::Mesa(int num){
 }
 
 bool Mesa::tieneVenta(){
-VentaLocal* vl = this->getVentaLocal();
-return vl==NULL;
-//return this->ventaLocal==NULL;
+    VentaLocal* vl = this->getVentaLocal();
+    return vl==NULL;
+    //return this->ventaLocal==NULL;
 }
-void Mesa::agregarProducto(pc DtProductoCantidad){
+void Mesa::agregarProducto(DtProductoCantidad pc){
     bool tieneElProducto = this->ventaLocal->tieneElProducto(pc.codigo);
     if(tieneElProducto)
         this->ventaLocal->incrementar(pc);
@@ -22,7 +22,7 @@ list<DtProducto> Mesa::listarProductos(){
     return dtproductos;
 }
 void Mesa::quitarProducto(pc DtProductoCantidad){
-this->ventaLocal->quitarProducto(pc);
+    this->ventaLocal->quitarProducto(pc);
 }
 
 

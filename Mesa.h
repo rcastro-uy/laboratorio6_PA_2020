@@ -16,9 +16,9 @@ class Mesa{
         Mesa(int);
         bool tieneVenta();
         void agregarProducto(DtProductoCantidad);
-        list<DtProducto> listarProductos()
+        list<DtProducto> listarProductos();
         void quitarProducto(DtProductoCantidad);
         ~Mesa();
         
-}
+};
 #endif

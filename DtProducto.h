@@ -1,5 +1,6 @@
 #ifndef DTPRODUCTO
 #define DTPRODUCTO
+#include "DtProductoBase.h"
 #include <iostream>
 using namespace std;
 
@@ -7,13 +8,14 @@ class DtProducto{
     private:
         float precio;
         string cantidad;
+        
     public:
         DtProducto();
         DtProducto(float,string);
-        setPrecio(float);
+        void setPrecio(float);
         float getPrecio();
-        setCantidad(string);
+        void setCantidad(string);
         string getCantidad();
         ~DtProducto();
-}
+};
 #endif

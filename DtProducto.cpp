@@ -5,10 +5,10 @@ DtProducto::DtProducto(float precio,string cant){
     this->precio = precio;
     this->cantidad = cant;
 }
-DtProducto::setPrecio(float precio){
+void DtProducto::setPrecio(float precio){
     this->precio = precio;
 }
-float DtProducto::DtgetPrecio(){
+float DtProducto::getPrecio(){
     return this->precio;
 }
 void DtProducto::setCantidad(string cant){

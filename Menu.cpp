@@ -19,39 +19,45 @@ void Menu::incrementarCantComunes(int cant){
 void Menu::decrementarCantComunes(int cant){
     this->cantComunes = this->cantComunes - cant;  
 }
-/*int Menu::eliminarComun(Comun pro,string codigo){
-    foreach pm in ProductoMenu{
-        string cod=getCodigoComun();
+int Menu::eliminarComun(Comun pro,string codigo){
+    for (list<Comun*>::iterator it=this->comunes.begin(); it != this->comunes.end(); it++){
+        string cod=(*it)->getCodigo();
         if(cod==codigo){
-            this->productosMenu.remover(pm);
-            delete pm;
+            this->comunes.remove(*it);
+            delete *it;
             this->decrementarCantComunes(1);//this->cantComunes--;
         }
     }
-    int cant = getCantComunes();
-    return cant;
-    //return this->cantComunes;
-} como vamos a listar los productos comunes dentro de menu*/
+    //int cant = getCantComunes();
+    //return cant;
+    return this->cantComunes;
+}
 void Menu::incrementarPrecio(float precio){
-    this->precio = this->precio + precio;
+    float p = getPrecio();
+    p = p + precio;
+    setPrecio(p);
+    //this->precio = this->precio + precio;
 }
 void Menu::aplicarDescuento(){
-    this->precio=this->precio*0.90;
+    float p = getPrecio();
+    p = p*0.90;
+    setPrecio(p);
+    //this->precio=this->precio*0.90;
 }
-/*void Menu::agregarComunes(Set(DtProductoCantidad) productosComun){
-    foreach pc in productosComun
-    ProductoMenu* pm = new ProductoMenu(pc.cantidad);
-    pm->asignarComun(pc.codigo);
-    this->productosMenu.add(pm);
-    this->incrementarCantComunes();
-    //this->cantComunes++;
-} Lo mismo que arriba 
+/*void Menu::agregarComunes(list<DtProducto> productosComunes){
+    for (list<Comun*>::iterator it=this->comunes.begin(); it != this->comunes.end(); it++){
+        Comun* pm = new Comun((*it)->cantidad);
+        pm->asignarComun(pc.codigo);
+        this->productosMenu.add(pm);
+        this->incrementarCantComunes(1);//this->cantComunes++;
+    }
+}*/
 
 void Menu::calcularPrecio(){
-    foreach pm in this->productosMenu{
-    float precioCom = pm->getPrecio();
-    this->incrementarPrecio(precioCom);
+    for (list<Comun*>::iterator it=this->comunes.begin(); it != this->comunes.end(); it++){
+        float precioCom = (*it)->getPrecio();
+        this->incrementarPrecio(precioCom);
     }
     this->aplicarDescuento();
-}*/
+}
 Menu::~Menu(){}

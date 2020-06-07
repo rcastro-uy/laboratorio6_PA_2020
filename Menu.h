@@ -7,6 +7,8 @@
 using namespace std;
 
 class Menu: public Producto{
+    private:
+        list<Comun*> comunes;
     public:
         int cantComunes;
 
