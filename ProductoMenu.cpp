@@ -14,11 +14,10 @@ string ProductoMenu::getCodigoComun(){
 
 void ProductoMenu::asignarComun(string codigo){
     ManejadorProducto* mP = ManejadorProducto::getInstancia();
-    if(mP->getProducto(codigo)->getTipoProducto() == TipoProducto.COMUN){
-        Comun *c = mP->getProducto(codigo); //casteo dinamico
+    Comun *c = dynamic_cast<Comun*>(mP->getProducto(codigo)); //casteo dinamico
+    if(c != NULL)
         this->comun=c;
-    }
-} //falta arreglar
+}
 
 float ProductoMenu::getPrecio(){
     //this->comun es un Comun*, pseudoatributo
