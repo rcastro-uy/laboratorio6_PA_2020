@@ -1,15 +1,10 @@
 #ifndef CONTROLADORAGREGARPRODUCTO
 #define CONTROLADORAGREGARPRODUCTO
-#include "iostream"
-#include "string"
-#include <list>
-#include "DtProductoBase.h"
-#include "DtProductoCantidad.h"
+#include "IControladorAgregarProducto.h"
 
 using namespace std;
 
-class ControladorAgregarProducto
-{
+class ControladorAgregarProducto: public IControladorAgregarProducto{
 private:
     int mesa;
     DtProductoCantidad productoVenta;
@@ -17,10 +12,11 @@ private:
 public:
     ControladorAgregarProducto();
 
-    list<DtProductoBase*> listarProductos();
-    void seleccionarProducto();
+    list<DtProductoBase> listarProductos();
+    void seleccionarProducto(DtProductoCantidad&);
     void seleccionarMesa(int);
     void confirmarAgregarProductoVenta();
+    void cancelarAgregarProductoVenta();
 
 
     ~ControladorAgregarProducto();

@@ -1,30 +1,26 @@
 #ifndef CONTROLADORALTAPRODUCTO
 #define CONTROLADORALTAPRODUCTO
-#include "iostream"
-#include "string"
-#include <list>
-#include "DtProductoBase.h"
-#include "DtProductoCantidad.h"
+#include "IControladorAltaProducto.h"
 
 using namespace std;
 
-class ControladorAltaProducto{
+class ControladorAltaProducto: public IControladorAltaProducto{
     private:
         string codMenu;
         string descMenu;
-        list<DtProductoCantidad*> ProductoComun;
+        list<DtProductoCantidad> ProductoComun;
         string codComun;
         string descComun;
         float precioComun;    
         
     public:
         ControladorAltaProducto();
-        list<DtProductoBase*> listarProductos();
-        void datosProductoComun(string, string, string);
+        list<DtProductoBase> listarProductos();
+        void datosProductoComun(string, string, float);
         void confirmarProductoComun();
         void cancelarProductoComun();
         void datosProductoMenu(string, string);
-        void agregarAlProductoMenu(DtProductoCantidad*);
+        void agregarAlProductoMenu(DtProductoCantidad);
         void confirmarProductoMenu();
         void cancelarProductoMenu();
 

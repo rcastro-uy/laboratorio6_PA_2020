@@ -1,13 +1,10 @@
 #ifndef CONTROLADORINICIARVENTA
 #define CONTROLADORINICIARVENTA
-#include "iostream"
-#include "string"
-#include <list>
+#include "IControladorIniciarVenta.h"
 
 using namespace std;
 
-class ControladorIniciarVenta
-{
+class ControladorIniciarVenta: public IControladorIniciarVenta{
 private:
     string mozo;
     int mesa;
@@ -15,8 +12,8 @@ private:
 public:
     ControladorIniciarVenta();
 
-    void setIngresarIDMozo(int);
-    void setSeleccionarMesa(int);
+    list<int> setIngresarIDMozo(int);
+    void setSeleccionarMesa(list<int>);
     void confirmarIniciarVenta();
     void cancelarIniciarVenta();
 

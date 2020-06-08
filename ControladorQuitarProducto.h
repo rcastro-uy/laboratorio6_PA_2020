@@ -1,16 +1,11 @@
 #ifndef CONTROLADORQUITARPRODUCTO
 #define CONTROLADORQUITARPRODUCTO
-#include "iostream"
-#include "string"
-#include <list>
-#include "DtProducto.h"
-#include "DtProductoCantidad.h"
+#include "IControladorQuitarProducto.h"
 
 
 using namespace std;
 
-class ControladorQuitarProducto
-{
+class ControladorQuitarProducto: public IControladorQuitarProducto{
 private:
     int mesa;
     DtProductoCantidad productoVenta;
@@ -18,8 +13,8 @@ private:
 public:
     ControladorQuitarProducto();
 
-    list<DtProducto*> listarProductos(int);
-    void seleccionarProductoEliminar();
+    list<DtProducto> listarProductos(int);
+    void seleccionarProductoEliminar(DtProductoCantidad);
     void cancelarQuitarProductoVenta();
     void confirmarQuitarProductoVenta();
 

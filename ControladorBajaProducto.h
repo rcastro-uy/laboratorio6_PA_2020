@@ -1,21 +1,17 @@
 #ifndef CONTROLADORBAJAPRODUCTO
 #define CONTROLADORBAJAPRODUCTO
-#include "iostream"
-#include "string"
-#include <list>
-#include "DtProductoBase.h"
+#include "IControladorBajaProducto.h"
 
 using namespace std;
 
-class ControladorBajaProducto
-{
+class ControladorBajaProducto: public IControladorBajaProducto{
 private:
     string codigo;
 
 public:
     ControladorBajaProducto();
     void eliminarProducto();
-    list<DtProductoBase*> listarProductos();
+    list<DtProductoBase> listarProductos();
     void seleccionarProducto(string); 
     void cancelarBajaProducto(); 
 
