@@ -4,6 +4,7 @@
 #include "IControladorAltaProducto.h"
 #include "IControladorBajaProducto.h"
 #include "IControladorIniciarVenta.h"
+#include "tipoProducto.h"
 //#include "IControladorFacturar.h"
 //#include "IControladorCargarDatos.h"
 Fabrica* fabrica;
@@ -16,11 +17,21 @@ IControladorIniciarVenta* iconIV;
 //IControladorCargarDatos* iconDATOS;
 
 void altaProducto();
+void ingresarComun();
+void ingresarMenu();
+bool existeComun(string);
+void imprimirListaProductos(list<DtProductoBase>);
+
 void iniciarVenta();
+
 void agregarProductoAUnaVenta();
+
 void quitarProductoAUnaVenta();
+
 void facturar();
+
 void bajaProducto();
+
 void cargarDatos();
 
 void menu();
@@ -30,40 +41,151 @@ void altaProducto(){
     system("clear");
 	cout <<"_____________________________________________" <<endl;
 	cout <<"______A L T A__D E__P R O D U C T O_______"<< endl;
-    int opcion;
+    int opcion, opAceptar, opContinua;
+	string cod, desc;
+	float precio;
+
     bool hayComun;
     list<DtProductoBase> lstDTPB;
+
     lstDTPB = iconALTAP->listarProductos();
-    hayComun = !lstDTPB.empty();
+    hayComun = (lstDTPB.empty()==false);
     do{
         if (hayComun){
             cout <<"1. Dar de Alta un Producto"<<endl;
             cout <<"2. Dar de Alta un Menu"<<endl;
             cout <<"3. Terminar"<<endl;
             cin >> opcion;
-            /*switch(opcion){
-				case 1: case 2: case 3:
-                break;
-				default:
-                    cout <<"Opción incorrecta. Intente nuevamente: "<<endl;
-				break;
-			}*/
+
+            if(opcion==1){
+				ingresarComun();
+			}else if(opcion==2){
+				ingresarMenu();
+			}else{
+                cout <<"ATENCION: Opción incorrecta. Intente nuevamente:"<<endl;
+			}
+			
         }else{ //NO HAY NINGUN PRODUCTO COMUN
             cout <<"1. Dar de Alta un Producto"<<endl;
             cout <<"2. Terminar"<<endl;
-            /*switch(opcion){
-				case 1: case 2:
-                break;
-				default:
-                    cout <<"Opción incorrecta. Intente nuevamente: "<<endl;
-				break;
-			}*/            
-            cin >> opcion;
+			cin >> opcion;
+            if(opcion==1){
+				ingresarComun();
+			}else{
+                cout <<"ATENCION: Opción incorrecta. Intente nuevamente:"<<endl;
+			}
         }
     } while ((hayComun && opcion != 3) || (!hayComun && opcion != 2));
-
-
 };
+
+void ingresarComun(){
+	int opcion;
+	string cod, desc;
+	float precio;
+	
+	cout << "Ingrese un Identificador único para el producto Común: ";
+	cin >> cod;
+	cout << "Ingrese el Precio para el producto Común: ";
+	cin >> precio;
+	cout << "Ingrese una Descripción para el producto Común: ";
+	cin >> desc;
+	iconALTAP->datosProductoComun(cod, desc, precio);
+
+	cout <<"1. Confirmar Producto"<<endl;
+	cout <<"2. Cancelar Alta"<<endl;
+	cin >> opcion;
+	switch (opcion){
+		case 1:
+			iconALTAP->confirmarProductoComun();
+		break;
+		case 2:
+			iconALTAP->cancelarProductoComun();
+		break;
+		default:
+			cout <<"ATENCION: Opción incorrecta. Intente nuevamente:"<<endl;
+		break;
+	}
+}
+
+void ingresarMenu(){
+	int opcion, cant;
+	string cod, codComun, desc;
+	list<DtProductoBase> lstDTPB;
+	DtProductoCantidad dtPCComun;
+	bool existe;
+
+//PARTE datos de menu
+	cout << "Ingrese un Identificador único para el Menú: ";
+	cin >> cod;
+	cout << "Ingrese una Descripción para el Menú: ";
+	cin >> desc;
+	iconALTAP->datosProductoMenu(cod, desc);
+
+//PARTE lista productos
+	lstDTPB = iconALTAP->listarProductos();
+	imprimirListaProductos(lstDTPB);
+
+//PARTE agrega comunes al menu
+	opcion = 1;	//para entrar al wihle 
+	while (opcion != 2){
+		cout <<"1. Ingresar un Producto al Menú"<<endl;
+		cout <<"2. Finalizar ingreso de productos"<<endl;
+		cin >> opcion;
+		switch (opcion){
+			case 1:
+				cout << "Ingrese el Identificador del Producto (solamente Común) a agregar: ";
+				cin >> codComun;
+				existe = existeComun(codComun);
+				if (existe){
+					cout << "Ingrese la cantidad: ";
+					cin >> cant;
+					dtPCComun.setCodigo(codComun);
+					dtPCComun.setCantidad(cant);
+					iconALTAP->agregarAlProductoMenu(dtPCComun);
+				}else{
+					cout << "ATENCION: Ese producto no existe.";
+				}
+			case 2:
+			break;
+			default:
+				cout <<"ATENCION: Opción incorrecta. Intente nuevamente:"<<endl;
+			break;
+		}
+	}
+
+//PARTE aceptar/cancelar
+	cout <<"1. Confirmar Menu"<<endl;
+	cout <<"2. Cancelar Alta"<<endl;
+	cin >> opcion;
+	switch (opcion){
+		case 1:
+			iconALTAP->confirmarProductoMenu();
+		break;
+		case 2:
+			iconALTAP->cancelarProductoMenu();
+		break;
+		default:
+			cout << "ATENCION: Opción incorrecta. Intente nuevamente:" << endl;
+		break;
+	}
+}
+
+bool existeComun(string codComun){
+	bool encontre = false;
+	list<DtProductoBase> listProd;
+	listProd = iconALTAP->listarProductos();
+	for (list<DtProductoBase>::iterator it=listProd.begin(); it != listProd.end(); it++){
+		if (!encontre)	//mientras no coincidan los codigos con la lista de productos
+			encontre = (codComun == it->getCodigo());
+	}
+	return encontre;
+}
+
+void imprimirListaProductos(list<DtProductoBase> lProd){
+	// for (list<DtProductoBase>::iterator it=lProd.begin(); it != lProd.end(); it++){
+	// 	cout << *it << endl;
+	// }
+}
 
 //CU INICIAR VENTA EN MESA
 void iniciarVenta(){
