@@ -1,5 +1,5 @@
-#ifndef COMUN
-#define COMUN
+#ifndef COMU
+#define COMU
 #include <iostream>
 #include "Producto.h"
 using namespace std;

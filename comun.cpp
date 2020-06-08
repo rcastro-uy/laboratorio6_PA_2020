@@ -3,6 +3,6 @@
 Comun::Comun(){}
 Comun::Comun(string codigo,float precio,string desc):Producto(codigo,precio,desc){}
 TipoProducto Comun::getTipoProducto(){
-    return TipoProducto.COMUN;
+    return COMUN;
 }
 Comun::~Comun(){}
