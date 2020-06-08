@@ -29,12 +29,12 @@ Producto* ManejadorProducto:: getProducto(string pro){
 }
 
 void ManejadorProducto:: removerProducto(Producto* pro){
-    map<string,Producto*>::iterator it = this->productos.find(pro);
+    map<string,Producto*>::iterator it = this->productos.find(pro->getCodigo());
     this->productos.erase(it);
 }
 
 void ManejadorProducto:: agregarProducto(Producto* pro){
-    productos.insert(std::pair<string,Producto*>(productos->getidProducto(), pro));
+    productos.insert(std::pair<string,Producto*>(pro->getCodigo(), pro));
 }
 
 ManejadorProducto::~ManejadorProducto(){}

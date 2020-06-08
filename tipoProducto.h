@@ -1,4 +1,4 @@
 #ifndef TIPOPRODUCTO
 #define TIPOPRODUCTO
-enum TipoProducto{COMUN,MENU};
+enum TipoProducto{COMUN, MENU};
 #endif

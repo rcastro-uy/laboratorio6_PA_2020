@@ -11,7 +11,7 @@ int Menu::getCantComunes(){
     return this->cantComunes;
 }
 TipoProducto Menu::getTipoProducto(){
-    return TipoProducto.MENU;
+    return MENU;
 }
 void Menu::incrementarCantComunes(int cant){
     this->cantComunes = this->cantComunes + cant; 
