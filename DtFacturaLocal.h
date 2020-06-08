@@ -3,6 +3,7 @@
 #include "DtFechaHora.h"
 #include "DtProductoFactura.h"
 #include <iostream>
+#include <list>
 
 using namespace std;
 
@@ -11,12 +12,14 @@ class DtFacturaLocal{
         string codVenta;
         DtFechaHora* fechaEmision;
         float descuento;
-        DtProductoFactura** productos;
+        list<DtProductoFactura*> productos;
         float subtotal;
         float montoTotalVenta;
         float montoTotalVentaConIVA;
         string nombreMozo;
     public:
+        DtFacturaLocal();
+        DtFacturaLocal(string, DtFechaHora*, float,float,float,float,string);
         string getCodVenta();
         void setCodVenta(string);
         DtFechaHora* getFechaEmision();
@@ -24,7 +27,7 @@ class DtFacturaLocal{
         float getDescuento();
         void setDescuento(float);
         list<DtProductoFactura*> getProductos();
-        void setProductos(DtProductoFactura*)
+        void setProductos(list<DtProductoFactura*>);
         float getSubtotal();
         void setSubtotal(float);
         float getMontoTotalVenta();
@@ -33,6 +36,6 @@ class DtFacturaLocal{
         void setMontoTotalVentaConIVA(float);
         string getNombreMozo();
         void setNombreMozo(string);
-
+        ~DtFacturaLocal();
 };
 #endif

@@ -4,7 +4,18 @@ Mesa::Mesa(){}
 Mesa::Mesa(int num){
     this->numero = num;
 }
-
+int Mesa::getNumero(){
+    return this->numero;
+}
+void Mesa::setNumero(int num){
+    this->numero=num;
+}
+VentaLocal* Mesa::getVentaLocal(){
+    return this->ventaLocal;
+}
+void Mesa::setVentaLocal(VentaLocal* vl){
+    this->ventaLocal=vl;
+}
 bool Mesa::tieneVenta(){
     VentaLocal* vl = this->getVentaLocal();
     return vl==NULL;

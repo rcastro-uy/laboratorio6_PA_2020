@@ -4,14 +4,14 @@
 #include <iostream>
 using namespace std;
 
-class DtProducto{
+class DtProducto: public DtProductoBase{
     private:
         float precio;
         int cantidad;
         
     public:
         DtProducto();
-        DtProducto(float,int);
+        DtProducto(string,string,float,int);
         void setPrecio(float);
         float getPrecio();
         void setCantidad(int);

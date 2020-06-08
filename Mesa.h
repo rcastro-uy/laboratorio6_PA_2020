@@ -14,6 +14,10 @@ class Mesa{
     public:
         Mesa();
         Mesa(int);
+        int getNumero();
+        void setNumero(int);
+        VentaLocal* getVentaLocal();
+        void setVentaLocal(VentaLocal*);
         bool tieneVenta();
         void agregarProducto(DtProductoCantidad);
         list<DtProducto> listarProductos();

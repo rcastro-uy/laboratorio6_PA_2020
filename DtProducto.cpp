@@ -1,7 +1,7 @@
 #include "DtProducto.h"
 
 DtProducto::DtProducto(){}
-DtProducto::DtProducto(float precio,int cant){
+DtProducto::DtProducto(string codigo,string desc,float precio,int cant):DtProductoBase(codigo, desc){
     this->precio = precio;
     this->cantidad = cant;
 }

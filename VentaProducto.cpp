@@ -30,7 +30,7 @@ DtProducto VentaProducto::getDtProducto(){
     string desc = this->producto->getDescripcion();
     string cod = this->producto->getCodigo();
     int cant = this->getCantidad();
-    DtProducto dtp = DtProducto(cod,precio,desc,cant);
+    DtProducto dtp = DtProducto(cod,desc,precio,cant);
     return dtp; 
 }
 
@@ -43,7 +43,7 @@ DtProductoFactura VentaProducto::getDtProductoFactura(){
     float precio = this->producto->getPrecio();
     string desc = this->producto->getDescripcion();
     int cant = this->getCantidad();
-    DtProductoFactura dtpf = DtProductoFactura(precio,desc,cant);
+    DtProductoFactura dtpf = DtProductoFactura(desc, precio,cant);
     return dtpf; 
 }
 

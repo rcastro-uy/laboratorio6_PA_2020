@@ -10,7 +10,7 @@ string Venta::getcodigo(){
     return this->codigo;
 }
 
-void Venta::setCodigo(string codigo{
+void Venta::setCodigo(string codigo){
     this->codigo=codigo;
 }
 
