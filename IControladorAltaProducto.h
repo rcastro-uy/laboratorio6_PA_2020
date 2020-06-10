@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <list>
+#include "DtProducto.h"
 #include "DtProductoCantidad.h"
 #include "DtProductoBase.h"
 

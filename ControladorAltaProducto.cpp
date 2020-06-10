@@ -1,8 +1,8 @@
 #include "ControladorAltaProducto.h"
-#include "DtProducto.h"
-#include "DtProductoBase.h"
+#include "Menu.h"
+#include "ManejadorProducto.h"
 
-
+/*
 Set(DtProductoBase) listarProductos(){
     ManejadorProducto mP=ManejadorProduto::getInstancia();
     Set(Producto) productos=mP->getProductos();
@@ -37,14 +37,14 @@ void datosProductoMenu(cod:string, desc:string){
 void agregarAlProductoMenu(pc:DtProductoCantidad){
     this->productosComun.add(pc);
 }
-
-void confirmarProductoMenu(){
-    Menu* m=new Menu(this->codMenu,this->descMenu,0,0);
+*/
+void ControladorAltaProducto::confirmarProductoMenu(){
+    Menu* m=new Menu(this->codMenu,0,this->descMenu,0);
     //this->cantComunes=0, this->precio=0;
-    m->agregarComunes(this->productosComun);
+    m->agregarComunes(this->ProductoComun);
     m->calcularPrecio();
-    ManejadorProducto* mP=ManejadorPorducto::getInstancia();
-    mP->agregarProducto(Producto);
+    ManejadorProducto* mP=ManejadorProducto::getInstancia();
+    mP->agregarProducto(m);
 }
 
 
