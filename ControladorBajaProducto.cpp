@@ -1,44 +1,52 @@
 #include "ControladorBajaProducto.h"
-#include "DtProductoBase.h"
+#include "ManejadorProducto.h"
+#include "ManejadorVenta.h"
+#include "Menu.h"
 
-Set(DtProductoBase) listarProductos(){
-    ManejadorProducto mP=ManejadorProduto::getInstancia();
-    Set(Producto) productos=mP->getProductos();
-    Set(DtProductoBase) dtproductos;
-    foreach p in productos{
-        DtProductoBase dtpb=p->getDtProductoBase();
-        dtproductos.add(dtpb);
+list<DtProductoBase> ControladorBajaProducto::listarProductos(){
+    ManejadorProducto* mP=ManejadorProducto::getInstancia();
+    list<Producto*> productos=mP->getProductos();
+    list<DtProductoBase> dtproductos;
+    for (list<Producto*>::iterator it=productos.begin(); it != productos.end(); it++){
+        DtProductoBase dtpb=(*it)->getDtProductoBase();
+        dtproductos.push_back(dtpb);
     }
     return dtproductos;
 }
 
 
-void seleccionarProducto(cod:String){
-    this->setCodigo(cod);
-    //this->codigo=cod;
+void ControladorBajaProducto::seleccionarProducto(string cod){
+    //this->setCodigo(cod);
+    this->codigo=cod;
 }
 
-void eliminarProducto(){//Recuerda codigo
-    ManejadorProducto mP=ManejadorProduto::getInstancia();
+void ControladorBajaProducto::eliminarProducto(){//Recuerda codigo
+    ManejadorProducto* mP=ManejadorProducto::getInstancia();
     Producto* pro=mP->getProducto(this->codigo);
-    ManejadorVenta mV=ManejadorVenta::getInstancia();
-    Set(Venta) ventas=mV->getVentas();
-    foreach v in ventas{
-        v->eliminarProducto(this->codigo);
+    ManejadorVenta* mV=ManejadorVenta::getInstancia();
+    list<Venta*> ventas=mV->getVentas();
+    for (list<Venta*>::iterator it=ventas.begin(); it != ventas.end(); it++){
+        (*it)->eliminarProducto(this->codigo);
     }
     TipoProducto tipo=pro->getTipoProducto();
     if(tipo==COMUN){
-        Set(Producto) productos=mP->getProductos();
-        foreach m in Producto{
-            int cant = (Menu)m->eliminarComun(pro,this->codigo);
-            //Castear m a Menu para eso
-            if (cant==0){
-            string codM=m->getCodigo();
-            foreach v in ventas{
-                v->eliminarProducto(codM);
-            }
-            mP->removerProducto(m);
-            delete m;
+        list<Producto*> productos=mP->getProductos();
+        for (list<Producto*>::iterator it=productos.begin(); it != productos.end(); it++){
+            if ((*it)->getTipoProducto() == MENU){
+                //Castear m a Menu para eso
+                Menu *m = dynamic_cast<Menu*>((*it)); //casteo dinamico
+                /* Falta corregir algo en Menu.h/cpp
+                int cant = m->eliminarComun(this->codigo);      //ProductoMenu no deberia ser un parametro, solo el string
+                
+                if (cant==0){
+                    string codM=m->getCodigo();
+                    for (list<Venta*>::iterator it=ventas.begin(); it != ventas.end(); it++){
+                        (*it)->eliminarProducto(m->getCodigo());
+                    }
+                    mP->removerProducto(m);
+                    delete m;
+                }
+                */
             }
         }
     }

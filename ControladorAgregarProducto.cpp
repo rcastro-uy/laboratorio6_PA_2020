@@ -1,30 +1,30 @@
 #include "ControladorAgregarProducto.h"
-
-
+#include "ManejadorProducto.h"
+#include "ManejadorMesa.h"
 
 list<DtProductoBase> ControladorAgregarProducto::listarProductos(){
-    ManejadorProducto mP=ManejadorProduto::getInstancia();
-    Set(Producto) productos=mP->getProductos();
-    Set(DtProductoBase) dtproductos;
-    foreach p in productos{
-        DtProductoBase dtpb=p->getDtProductoBase();
-        dtproductos.add(dtpb);
+    ManejadorProducto* mP=ManejadorProducto::getInstancia();
+    list<Producto*> productos=mP->getProductos();
+    list<DtProductoBase> dtproductos;
+    for (list<Producto*>::iterator it=productos.begin(); it != productos.end(); it++){
+        DtProductoBase dtpb=(*it)->getDtProductoBase();
+        dtproductos.push_back(dtpb);
     }
-return dtproductos;
+    return dtproductos;
 }
 
 
-void seleccionarProducto(pc:DtProductoCantidad){
-    //this->productoVenta=pc;
-    this->setProductoVenta(pc);
+void ControladorAgregarProducto::seleccionarProducto(DtProductoCantidad& pc){
+    this->productoVenta=pc;
+    //this->setProductoVenta(pc);
 }
 
-void seleccionarMesa(idMesa int){
-    //this->mesa=idMesa;
-    this->setMesa(idMesa);
+void ControladorAgregarProducto::seleccionarMesa(int idMesa){
+    this->mesa=idMesa;
+    //this->setMesa(idMesa);
 }
 
-void confirmarAgregarProductoVenta(){
+void ControladorAgregarProducto::confirmarAgregarProductoVenta(){
     ManejadorMesa* mM = ManejadorMesa::getInstancia();
     Mesa* me = mM->getMesa(this->mesa);
     me->agregarProducto(this->productoVenta);

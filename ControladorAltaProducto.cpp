@@ -2,8 +2,8 @@
 #include "Menu.h"
 #include "ManejadorProducto.h"
 
-/*
-Set(DtProductoBase) listarProductos(){
+
+Set(DtProductoBase) ControladorAltaProducto::listarProductos(){
     ManejadorProducto mP=ManejadorProduto::getInstancia();
     Set(Producto) productos=mP->getProductos();
     Set(DtProductoBase) dtproductos;
@@ -16,39 +16,38 @@ return dtproductos;
 }
 
 
-void datosProductoComun(cod:string, desc:string, precio:string){
+void ControladorAltaProducto::datosProductoComun(cod:string, desc:string, precio:string){
     this->codComun=cod;
     this->descComun=desc;
     this->precioComun=precio;
 }
 
 
-void confirmarProductoComun(){
+void ControladorAltaProducto::confirmarProductoComun(){
     ManejadorProducto* mP = ManejadorProducto::getInstancia();
     Comun* c=new Comun(this->codComun,this->descComun,this->precioComun)
     mP->agregarProducto(c);
 }
 
-void datosProductoMenu(cod:string, desc:string){
+void ControladorAltaProducto::datosProductoMenu(cod:string, desc:string){
     this->codMenu=cod;
     this->descMenu=desc;
 }
 
-void agregarAlProductoMenu(pc:DtProductoCantidad){
+void ControladorAltaProducto::agregarAlProductoMenu(pc:DtProductoCantidad){
     this->productosComun.add(pc);
 }
-*/
+
 void ControladorAltaProducto::confirmarProductoMenu(){
     Menu* m=new Menu(this->codMenu,0,this->descMenu,0);
-    //this->cantComunes=0, this->precio=0;
     m->agregarComunes(this->ProductoComun);
     m->calcularPrecio();
     ManejadorProducto* mP=ManejadorProducto::getInstancia();
     mP->agregarProducto(m);
 }
 
-
-
-
-
-
+void ControladorAltaProducto::cancelarProductoMenu(){
+    this->codMenu.clear();
+    this->descMenu.clear();
+    this->ProductoComun.clear();
+}
