@@ -1,21 +1,27 @@
 #include "ControladorQuitarProducto.h"
+#include "ManejadorProducto.h"
+#include "ManejadorMesa.h"
 
-Set(DtProducto) listarProductos(idMesa int){
-    this->setMesa(idMesa);
-    //this->mesa=idMesa;
+list<DtProducto> ControladorQuitarProducto::listarProductos(int idMesa){
+    //this->setMesa(idMesa);
+    this->mesa=idMesa;
     ManejadorMesa* mM = ManejadorMesa::getInstancia();
     Mesa* me = mM->getMesa(idMesa);
-    Set(DtProductos) dtProductos = me->listarProductos();
+    list<DtProducto> dtProductos = me->listarProductos();
     return dtProductos;
 }
 
-void seleccionarProductoEliminar(pc:DtProductoCantidad){
-    //this->productoVenta=pc;
-    this->setProductoVenta(pc);
+void ControladorQuitarProducto::seleccionarProductoEliminar(DtProductoCantidad pc){
+    this->productoVenta=pc;
+    //this->setProductoVenta(pc);
 }
 
-void confirmarQuitarProductoVenta(){
+void ControladorQuitarProducto::confirmarQuitarProductoVenta(){
     ManejadorMesa* mM = ManejadorMesa::getInstancia();
     Mesa* me = mM->getMesa(this->mesa);
     me->quitarProducto(this->productoVenta);
+}
+
+void ControladorQuitarProducto::cancelarQuitarProductoVenta(){
+    //this->productoVenta.~DtProductoCantidad();
 }

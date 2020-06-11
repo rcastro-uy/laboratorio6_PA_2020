@@ -1,31 +1,30 @@
 #include "ControladorIniciarVenta.h"
+#include "ManejadorEmpleado.h"
+#include "ManejadorVenta.h"
 #include "DtProductoCantidad.h"
 #include "DtProductoBase.h"
+#include "VentaLocal.h"
+#include "Mozo.h"
 
-Set(DtProductoBase) listarProductos(){
-    ManejadorProducto mP=ManejadorProduto::getInstancia();
-    Set(Producto) productos=mP->getProductos();
-    Set(DtProductoBase) dtproductos;
-    foreach p in productos{
-        DtProductoBase dtpb=p->getDtProductoBase();
-        dtproductos.add(dtpb);
-    }
-    return dtproductos;
+list<int> ControladorIniciarVenta::ingresarIDMozo(int idMozo){
+    this->mozo = idMozo;
+    ManejadorEmpleado* mE=ManejadorEmpleado::getInstancia();
+    Mozo *mo = dynamic_cast<Mozo*>((mE->getEmpleado(idMozo)));      //idMozo es string o int?¿?¿?¿?¿?
+    list<int> mesas=mo->mesasAsignadasSinVenta();
+    return mesas;
 }
-
-void seleccionarProducto(pc:DtProductoCantidad){
-    //this->productoVenta=pc;
-    this->setProductoVenta(pc);
+void ControladorIniciarVenta::seleccionarMesa(list<int> idMesas) {
+    this->mesas = idMesas;
 }
-
-void seleccionarMesa(idMesa int){
-    //this->mesa=idMesa;
-    this->setMesa(idMesa);
+void ControladorIniciarVenta::confirmarIniciarVenta(){
+    ManejadorEmpleado* mE=ManejadorEmpleado::getInstancia();
+    Mozo *mo = dynamic_cast<Mozo*>((mE->getEmpleado(idMozo)));      //idMozo es string o int?¿?¿?¿?¿?
+    VentaLocal* vl= new VentaLocal(mo);
+    mo->asignarMesas(this->mesas, vl);
+    ManejadorVenta* mV=ManejadorVenta::getInstancia();
+    mV->agregarVenta(vl);
 }
-
-void confirmarAgregarProductoVenta(){
-    ManejadorMesa* mM = ManejadorMesa::getInstancia();
-    Mesa* me = mM->getMesa(this->mesa);
-    me->agregarProducto(this->productoVenta);
+void ControladorIniciarVenta::cancelarIniciarVenta(){
+    this->mesas.clear();
+    this->mozo.clear();
 }
-

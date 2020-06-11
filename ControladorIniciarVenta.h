@@ -7,13 +7,13 @@ using namespace std;
 class ControladorIniciarVenta: public IControladorIniciarVenta{
 private:
     string mozo;
-    int mesa;
+    list<int> mesas;
 
 public:
     ControladorIniciarVenta();
 
-    list<int> setIngresarIDMozo(int);
-    void setSeleccionarMesa(list<int>);
+    list<int> ingresarIDMozo(int);
+    void seleccionarMesa(list<int>);
     void confirmarIniciarVenta();
     void cancelarIniciarVenta();
 
