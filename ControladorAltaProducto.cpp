@@ -3,20 +3,19 @@
 #include "ManejadorProducto.h"
 
 
-Set(DtProductoBase) ControladorAltaProducto::listarProductos(){
-    ManejadorProducto mP=ManejadorProduto::getInstancia();
-    Set(Producto) productos=mP->getProductos();
-    Set(DtProductoBase) dtproductos;
-    foreach c in productos{
-        //Hay que castear al Producto c a Comun
-        DtProductoBase dtpb=(COMUN)c->getDtProductoBase();
-        dtproductos.add(dtpb);
-}
-return dtproductos;
+list<DtProductoBase> ControladorAltaProducto::listarProductos(){
+    ManejadorProducto* mP=ManejadorProducto::getInstancia();
+    list<Producto*> productos=mP->getProductos();
+    list<DtProductoBase> dtproductos;
+    for (list<Producto*>::iterator it=productos.begin(); it != productos.end(); it++){
+        DtProductoBase dtpb=(*it)->getDtProductoBase();
+        dtproductos.push_back(dtpb);
+    }
+    return dtproductos;
 }
 
 
-void ControladorAltaProducto::datosProductoComun(cod:string, desc:string, precio:string){
+void ControladorAltaProducto::datosProductoComun(string cod, string desc, float precio){
     this->codComun=cod;
     this->descComun=desc;
     this->precioComun=precio;
@@ -25,17 +24,17 @@ void ControladorAltaProducto::datosProductoComun(cod:string, desc:string, precio
 
 void ControladorAltaProducto::confirmarProductoComun(){
     ManejadorProducto* mP = ManejadorProducto::getInstancia();
-    Comun* c=new Comun(this->codComun,this->descComun,this->precioComun)
+    Comun* c=new Comun(this->codComun,this->precioComun,this->descComun);
     mP->agregarProducto(c);
 }
 
-void ControladorAltaProducto::datosProductoMenu(cod:string, desc:string){
+void ControladorAltaProducto::datosProductoMenu(string cod, string desc){
     this->codMenu=cod;
     this->descMenu=desc;
 }
 
-void ControladorAltaProducto::agregarAlProductoMenu(pc:DtProductoCantidad){
-    this->productosComun.add(pc);
+void ControladorAltaProducto::agregarAlProductoMenu(DtProductoCantidad pc){
+    this->ProductoComun.push_back(pc);
 }
 
 void ControladorAltaProducto::confirmarProductoMenu(){
