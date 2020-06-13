@@ -32,9 +32,6 @@ list<DtProducto> Mesa::listarProductos(){
     list<DtProducto> dtproductos = this->ventaLocal->listarProductos();
     return dtproductos;
 }
-void Mesa::quitarProducto(pc DtProductoCantidad){
+void Mesa::quitarProducto(DtProductoCantidad pc){
     this->ventaLocal->quitarProducto(pc);
 }
-
-
-

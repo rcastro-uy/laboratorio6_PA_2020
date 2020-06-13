@@ -29,7 +29,7 @@ Mesa* ManejadorMesa:: getMesa(int me){
 }
 
 void ManejadorMesa:: removerMesa(Mesa* me){
-    map<int,Mesa*>::iterator it = this->mesas.find(me);
+    map<int,Mesa*>::iterator it = this->mesas.find(me->getNumero());
     this->mesas.erase(it);
 }
 

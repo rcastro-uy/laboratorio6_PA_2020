@@ -29,7 +29,7 @@ Empleado* ManejadorEmpleado:: getEmpleado(string em){
 }
 
 void ManejadorEmpleado:: removerEmpleado(Empleado* em){
-    map<string,Empleado*>::iterator it = this->empleados.find(em);
+    map<string,Empleado*>::iterator it = this->empleados.find(em->getIdEmpleado());
     this->empleados.erase(it);
 }
 

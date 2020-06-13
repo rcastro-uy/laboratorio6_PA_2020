@@ -64,8 +64,10 @@ void VentaLocal::quitarProducto(DtProductoCantidad pc){
     list<VentaProducto*> lista = getVentaProductos();
     for (list<VentaProducto*>::iterator it=lista.begin(); it!=lista.end(); ++it){
         string codigo = (*it)->getCodigoProducto();
+        int queda;
         if(codigo == pc.getCodigo()){
-            int queda=(*it)->decrementarCantidad(pc.getCantidad());
+            queda=(*it)->decrementarCantidad(pc.getCantidad());
+        }
         if(queda<=0){
             lista.remove(*it);
             delete (*it);
@@ -77,7 +79,7 @@ list<DtProductoFactura> VentaLocal::getDtProductoFactura(){
     list<DtProductoFactura> dtproductosFact;
     list<VentaProducto*> lista = getVentaProductos();
     for (list<VentaProducto*>::iterator it=lista.begin(); it!=lista.end(); ++it){
-        DtProductoFactura dtpf = it->getDtProductoFactura();
+        DtProductoFactura dtpf = (*it)->getDtProductoFactura();
         dtproductosFact.(dtpf);
     }
     return dtproductosFact;

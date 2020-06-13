@@ -28,7 +28,7 @@ Venta* ManejadorVenta:: getVenta(string v){
 }
 
 void ManejadorVenta:: removerVenta(Venta* v){
-    map<string,Venta*>::iterator it = this->ventas.find(v);
+    map<string,Venta*>::iterator it = this->ventas.find(v->getcodigo());
     this->ventas.erase(it);
 }
 
