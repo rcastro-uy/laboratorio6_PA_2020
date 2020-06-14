@@ -50,7 +50,7 @@ void altaProducto(){
     bool hayComun;
     list<DtProductoBase> lstDTPB;
 
-    lstDTPB = iconALTAP->listarProductos();
+    lstDTPB = iconALTAP->listarProductosComunes();
     hayComun = (lstDTPB.empty()==false);
     do{
         if (hayComun){
@@ -124,7 +124,7 @@ void ingresarMenu(){
 	iconALTAP->datosProductoMenu(cod, desc);
 
 	//PARTE lista productos
-	lstDTPB = iconALTAP->listarProductos();
+	lstDTPB = iconALTAP->listarProductosComunes();
 	imprimirListaProductos(lstDTPB);
 
 	//PARTE agrega comunes al menu
