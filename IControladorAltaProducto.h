@@ -12,7 +12,7 @@ using namespace std;
 class IControladorAltaProducto{
         
     public:
-        virtual list<DtProductoBase> listarProductos() = 0;
+        virtual list<DtProductoBase> listarProductosComunes() = 0;
         virtual void datosProductoComun(string, string, float) = 0;
         virtual void confirmarProductoComun() = 0;
         virtual void cancelarProductoComun() = 0;

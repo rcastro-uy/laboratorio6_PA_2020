@@ -20,7 +20,7 @@ void altaProducto();
 void ingresarComun();
 void ingresarMenu();
 bool existeProductoBase(string, list<DtProductoBase>&);
-void imprimirListaProductos(list<DtProductoBase>);
+void imprimirListaProductos(list<DtProductoBase>);  //pruebas --> implementar directamente, no como funcion
 
 void iniciarVenta();
 
@@ -33,7 +33,7 @@ void facturar();
 
 void bajaProducto();
 
-void cargarDatos();
+void cargarDatos(); //pruebas y final
 
 void menu();
 

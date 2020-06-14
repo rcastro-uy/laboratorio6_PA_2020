@@ -15,7 +15,7 @@ class ControladorAltaProducto: public IControladorAltaProducto{
         
     public:
         ControladorAltaProducto();
-        list<DtProductoBase> listarProductos();
+        list<DtProductoBase> listarProductosComunes();
         void datosProductoComun(string, string, float);
         void confirmarProductoComun();
         void cancelarProductoComun();

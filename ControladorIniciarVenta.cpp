@@ -11,7 +11,7 @@
 list<int> ControladorIniciarVenta::ingresarIDMozo(int idMozo){
     this->mozo = idMozo;
     ManejadorEmpleado* mE=ManejadorEmpleado::getInstancia();
-    Mozo *mo = dynamic_cast<Mozo*>((mE->getEmpleado(idMozo)));      //idMozo es string o int?¿?¿?¿?¿?
+    Mozo *mo = dynamic_cast<Mozo*>((mE->getEmpleado(idMozo)));      //idMozo es string o int?¿?¿?¿?¿?  idMozo es un string
     list<int> mesas=mo->mesasAsignadasSinVenta();
     return mesas;
 }
@@ -22,7 +22,7 @@ void ControladorIniciarVenta::seleccionarMesa(list<int> idMesas) {
 /*
 void ControladorIniciarVenta::confirmarIniciarVenta(){
     ManejadorEmpleado* mE=ManejadorEmpleado::getInstancia();
-    Mozo *mo = dynamic_cast<Mozo*>((mE->getEmpleado(idMozo)));      //idMozo es string o int?¿?¿?¿?¿?
+    Mozo *mo = dynamic_cast<Mozo*>((mE->getEmpleado(idMozo)));      //idMozo es string o int?¿?¿?¿?¿? idMozo es un string
     VentaLocal* vl= new VentaLocal(mo);
     mo->asignarMesas(this->mesas, vl);
     ManejadorVenta* mV=ManejadorVenta::getInstancia();

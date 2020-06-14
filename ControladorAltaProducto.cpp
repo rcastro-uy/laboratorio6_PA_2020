@@ -3,13 +3,14 @@
 #include "ManejadorProducto.h"
 
 
-list<DtProductoBase> ControladorAltaProducto::listarProductos(){
+list<DtProductoBase> ControladorAltaProducto::listarProductosComunes(){
     ManejadorProducto* mP=ManejadorProducto::getInstancia();
     list<Producto*> productos=mP->getProductos();
     list<DtProductoBase> dtproductos;
     for (list<Producto*>::iterator it=productos.begin(); it != productos.end(); it++){
         DtProductoBase dtpb=(*it)->getDtProductoBase();
-        dtproductos.push_back(dtpb);
+        if ((*it)->getTipoProducto() == COMUN )
+            dtproductos.push_back(dtpb);
     }
     return dtproductos;
 }
