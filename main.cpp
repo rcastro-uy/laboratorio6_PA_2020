@@ -123,6 +123,8 @@ void ingresarMenu(){
 	DtProductoCantidad dtPCComun;
 	bool existe;
 
+	lstDTPB = iconALTAP->listarProductosMenu();
+	imprimirListaProductos(lstDTPB);
 	//PARTE datos de menu
 	cout << "\nIngrese un Identificador único para el Menú: ";
 	cin >> cod;

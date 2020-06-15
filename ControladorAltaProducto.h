@@ -1,7 +1,7 @@
 #ifndef CONTROLADORALTAPRODUCTO
 #define CONTROLADORALTAPRODUCTO
 #include "IControladorAltaProducto.h"
-#include <list>
+
 
 using namespace std;
 
@@ -17,6 +17,7 @@ class ControladorAltaProducto: public IControladorAltaProducto{
     public:
         ControladorAltaProducto();
         list<DtProductoBase> listarProductosComunes();
+        list<DtProductoBase> listarProductosMenu();
         void datosProductoComun(string, string, float);
         void confirmarProductoComun();
         void cancelarProductoComun();

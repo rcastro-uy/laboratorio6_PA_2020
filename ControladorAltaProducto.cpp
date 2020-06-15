@@ -17,6 +17,17 @@ list<DtProductoBase> ControladorAltaProducto::listarProductosComunes(){
     return dtproductos;
 }
 
+list<DtProductoBase> ControladorAltaProducto::listarProductosMenu(){
+    ManejadorProducto* mP=ManejadorProducto::getInstancia();
+    list<Producto*> productos=mP->getProductos();
+    list<DtProductoBase> dtproductos;
+    for (list<Producto*>::iterator it=productos.begin(); it != productos.end(); it++){
+        DtProductoBase dtpb=(*it)->getDtProductoBase();
+        if ((*it)->getTipoProducto() == MENU )
+            dtproductos.push_back(dtpb);
+    }
+    return dtproductos;
+}
 
 void ControladorAltaProducto::datosProductoComun(string cod, string desc, float precio){
     this->codComun=cod;
@@ -52,11 +63,18 @@ void ControladorAltaProducto::agregarAlProductoMenu(DtProductoCantidad pc){
 }
 
 void ControladorAltaProducto::confirmarProductoMenu(){
-    Menu* m=new Menu(this->codMenu,0,this->descMenu,0);
-    m->agregarComunes(this->ProductoComun);
-    m->calcularPrecio();
     ManejadorProducto* mP=ManejadorProducto::getInstancia();
-    mP->agregarProducto(m);
+    bool existe=mP->existeProducto(this->codMenu);
+    //try catch antes de confirmarlo
+    if(!existe){
+        Menu* m=new Menu(this->codMenu,0,this->descMenu,0);
+        m->agregarComunes(this->ProductoComun);
+        m->calcularPrecio();
+        mP->agregarProducto(m);
+    }else
+        throw invalid_argument("ERROR: YA EXISTE UN PRODUCTO CON ESE IDENTIFICADOR\n");
+
+    
 }
 
 void ControladorAltaProducto::cancelarProductoMenu(){
