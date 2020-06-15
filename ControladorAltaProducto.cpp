@@ -27,8 +27,14 @@ void ControladorAltaProducto::datosProductoComun(string cod, string desc, float 
 
 void ControladorAltaProducto::confirmarProductoComun(){
     ManejadorProducto* mP = ManejadorProducto::getInstancia();
-    Comun* c=new Comun(this->codComun,this->precioComun,this->descComun);
-    mP->agregarProducto(c);
+    bool existe=mP->existeProducto();
+    //try catch antes de confirmarlo
+    if(!existe){
+        Comun* c=new Comun(this->codComun,this->precioComun,this->descComun);
+        mP->agregarProducto(c);
+    }else
+        throw invalid_argument("ERROR: NO EXISTE USUARIO CON ESA CI EN EL SISTEMA\n");
+    
 }
 
 void ControladorAltaProducto::cancelarProductoComun(){
