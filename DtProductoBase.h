@@ -16,5 +16,6 @@ class DtProductoBase{
         void setDescripcion(string);
         string getDescripcion();
         ~DtProductoBase();
+        friend ostream& operator <<(ostream&,const DtProductoBase&);
 };
 #endif
