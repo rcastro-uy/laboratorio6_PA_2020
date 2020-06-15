@@ -2,6 +2,7 @@
 #define ICONTROLADORAGREGARPRODUCTO
 #include <iostream>
 #include <list>
+#include <string>
 #include "DtProductoCantidad.h"
 #include "DtProductoBase.h"
 

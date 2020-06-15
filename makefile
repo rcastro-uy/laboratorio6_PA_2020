@@ -1,5 +1,5 @@
-main: Comun.o ControladorAgregarProducto.o ControladorAltaProducto.o ControladorBajaProducto.o ControladorIniciarVenta.o ControladorQuitarProducto.o DtFacturaLocal.o DtFecha.o DtFechaHora.o DtProducto.o DtProductoBase.o DtProductoCantidad.o DtProductoFactura.o Empleado.o Fabrica.o Factura.o IControladorAgregarProducto.o  IcontroladorAltaProducto.o IControladorBajaProduco.o IcontroladorFactura.o IControladorIniciarVenta.o IControladorQuitarProducto.o ManejadorEmpleado.o ManejadorMesa.o ManejadorProducto.o ManejadorVenta.o Menu.o Mesa.o Mozo.o Producto.o ProductoMenu.o Venta.o VentaLocal.o VentaProducto.o main.o
-	g++ Comun.o ControladorAgregarProducto.o ControladorAltaProducto.o ControladorBajaProducto.o ControladorIniciarVenta.o ControladorQuitarProducto.o DtFacturaLocal.o DtFecha.o DtFechaHora.o DtProducto.o DtProductoBase.o DtProductoCantidad.o DtProductoFactura.o Empleado.o Fabrica.o Factura.o IControladorAgregarProducto.o IControladorAltaProducto.o IControladorBajaProduco.o IcontroladorFactura.o IControladorIniciarVenta.o IControladorQuitarProducto.o ManejadorEmpleado.o ManejadorMesa.o ManejadorProducto.o ManejadorVenta.o Menu.o Mesa.o Mozo.o Producto.o ProductoMenu.o Venta.o VentaLocal.o VentaProducto.o main.o -o labo
+main: Comun.o ControladorAgregarProducto.o ControladorAltaProducto.o ControladorBajaProducto.o ControladorFacturar.o ControladorIniciarVenta.o ControladorQuitarProducto.o DtFacturaLocal.o DtFecha.o DtFechaHora.o DtProducto.o DtProductoBase.o DtProductoCantidad.o DtProductoFactura.o Empleado.o Fabrica.o Factura.o ManejadorEmpleado.o ManejadorMesa.o ManejadorProducto.o ManejadorVenta.o Menu.o Mesa.o Mozo.o Producto.o ProductoMenu.o Venta.o VentaLocal.o VentaProducto.o main.o
+	g++ Comun.o ControladorAgregarProducto.o ControladorAltaProducto.o ControladorBajaProducto.o ControladorFacturar.o ControladorIniciarVenta.o ControladorQuitarProducto.o DtFacturaLocal.o DtFecha.o DtFechaHora.o DtProducto.o DtProductoBase.o DtProductoCantidad.o DtProductoFactura.o Empleado.o Fabrica.o Factura.o ManejadorEmpleado.o ManejadorMesa.o ManejadorProducto.o ManejadorVenta.o Menu.o Mesa.o Mozo.o Producto.o ProductoMenu.o Venta.o VentaLocal.o VentaProducto.o main.o -o labo
 
 Comun.o: Comun.cpp
 
@@ -8,6 +8,8 @@ ControladorAgregarProducto.o: ControladorAgregarProducto.cpp
 ControladorAltaProducto.o: ControladorAltaProducto.cpp
 
 ControladorBajaProducto.o: ControladorBajaProducto.cpp
+
+ControladorFacturar.o: ControladorFacturar.cpp
 
 ControladorIniciarVenta.o: ControladorIniciarVenta.cpp
 
@@ -32,18 +34,6 @@ Empleado.o: Empleado.cpp
 Fabrica.o: Fabrica.cpp
 
 Factura.o: Factura.cpp
-
-IControladorAgregarProducto.o: IControladorAgregarProducto.cpp
-
-IcontroladorAltaProducto.o: IcontroladorAltaProducto.cpp
-
-IControladorBajaProduco.o: IControladorBajaProduco.cpp
-
-IcontroladorFactura.o: IcontroladorFactura.cpp
-
-IControladorIniciarVenta.o: IControladorIniciarVenta.cpp
-
-IControladorQuitarProducto.o: IControladorQuitarProducto.cpp
 
 ManejadorEmpleado.o: ManejadorEmpleado.cpp
 

@@ -8,6 +8,8 @@ using namespace std;
 
 ManejadorEmpleado* ManejadorEmpleado:: instancia = NULL;
 
+ManejadorEmpleado::ManejadorEmpleado(){}
+
 ManejadorEmpleado* ManejadorEmpleado:: getInstancia(){
     if (instancia == NULL) {
         instancia = new ManejadorEmpleado();
@@ -34,7 +36,7 @@ void ManejadorEmpleado:: removerEmpleado(Empleado* em){
 }
 
 void ManejadorEmpleado:: agregarEmpleado(Empleado* em){
-    empleados.insert(std::pair<string,Empleado*>(empleados->getidEmpleado(), em));
+    empleados.insert(std::pair<string,Empleado*>(em->getIdEmpleado(), em));
 }
 
 ManejadorEmpleado::~ManejadorEmpleado(){}

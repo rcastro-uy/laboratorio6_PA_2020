@@ -8,6 +8,8 @@ using namespace std;
 
 ManejadorMesa* ManejadorMesa:: instancia = NULL;
 
+ManejadorMesa::ManejadorMesa(){}
+
 ManejadorMesa* ManejadorMesa:: getInstancia(){
     if (instancia == NULL) {
         instancia = new ManejadorMesa();
@@ -34,7 +36,7 @@ void ManejadorMesa:: removerMesa(Mesa* me){
 }
 
 void ManejadorMesa:: agregarMesa(Mesa* me){
-    mesas.insert(std::pair<int,Mesa*>(mesas->getidMesa(), me));
+    mesas.insert(std::pair<int,Mesa*>(me->getNumero(), me));
 }
 
 ManejadorMesa::~ManejadorMesa(){}

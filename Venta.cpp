@@ -6,7 +6,7 @@ Venta::Venta (string codigo, list<VentaProducto*> ventaProductos){
     this->ventaProductos=ventaProductos; // *SE INICIALIZA LA LISTA? COMO?
 }
 
-string Venta::getcodigo(){
+string Venta::getCodigo(){
     return this->codigo;
 }
 

@@ -1,6 +1,7 @@
 #ifndef CONTROLADORALTAPRODUCTO
 #define CONTROLADORALTAPRODUCTO
 #include "IControladorAltaProducto.h"
+#include <list>
 
 using namespace std;
 

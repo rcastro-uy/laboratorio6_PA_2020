@@ -1,6 +1,7 @@
 #ifndef CONTROLADORAGREGARPRODUCTO
 #define CONTROLADORAGREGARPRODUCTO
 #include "IControladorAgregarProducto.h"
+#include <list>
 
 using namespace std;
 

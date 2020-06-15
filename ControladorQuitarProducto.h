@@ -1,6 +1,7 @@
 #ifndef CONTROLADORQUITARPRODUCTO
 #define CONTROLADORQUITARPRODUCTO
 #include "IControladorQuitarProducto.h"
+#include <list>
 
 
 using namespace std;

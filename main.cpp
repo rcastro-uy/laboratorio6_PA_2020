@@ -265,14 +265,15 @@ void iniciarVenta(){
 	system("clear");
 	cout <<"_____________________________________________" <<endl;
 	cout <<"______I N I C I A R__V E N T A__E N__M E S A S______"<< endl;
-    int opcion, mozo, mesa;
+    int opcion, mesa;
+	string  mozo;
 	list<int> mesasSinVentaDeMozo;
 	list<int> mesasSelected;
 	bool existe;
 
 	cout << "Ingrese un Identificador de Mozo: ";
 	cin >> mozo;
-	mesasSinVentaDeMozo = iconIV->ingresarIDMozo(mozo);
+	mesasSinVentaDeMozo = iconIV->ingresarIdMozo(mozo);
 
 	opcion = 0;	//para entrar al wail
 	while (opcion != 2){

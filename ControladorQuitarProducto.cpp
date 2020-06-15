@@ -2,6 +2,8 @@
 #include "ManejadorProducto.h"
 #include "ManejadorMesa.h"
 
+ControladorQuitarProducto::ControladorQuitarProducto(){}
+
 list<DtProducto> ControladorQuitarProducto::listarProductos(int idMesa){
     //this->setMesa(idMesa);
     this->mesa=idMesa;
@@ -25,3 +27,5 @@ void ControladorQuitarProducto::confirmarQuitarProductoVenta(){
 void ControladorQuitarProducto::cancelarQuitarProductoVenta(){
     //this->productoVenta.~DtProductoCantidad();
 }
+
+ControladorQuitarProducto::~ControladorQuitarProducto(){}

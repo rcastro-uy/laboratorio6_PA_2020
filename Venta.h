@@ -14,7 +14,7 @@ class Venta{
     public:
         Venta();
         Venta(string, list<VentaProducto*>);
-        string getcodigo();
+        string getCodigo();
         void setCodigo(string);
         list<VentaProducto*> getVentaProductos();
         void setVentaProductos (VentaProducto*);

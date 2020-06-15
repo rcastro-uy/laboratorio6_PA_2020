@@ -1,6 +1,7 @@
 #ifndef CONTROLADORFACTURAR
 #define CONTROLADORFACTURAR
 #include "IControladorFacturar.h"
+#include <list>
 
 using namespace std;
 

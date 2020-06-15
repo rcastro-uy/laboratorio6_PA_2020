@@ -1,6 +1,7 @@
 #ifndef CONTROLADORINICIARVENTA
 #define CONTROLADORINICIARVENTA
 #include "IControladorIniciarVenta.h"
+#include <list>
 
 using namespace std;
 
@@ -12,7 +13,7 @@ private:
 public:
     ControladorIniciarVenta();
 
-    list<int> ingresarIDMozo(int);
+    list<int> ingresarIdMozo(string);
     void seleccionarMesa(list<int>);
     void confirmarIniciarVenta();
     void cancelarIniciarVenta();

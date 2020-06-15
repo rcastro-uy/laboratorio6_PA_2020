@@ -8,6 +8,8 @@ using namespace std;
 
 ManejadorProducto* ManejadorProducto:: instancia = NULL;
 
+ManejadorProducto::ManejadorProducto(){}
+
 ManejadorProducto* ManejadorProducto:: getInstancia(){
     if (instancia == NULL) {
         instancia = new ManejadorProducto();
