@@ -80,7 +80,7 @@ list<DtProductoFactura> VentaLocal::getDtProductoFactura(){
     list<VentaProducto*> lista = getVentaProductos();
     for (list<VentaProducto*>::iterator it=lista.begin(); it!=lista.end(); ++it){
         DtProductoFactura dtpf = (*it)->getDtProductoFactura();
-        dtproductosFact.(dtpf);
+        dtproductosFact.push_back(dtpf);
     }
     return dtproductosFact;
 }
