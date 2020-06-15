@@ -3,6 +3,9 @@
 #include "ManejadorVenta.h"
 #include "Menu.h"
 
+ControladorBajaProducto::ControladorBajaProducto(){};
+ControladorBajaProducto::~ControladorBajaProducto(){};
+
 list<DtProductoBase> ControladorBajaProducto::listarProductos(){
     ManejadorProducto* mP=ManejadorProducto::getInstancia();
     list<Producto*> productos=mP->getProductos();
@@ -54,3 +57,6 @@ void ControladorBajaProducto::eliminarProducto(){//Recuerda codigo
     delete pro;
 }
 
+void ControladorBajaProducto::cancelarBajaProducto(){
+    
+}; 

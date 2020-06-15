@@ -3,6 +3,8 @@
 #include "ManejadorProducto.h"
 
 
+ControladorAltaProducto::ControladorAltaProducto(){};
+
 list<DtProductoBase> ControladorAltaProducto::listarProductosComunes(){
     ManejadorProducto* mP=ManejadorProducto::getInstancia();
     list<Producto*> productos=mP->getProductos();
@@ -29,6 +31,11 @@ void ControladorAltaProducto::confirmarProductoComun(){
     mP->agregarProducto(c);
 }
 
+void ControladorAltaProducto::cancelarProductoComun(){
+    this->codComun.clear();
+    this->descComun.clear();
+}
+
 void ControladorAltaProducto::datosProductoMenu(string cod, string desc){
     this->codMenu=cod;
     this->descMenu=desc;
@@ -51,3 +58,5 @@ void ControladorAltaProducto::cancelarProductoMenu(){
     this->descMenu.clear();
     this->ProductoComun.clear();
 }
+
+ControladorAltaProducto::~ControladorAltaProducto(){};

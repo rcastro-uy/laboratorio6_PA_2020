@@ -2,6 +2,8 @@
 #include "ManejadorProducto.h"
 #include "ManejadorMesa.h"
 
+ControladorAgregarProducto::ControladorAgregarProducto(){};
+
 list<DtProductoBase> ControladorAgregarProducto::listarProductos(){
     ManejadorProducto* mP=ManejadorProducto::getInstancia();
     list<Producto*> productos=mP->getProductos();
@@ -29,3 +31,9 @@ void ControladorAgregarProducto::confirmarAgregarProductoVenta(){
     Mesa* me = mM->getMesa(this->mesa);
     me->agregarProducto(this->productoVenta);
 }
+
+void ControladorAgregarProducto::cancelarAgregarProductoVenta(){
+    
+};
+
+ControladorAgregarProducto::~ControladorAgregarProducto(){};

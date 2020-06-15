@@ -8,6 +8,9 @@ DtProductoBase::DtProductoBase(string codigo,string desc){
 string DtProductoBase::getCodigo(){
     return this->codigo;
 }
+void DtProductoBase::setCodigo(string cod){
+    this->codigo = cod;
+}
 void DtProductoBase::setDescripcion(string desc){
     this->descripcion = desc;
 }

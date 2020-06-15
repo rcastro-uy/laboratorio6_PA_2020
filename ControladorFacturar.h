@@ -7,7 +7,9 @@ using namespace std;
 
 class ControladorFacturar: public IControladorFacturar{
     public:
+        ControladorFacturar();
         DtFacturaLocal facturar(int, float);
+        ~ControladorFacturar();
 };
 
 #endif
