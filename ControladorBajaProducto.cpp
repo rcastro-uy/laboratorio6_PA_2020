@@ -65,6 +65,13 @@ void ControladorBajaProducto::eliminarProducto(){//Recuerda codigo
     delete pro;
 }
 
+bool ControladorBajaProducto::existeProducto(string){
+    ManejadorProducto* mP=ManejadorProducto::getInstancia();
+    bool existe=mP->existeProducto(this->codigo);
+    if (!existe)
+		throw invalid_argument("ERROR: NO EXISTE UN PRODUCTO CON ESE IDENTIFICADOR\n");
+}
+
 void ControladorBajaProducto::cancelarBajaProducto(){
     
 }; 

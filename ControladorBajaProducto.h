@@ -15,6 +15,7 @@ public:
     list<DtProductoBase> listarProductos();
     void seleccionarProducto(string); 
     void cancelarBajaProducto(); 
+    bool existeProducto(string);
 
     ~ControladorBajaProducto();
 };
