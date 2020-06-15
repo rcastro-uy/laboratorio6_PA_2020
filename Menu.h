@@ -17,7 +17,7 @@ class Menu: public Producto{
         void setCantComunes(int);
         int getCantComunes();
         TipoProducto getTipoProducto();
-        int eliminarComun(ProductoMenu,string);
+        int eliminarComun(string);
         void decrementarCantComunes(int);
         void agregarComunes(list<DtProductoCantidad>);
         void calcularPrecio();

@@ -50,16 +50,17 @@ void altaProducto(){
     bool hayComun;
     list<DtProductoBase> lstDTPB;
 
-    lstDTPB = iconALTAP->listarProductosComunes();
-    hayComun = (lstDTPB.empty()==false);
     do{
+		lstDTPB = iconALTAP->listarProductosComunes();
+		hayComun = (lstDTPB.empty()==false);
         if (hayComun){
-            cout <<"1. Dar de Alta un Producto"<<endl;
+            cout <<"\n1. Dar de Alta un Producto"<<endl;
             cout <<"2. Dar de Alta un Menu"<<endl;
             cout <<"3. Terminar"<<endl;
             cin >> opcion;
 
             if(opcion==1){
+				imprimirListaProductos(lstDTPB);
 				ingresarComun();
 			}else if(opcion==2){
 				ingresarMenu();
@@ -68,10 +69,11 @@ void altaProducto(){
 			}
 			
         }else{ //NO HAY NINGUN PRODUCTO COMUN
-            cout <<"1. Dar de Alta un Producto"<<endl;
+            cout <<"\n1. Dar de Alta un Producto"<<endl;
             cout <<"2. Terminar"<<endl;
 			cin >> opcion;
             if(opcion==1){
+				imprimirListaProductos(lstDTPB);
 				ingresarComun();
 			}else{
                 cout <<"ATENCION: Opción incorrecta. Intente nuevamente:"<<endl;
@@ -85,7 +87,7 @@ void ingresarComun(){
 	string cod, desc;
 	float precio;
 	
-	cout << "Ingrese un Identificador único para el producto Común: ";
+	cout << "\nIngrese un Identificador único para el producto Común: ";
 	cin >> cod;
 	cout << "Ingrese el Precio para el producto Común: ";
 	cin >> precio;
@@ -93,7 +95,7 @@ void ingresarComun(){
 	cin >> desc;
 	iconALTAP->datosProductoComun(cod, desc, precio);
 
-	cout <<"1. Confirmar Producto"<<endl;
+	cout <<"\n1. Confirmar Producto"<<endl;
 	cout <<"2. Cancelar Alta"<<endl;
 	cin >> opcion;
 	switch (opcion){
@@ -117,7 +119,7 @@ void ingresarMenu(){
 	bool existe;
 
 	//PARTE datos de menu
-	cout << "Ingrese un Identificador único para el Menú: ";
+	cout << "\nIngrese un Identificador único para el Menú: ";
 	cin >> cod;
 	cout << "Ingrese una Descripción para el Menú: ";
 	cin >> desc;
@@ -130,7 +132,7 @@ void ingresarMenu(){
 	//PARTE agrega comunes al menu
 	opcion = 1;	//para entrar al wihle 
 	while (opcion != 2){
-		cout <<"1. Ingresar un Producto al Menú"<<endl;
+		cout <<"\n1. Ingresar un Producto al Menú"<<endl;
 		cout <<"2. Finalizar ingreso de productos"<<endl;
 		cin >> opcion;
 		switch (opcion){
@@ -156,7 +158,7 @@ void ingresarMenu(){
 	}
 
 	//PARTE aceptar/cancelar
-	cout <<"1. Confirmar Menu"<<endl;
+	cout <<"\n1. Confirmar Menu"<<endl;
 	cout <<"2. Cancelar Alta"<<endl;
 	cin >> opcion;
 	switch (opcion){
@@ -182,9 +184,11 @@ bool existeProductoBase(string cod, list<DtProductoBase>& listProd){
 }
 
 void imprimirListaProductos(list<DtProductoBase> lProd){
-	// for (list<DtProductoBase>::iterator it=lProd.begin(); it != lProd.end(); it++){
-	// 	cout << *it << endl;
-	// }
+	cout <<"_____________________________________________" <<endl;
+	cout <<"______L I S T A_______"<< endl;
+	for (list<DtProductoBase>::iterator it=lProd.begin(); it != lProd.end(); it++){
+	 	cout << *it;
+	}
 }
 
 
@@ -410,13 +414,14 @@ void bajaProducto(){
 
 	lstDTPB = iconBAJAP->listarProductos();
 	for (list<DtProductoBase>::iterator it = lstDTPB.begin(); it != lstDTPB.end(); it++){
-		//cout << (*it) << endl;
+		cout << (*it);
 	}
 
 	cout << "Ingrese el Identificador del Producto a dar de baja: ";
 	cin >> cod;
 	existe = existeProductoBase(cod, lstDTPB);
 	if (existe){
+		iconBAJAP->seleccionarProducto(cod);
 		//PARTE aceptar/cancelar
 		cout <<"1. Confirmar Baja de Producto"<<endl;
 		cout <<"2. Cancelar Baja de Producto"<<endl;

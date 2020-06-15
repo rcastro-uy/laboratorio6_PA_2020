@@ -19,9 +19,9 @@ void Menu::incrementarCantComunes(int cant){
 void Menu::decrementarCantComunes(int cant){
     this->cantComunes = this->cantComunes - cant;  
 }
-int Menu::eliminarComun(ProductoMenu pro,string codigo){
+int Menu::eliminarComun(string codigo){
     for (list<ProductoMenu*>::iterator it=this->listaProductos.begin(); it != this->listaProductos.end(); it++){
-        string cod=(*it)->getComun()->getCodigo();
+        string cod=(*it)->getCodigoComun();
         if(cod==codigo){
             this->listaProductos.remove(*it);
             delete *it;
