@@ -4,7 +4,7 @@
 #include "IControladorAltaProducto.h"
 #include "IControladorBajaProducto.h"
 #include "IControladorIniciarVenta.h"
-#include "tipoProducto.h"
+#include "TipoProducto.h"
 #include "IControladorFacturar.h"
 //#include "IControladorCargarDatos.h"
 Fabrica* fabrica;

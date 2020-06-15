@@ -18,6 +18,7 @@ class ManejadorProducto{
         Producto* getProducto(string);
         void removerProducto(Producto*);
         void agregarProducto(Producto*);
+        bool existeProducto(string);
         virtual ~ManejadorProducto();
 };
 

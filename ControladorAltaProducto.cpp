@@ -27,7 +27,7 @@ void ControladorAltaProducto::datosProductoComun(string cod, string desc, float 
 
 void ControladorAltaProducto::confirmarProductoComun(){
     ManejadorProducto* mP = ManejadorProducto::getInstancia();
-    bool existe=mP->existeProducto();
+    bool existe=mP->existeProducto(this->codComun);
     //try catch antes de confirmarlo
     if(!existe){
         Comun* c=new Comun(this->codComun,this->precioComun,this->descComun);

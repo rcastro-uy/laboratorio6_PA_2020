@@ -39,4 +39,9 @@ void ManejadorProducto:: agregarProducto(Producto* pro){
     productos.insert(std::pair<string,Producto*>(pro->getCodigo(), pro));
 }
 
+bool ManejadorProducto::existeProducto(string producto) {
+    map<string,Producto*>::iterator it  = this->productos.find(producto);
+    return (it != this->productos.end());
+}
+
 ManejadorProducto::~ManejadorProducto(){}
