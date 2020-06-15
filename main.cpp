@@ -100,7 +100,12 @@ void ingresarComun(){
 	cin >> opcion;
 	switch (opcion){
 		case 1:
-			iconALTAP->confirmarProductoComun();
+			try{
+				iconALTAP->confirmarProductoComun();
+			}catch(invalid_argument& e){
+				cout<<e.what()<<endl;
+				break;
+			}
 		break;
 		case 2:
 			iconALTAP->cancelarProductoComun();
@@ -163,7 +168,12 @@ void ingresarMenu(){
 	cin >> opcion;
 	switch (opcion){
 		case 1:
-			iconALTAP->confirmarProductoMenu();
+			try{
+				iconALTAP->confirmarProductoMenu();
+			}catch(invalid_argument& e){
+				cout<<e.what()<<endl;
+				break;
+			}
 		break;
 		case 2:
 			iconALTAP->cancelarProductoMenu();

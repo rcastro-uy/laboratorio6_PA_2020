@@ -33,7 +33,7 @@ void ControladorAltaProducto::confirmarProductoComun(){
         Comun* c=new Comun(this->codComun,this->precioComun,this->descComun);
         mP->agregarProducto(c);
     }else
-        throw invalid_argument("ERROR: NO EXISTE USUARIO CON ESA CI EN EL SISTEMA\n");
+        throw invalid_argument("ERROR: YA EXISTE UN PRODUCTO CON ESE IDENTIFICADOR\n");
     
 }
 
