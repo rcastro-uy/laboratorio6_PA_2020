@@ -15,3 +15,9 @@ string DtProductoBase::getDescripcion(){
     return this->descripcion;
 }
 DtProductoBase::~DtProductoBase(){}
+
+ostream& operator <<(ostream& salida,const DtProductoBase& dtpb){
+	cout << "Codigo: " << dtpb.codigo <<  " ";
+	cout << "Descripcion: " << dtpb.descripcion << endl;
+	return salida;
+}
