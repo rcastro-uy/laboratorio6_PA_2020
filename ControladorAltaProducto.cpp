@@ -1,6 +1,8 @@
+#include <stdexcept> //para el invalid_argument
 #include "ControladorAltaProducto.h"
 #include "Menu.h"
 #include "ManejadorProducto.h"
+
 
 
 ControladorAltaProducto::ControladorAltaProducto(){};

@@ -1,3 +1,4 @@
+#include <stdexcept> //para el invalid_argument
 #include "ControladorBajaProducto.h"
 #include "ManejadorProducto.h"
 #include "ManejadorVenta.h"

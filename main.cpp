@@ -1,3 +1,5 @@
+#include <stdexcept> //para el invalid_argument
+#include <stdlib.h>  // para el system
 #include "Fabrica.h"
 #include "IControladorAgregarProducto.h"
 #include "IControladorQuitarProducto.h"
@@ -496,7 +498,7 @@ void menu(){
 		cout <<"4. Quitar un Producto de una Venta"<<endl;
 		cout <<"5. Facturar una venta"<<endl;
 		cout <<"6. Dar de Baja un Producto"<<endl;
-        cout <<"7. «Cargar Datos de Prueba»"<<endl;
+        cout <<"7. Cargar Datos de Prueba"<<endl;
 		cout <<"8. Salir"<<endl;
 		cout <<"_____________________________________________" <<endl;
 		cout <<"OPCION: ";
