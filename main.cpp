@@ -284,7 +284,7 @@ void iniciarVenta(){
 	cout <<"_____________________________________________" <<endl;
 	cout <<"______I N I C I A R__V E N T A__E N__M E S A S______"<< endl;
     int opcion, mesa;
-	string  mozo;
+	string mozo;
 	list<int> mesasSinVentaDeMozo;
 	list<int> mesasSelected;
 	bool existe;

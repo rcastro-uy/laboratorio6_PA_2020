@@ -8,9 +8,11 @@ Mozo::Mozo(string id,string nombre, list<Mesa*> mesas):Empleado(id,nombre){
 list<Mesa*> Mozo::getMesas(){
     return this->mesas;
 }
+
 void Mozo::setMesas(list<Mesa*> mesas){
     this->mesas=mesas;
 }
+
 list<int> Mozo::mesasAsignadasSinVenta(){
     list<int> mesasSinVenta;
     for (list<Mesa*>::iterator it=mesas.begin(); it!=mesas.end(); ++it){
@@ -22,6 +24,7 @@ list<int> Mozo::mesasAsignadasSinVenta(){
     }
     return mesasSinVenta;
 }
+
 //pendiente - rcastro
 // void Mozo::asignarMesas(list<int>,VentaLocal){
 //     for (list<Mesa*>::iterator it=mesas.begin(); it!=mesas.end(); ++it){

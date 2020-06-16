@@ -2,6 +2,8 @@
 #include "ControladorAltaProducto.h"
 #include "ControladorAgregarProducto.h"
 #include "ControladorIniciarVenta.h"
+#include "ManejadorMesa.h"
+#include "ManejadorEmpleado.h"
 
 using namespace std;
 
@@ -94,6 +96,10 @@ void ControladorCargarDatos::cargarDatos(){
 	conALTA->agregarAlProductoMenu(m5pc3);
 	conALTA->agregarAlProductoMenu(m5pc4);
 	conALTA->confirmarProductoMenu();
+	ManejadorMesa* mP=ManejadorMesa::getInstancia();
+	Mesa* a = new Mesa(1);
+	mP->agregarMesa(a);
+	//ManejadorEmpleado* mE=ManejadorEmpleado::getInstancia();
 	
 	//Faltan las mesas y los mozos o empleados, y asignarles mesas...
 	
