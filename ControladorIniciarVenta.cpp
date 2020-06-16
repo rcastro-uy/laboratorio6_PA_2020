@@ -9,14 +9,12 @@
 ControladorIniciarVenta::ControladorIniciarVenta(){};
 ControladorIniciarVenta::~ControladorIniciarVenta(){};
 
-//Al final el idMozo es 'int' o 'string'? Hay que llegar a un consenso porque sino no podemos seguir. -Nic-
-
 list<int> ControladorIniciarVenta::ingresarIdMozo(string idMozo){
-    // this->mozo = idMozo;
-    // ManejadorEmpleado* mE=ManejadorEmpleado::getInstancia();
-    // Mozo *mo = dynamic_cast<Mozo*>((mE->getEmpleado(idMozo)));      //idMozo es string o int?¿?¿?¿?¿?  idMozo es un string
-    // list<int> mesas=mo->mesasAsignadasSinVenta();
-    // return mesas;
+     this->mozo = idMozo;
+     ManejadorEmpleado* mE=ManejadorEmpleado::getInstancia();
+     Mozo *mo = dynamic_cast<Mozo*>((mE->getEmpleado(idMozo)));
+     list<int> mesas=mo->mesasAsignadasSinVenta();
+     return mesas;
 }
 
 void ControladorIniciarVenta::seleccionarMesa(list<int> idMesas) {

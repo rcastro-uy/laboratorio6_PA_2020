@@ -504,7 +504,7 @@ void menu(){
 		cout <<"OPCION: ";
 }
 
-main(){
+int main(){
 	fabrica = Fabrica::getInstancia();
     iconAP = fabrica->getIControladorAgregarProducto();
     iconQP = fabrica->getIControladorQuitarProducto();
@@ -541,4 +541,5 @@ main(){
 		menu();
 		cin >> opcion;
 	}
+	return 0;
 }
