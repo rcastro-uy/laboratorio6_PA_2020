@@ -73,10 +73,9 @@ void ControladorAltaProducto::confirmarProductoMenu(){
         m->agregarComunes(this->ProductoComun);
         m->calcularPrecio();
         mP->agregarProducto(m);
+        cancelarProductoMenu();
     }else
         throw invalid_argument("ERROR: YA EXISTE UN PRODUCTO CON ESE IDENTIFICADOR\n");
-
-    
 }
 
 void ControladorAltaProducto::cancelarProductoMenu(){

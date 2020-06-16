@@ -5,6 +5,7 @@
 #include "ControladorQuitarProducto.h"
 #include "ControladorIniciarVenta.h"
 #include "ControladorFacturar.h"
+#include "ControladorCargarDatos.h"
 Fabrica* Fabrica::instancia = NULL;
 
 Fabrica::Fabrica(){}
@@ -37,6 +38,10 @@ IControladorIniciarVenta* Fabrica::getIControladorIniciarVenta(){
 
 IControladorFacturar* Fabrica::getIControladorFacturar(){
     return new ControladorFacturar();    
+}
+
+IControladorCargarDatos* Fabrica::getIControladorCargarDatos(){
+    return new ControladorCargarDatos();    
 }
 
 Fabrica::~Fabrica(){}

@@ -12,6 +12,11 @@ string ProductoMenu::getCodigoComun(){
     return this->comun->getCodigo();
 }
 
+string ProductoMenu::getDescComun(){
+    //this->comun es un Comun*, pseudoatibuto
+    return this->comun->getDescripcion();
+}
+
 void ProductoMenu::asignarComun(string codigo){
     ManejadorProducto* mP = ManejadorProducto::getInstancia();
     Comun *c = dynamic_cast<Comun*>(mP->getProducto(codigo)); //casteo dinamico

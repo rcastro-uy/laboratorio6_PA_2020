@@ -8,7 +8,7 @@
 #include "IControladorIniciarVenta.h"
 #include "TipoProducto.h"
 #include "IControladorFacturar.h"
-//#include "IControladorCargarDatos.h"
+#include "IControladorCargarDatos.h"
 Fabrica* fabrica;
 IControladorAgregarProducto* iconAP;
 IControladorQuitarProducto* iconQP;
@@ -16,7 +16,7 @@ IControladorAltaProducto* iconALTAP;
 IControladorBajaProducto* iconBAJAP;
 IControladorIniciarVenta* iconIV;
 IControladorFacturar* iconF;
-//IControladorCargarDatos* iconDATOS;
+IControladorCargarDatos* iconDATOS;
 
 void altaProducto();
 void ingresarComun();
@@ -484,7 +484,7 @@ void facturar(){
 
 //Carga de datos de prueba
 void cargarDatos(){
-
+	iconDATOS->cargarDatos();
 }
 
 
@@ -512,9 +512,8 @@ main(){
     iconBAJAP = fabrica->getIControladorBajaProducto();
     iconIV = fabrica->getIControladorIniciarVenta();
     iconF = fabrica->getIControladorFacturar();
-    //iconDATOS = fabrica->getIControladorCargarDatos(blablablalbabl);
+    iconDATOS = fabrica->getIControladorCargarDatos();
 	int opcion;
-	//iconDATOS->cargarDatos();
 	menu();
 	cin >> opcion;
 	while(opcion != 8){

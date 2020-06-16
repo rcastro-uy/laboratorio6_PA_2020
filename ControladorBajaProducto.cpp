@@ -25,7 +25,7 @@ void ControladorBajaProducto::seleccionarProducto(string cod){
 }
 
 
-//NIC: estaba probando eliminar asi que no se asusten con los cout, son debug
+//NIC: tengo que borrar los COUTs, a menos que encuetre problemas de nuevo
 void ControladorBajaProducto::eliminarProducto(){//Recuerda codigo
     ManejadorProducto* mP=ManejadorProducto::getInstancia();
     Producto* pro=mP->getProducto(this->codigo);
@@ -45,8 +45,8 @@ void ControladorBajaProducto::eliminarProducto(){//Recuerda codigo
                 cout << ">>>>TIPO MENU CASTEADO" << endl;
                 cout << ">>>>" << m->getCodigo() << endl;
                 // Falta corregir algo en eliminarComun (se caga aca)
-                int cant = m->eliminarComun(this->codigo);      //ProductoMenu no deberia ser un parametro, solo el string
-                cout << ">>>>" << m->getCodigo() << endl;
+                int cant = m->eliminarComun(this->codigo);
+                cout << ">>>>" << m->getCodigo() << " - " << m->getCantComunes() << endl;
                 if (cant==0){
                     cout << ">>>>MENU TIENE 0 PRODUCTOS" << endl;
                     string codM=m->getCodigo();

@@ -1,5 +1,5 @@
-main: Comun.o ControladorAgregarProducto.o ControladorAltaProducto.o ControladorBajaProducto.o ControladorFacturar.o ControladorIniciarVenta.o ControladorQuitarProducto.o DtFacturaLocal.o DtFecha.o DtFechaHora.o DtProducto.o DtProductoBase.o DtProductoCantidad.o DtProductoFactura.o Empleado.o Fabrica.o Factura.o ManejadorEmpleado.o ManejadorMesa.o ManejadorProducto.o ManejadorVenta.o Menu.o Mesa.o Mozo.o Producto.o ProductoMenu.o Venta.o VentaLocal.o VentaProducto.o main.o
-	g++ Comun.o ControladorAgregarProducto.o ControladorAltaProducto.o ControladorBajaProducto.o ControladorFacturar.o ControladorIniciarVenta.o ControladorQuitarProducto.o DtFacturaLocal.o DtFecha.o DtFechaHora.o DtProducto.o DtProductoBase.o DtProductoCantidad.o DtProductoFactura.o Empleado.o Fabrica.o Factura.o ManejadorEmpleado.o ManejadorMesa.o ManejadorProducto.o ManejadorVenta.o Menu.o Mesa.o Mozo.o Producto.o ProductoMenu.o Venta.o VentaLocal.o VentaProducto.o main.o -o labo
+main: Comun.o ControladorAgregarProducto.o ControladorAltaProducto.o ControladorBajaProducto.o ControladorFacturar.o ControladorIniciarVenta.o ControladorQuitarProducto.o ControladorCargarDatos.o DtFacturaLocal.o DtFecha.o DtFechaHora.o DtProducto.o DtProductoBase.o DtProductoCantidad.o DtProductoFactura.o Empleado.o Fabrica.o Factura.o ManejadorEmpleado.o ManejadorMesa.o ManejadorProducto.o ManejadorVenta.o Menu.o Mesa.o Mozo.o Producto.o ProductoMenu.o Venta.o VentaLocal.o VentaProducto.o main.o
+	g++ Comun.o ControladorAgregarProducto.o ControladorAltaProducto.o ControladorBajaProducto.o ControladorFacturar.o ControladorIniciarVenta.o ControladorQuitarProducto.o ControladorCargarDatos.o DtFacturaLocal.o DtFecha.o DtFechaHora.o DtProducto.o DtProductoBase.o DtProductoCantidad.o DtProductoFactura.o Empleado.o Fabrica.o Factura.o ManejadorEmpleado.o ManejadorMesa.o ManejadorProducto.o ManejadorVenta.o Menu.o Mesa.o Mozo.o Producto.o ProductoMenu.o Venta.o VentaLocal.o VentaProducto.o main.o -o labo
 
 Comun.o: Comun.cpp
 
@@ -14,6 +14,8 @@ ControladorFacturar.o: ControladorFacturar.cpp
 ControladorIniciarVenta.o: ControladorIniciarVenta.cpp
 
 ControladorQuitarProducto.o: ControladorQuitarProducto.cpp
+
+ControladorCargarDatos.o: ControladorCargarDatos.cpp
 
 DtFacturaLocal.o: DtFacturaLocal.cpp
 

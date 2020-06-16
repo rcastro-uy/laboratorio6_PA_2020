@@ -6,6 +6,7 @@
 #include "IControladorQuitarProducto.h"
 #include "IControladorIniciarVenta.h"
 #include "IControladorFacturar.h"
+#include "IControladorCargarDatos.h"
 class Fabrica{
     private:
         static Fabrica* instancia;
@@ -18,6 +19,7 @@ class Fabrica{
         IControladorQuitarProducto* getIControladorQuitarProducto();
         IControladorIniciarVenta* getIControladorIniciarVenta();
         IControladorFacturar* getIControladorFacturar();
+        IControladorCargarDatos* getIControladorCargarDatos();
         ~Fabrica();
 };
 #endif

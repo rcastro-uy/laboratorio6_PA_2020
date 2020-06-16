@@ -20,12 +20,13 @@ void Menu::decrementarCantComunes(int cant){
     this->cantComunes = this->cantComunes - cant;  
 }
 int Menu::eliminarComun(string codigo){
-    for (list<ProductoMenu*>::iterator it=this->listaProductos.begin(); it != this->listaProductos.end(); it++){
+    for (list<ProductoMenu*>::iterator it=this->listaProductos.begin(); it != this->listaProductos.end(); ++it){
         string cod=(*it)->getCodigoComun();
         if(cod==codigo){
-            this->listaProductos.remove(*it);
-            delete *it;
+            this->listaProductos.remove((*it));
+            delete (*it);
             this->decrementarCantComunes(1);//this->cantComunes--;
+            it=this->listaProductos.end();  //fuerza la salida del loop para que no se crashee
         }
     }
     //int cant = getCantComunes();
