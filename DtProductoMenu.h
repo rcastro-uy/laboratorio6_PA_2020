@@ -8,13 +8,13 @@ using namespace std;
 
 class DtProductoMenu: public DtProducto{
     private:
-    list<DtProductoComun> productos;
+    list<DtProductoComun*> productos;
     public:
     DtProductoMenu();
-    DtProductoMenu(string,string,float,int,list<DtProductoComun>);
-    ~DtProductoMenu();
-    list<DtProductoComun> getProductos();
-    void setProductos(list<DtProductoComun>);
+    DtProductoMenu(string,string,float,int,list<DtProductoComun*>);
+    virtual ~DtProductoMenu();
+    list<DtProductoComun*> getProductos();
+    void setProductos(list<DtProductoComun*>);
 };
 
 #endif

@@ -19,8 +19,8 @@ int DtProducto::getCantidad(){
 }
 
 ostream& operator <<(ostream& salida,const DtProducto& dtpb){
-	cout << "Codigo: " << dtpb.precio <<  " ";
-	cout << "Descripcion: " << dtpb.cantidad << endl;
+	cout << (DtProductoBase)dtpb <<"Precio: " << dtpb.precio <<  " ";
+	cout << "Cantidad: " << dtpb.cantidad << endl;
 	return salida;
 }
 

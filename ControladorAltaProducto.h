@@ -27,7 +27,7 @@ class ControladorAltaProducto: public IControladorAltaProducto{
         void confirmarProductoMenu();
         void cancelarProductoMenu();
         bool existeProducto(string);
-        DtProducto detallesProducto(string);
+        DtProducto* detallesProducto(string);
 
 
 

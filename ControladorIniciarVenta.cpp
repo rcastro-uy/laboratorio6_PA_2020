@@ -27,7 +27,7 @@ void ControladorIniciarVenta::confirmarIniciarVenta(){
 
     // VentaLocal* vl= new VentaLocal(mo);
     list<VentaProducto*> ventasp;
-    VentaLocal* vl=new VentaLocal(mo->getNombre(),ventasp);
+    VentaLocal* vl=new VentaLocal(mo->getNombre());
 
     // mo->asignarMesas(this->mesas, vl);
      ManejadorVenta* mV=ManejadorVenta::getInstancia();

@@ -16,7 +16,7 @@ class DtProducto: public DtProductoBase{
         float getPrecio();
         void setCantidad(int);
         int getCantidad();
-        ~DtProducto();
+        virtual ~DtProducto();
         friend ostream& operator <<(ostream&,const DtProducto&);
 };
 #endif

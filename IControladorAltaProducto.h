@@ -23,7 +23,7 @@ class IControladorAltaProducto{
         virtual void confirmarProductoMenu() = 0;
         virtual void cancelarProductoMenu() = 0;
         virtual bool existeProducto(string) =0;
-        virtual DtProducto detallesProducto(string) =0;
+        virtual DtProducto* detallesProducto(string) =0;
 };
 
 #endif

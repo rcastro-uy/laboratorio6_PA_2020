@@ -478,6 +478,7 @@ void cargarDatos(){
 	iconDATOS->cargarDatos();
 }
 
+//FALTA CORREGIR LA IMPRESION EN LA CONSOLA
 void informacionDeUnProducto(){
 	system("clear");
 	cout <<"_____________________________________________" <<endl;
@@ -485,7 +486,7 @@ void informacionDeUnProducto(){
     int opcion;
 	string cod;
 
-	DtProducto prod;
+	DtProducto *prod;
     list<DtProductoBase> lstDTPB;
 
 	cout << "Productos en el Sistema: ";
@@ -503,6 +504,13 @@ void informacionDeUnProducto(){
 				cin >> cod;
 				if (iconALTAP->existeProducto(cod)){
 					prod=iconALTAP->detallesProducto(cod);
+					//CORREGIR LA IMPRESION!!!
+					if (DtProductoComun* comun = dynamic_cast<DtProductoComun*>(prod)){
+						cout << *comun << endl;
+					}else{
+						DtProductoMenu* menu = dynamic_cast<DtProductoMenu*>(prod);
+						cout << *menu << endl;
+					}		
 				}else{
 					cout << "ATENCION: Ese producto no existe.";
 				}

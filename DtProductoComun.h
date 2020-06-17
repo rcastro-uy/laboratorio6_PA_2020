@@ -8,7 +8,7 @@ class DtProductoComun: public DtProducto{
     public:
     DtProductoComun();
     DtProductoComun(string,string,float,int);
-    ~DtProductoComun();
+    virtual ~DtProductoComun();
     
 };
 #endif
