@@ -17,5 +17,6 @@ class DtProducto: public DtProductoBase{
         void setCantidad(int);
         int getCantidad();
         ~DtProducto();
+        friend ostream& operator <<(ostream&,const DtProducto&);
 };
 #endif

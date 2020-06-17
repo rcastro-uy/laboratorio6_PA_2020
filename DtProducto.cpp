@@ -17,4 +17,11 @@ void DtProducto::setCantidad(int cant){
 int DtProducto::getCantidad(){
     return this->cantidad;
 }
+
+ostream& operator <<(ostream& salida,const DtProducto& dtpb){
+	cout << "Codigo: " << dtpb.precio <<  " ";
+	cout << "Descripcion: " << dtpb.cantidad << endl;
+	return salida;
+}
+
 DtProducto::~DtProducto(){}
