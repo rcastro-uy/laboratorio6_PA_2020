@@ -2,6 +2,7 @@
 #include "ControladorAltaProducto.h"
 #include "Menu.h"
 #include "ManejadorProducto.h"
+#include "ManejadorVenta.h"
 
 
 
@@ -100,8 +101,24 @@ bool ControladorAltaProducto::existeProducto(string cod){
     return mP->existeProducto(cod);
 }
 
-DtProductoBase ControladorAltaProducto::detallesProducto(string){
+DtProducto ControladorAltaProducto::detallesProducto(string cod){
     //find del Producto buscado y retorno en un DtProductoBase
+    ManejadorProducto* mP=ManejadorProducto::getInstancia();
+    ManejadorVenta* mV = ManejadorVenta::getInstancia();
+    VentaProducto* ventaprod;
+    list<Venta*> ventas;
+    Producto* prod;
+    DtProducto dtprod;
+    if(mP->existeProducto(cod)){
+        prod = mP->getProducto(cod);
+        //Una vez tengo el producto, debo buscar las ventas que tienen venta producto con ese producto y a su vez tienen factura !=NULL
+        //Me traigo todas las ventas para preguntarles
+        ventas = mV->getVentas();
+        //Recorro las ventas obteniendo su VentaProducto, para luego preguntarle a cada una por sus ventaProducto, y a cada uno preguntarle si su Producto* matchea con el cod
+
+
+    }
+    return dtprod;
 }
 
 ControladorAltaProducto::~ControladorAltaProducto(){};

@@ -84,3 +84,5 @@ list<DtProductoFactura> VentaLocal::getDtProductoFactura(){
     }
     return dtproductosFact;
 }
+
+VentaLocal::~VentaLocal(){}

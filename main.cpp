@@ -486,7 +486,7 @@ void informacionDeUnProducto(){
     int opcion;
 	string cod;
 
-	DtProductoBase prod;
+	DtProducto prod;
 	bool existe;
     list<DtProductoBase> lstDTPB;
 
@@ -532,7 +532,8 @@ void menu(){
 		cout <<"5. Facturar una venta"<<endl;
 		cout <<"6. Dar de Baja un Producto"<<endl;
         cout <<"7. Cargar Datos de Prueba"<<endl;
-		cout <<"8. Salir"<<endl;
+		cout <<"8. Informacion de Producto"<<endl;
+		cout <<"9. Salir"<<endl;
 		cout <<"_____________________________________________" <<endl;
 		cout <<"OPCION: ";
 }
@@ -549,7 +550,7 @@ int main(){
 	int opcion;
 	menu();
 	cin >> opcion;
-	while(opcion != 8){
+	while(opcion != 9){
 		switch(opcion){
 			case 1: altaProducto();
 				break;

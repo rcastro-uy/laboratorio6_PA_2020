@@ -11,6 +11,7 @@ class Venta{
     private:
         string codigo;
         list<VentaProducto*> ventaProductos;
+        Factura* factura;
     public:
         Venta();
         Venta(string, list<VentaProducto*>);
@@ -18,6 +19,8 @@ class Venta{
         void setCodigo(string);
         list<VentaProducto*> getVentaProductos();
         void setVentaProductos (VentaProducto*);
+        Factura * getFactura();
+        void setFactura (Factura*);
         virtual void eliminarProducto (string)=0;
         ~Venta();
 

@@ -21,4 +21,13 @@ list<VentaProducto*> Venta::getVentaProductos(){
     //     lstVtaProd.push_back(*it); //revisar
     // return lstVtaProd;
 }
+
+Factura* Venta::getFactura(){
+    return this->factura;
+}
+
+void Venta::setFactura (Factura* fac){
+    this->factura=fac;
+}
+
 Venta::~Venta(){}
