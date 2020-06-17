@@ -18,7 +18,7 @@ class Venta{
         string getCodigo();
         void setCodigo(string);
         list<VentaProducto*> getVentaProductos();
-        void setVentaProductos (VentaProducto*);
+        void setVentaProductos (list<VentaProducto*>);
         Factura * getFactura();
         void setFactura (Factura*);
         virtual void eliminarProducto (string)=0;

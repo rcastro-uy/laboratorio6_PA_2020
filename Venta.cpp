@@ -1,9 +1,8 @@
 #include "Venta.h"
 
 Venta::Venta(){}
-Venta::Venta (string codigo, list<VentaProducto*> ventaProductos){
+Venta::Venta (string codigo){
     this->codigo=codigo;
-    this->ventaProductos=ventaProductos; // *SE INICIALIZA LA LISTA? COMO?
 }
 
 string Venta::getCodigo(){
@@ -16,10 +15,14 @@ void Venta::setCodigo(string codigo){
 
 list<VentaProducto*> Venta::getVentaProductos(){
     return this->ventaProductos;
-    // list<VentaProducto*> lstVtaProd;
-    // for (list<VentaProducto*>::iterator it=this->ventaProductos.begin(); it!=ventaProductos.end(); ++it)
-    //     lstVtaProd.push_back(*it); //revisar
-    // return lstVtaProd;
+    list<VentaProducto*> lstVtaProd;
+    for (list<VentaProducto*>::iterator it=this->ventaProductos.begin(); it!=ventaProductos.end(); ++it)
+        lstVtaProd.push_back(*it);
+    return lstVtaProd;
+}
+
+void Venta::setVentaProductos (list<VentaProducto*> vp){
+    this->ventaProductos=vp;
 }
 
 Factura* Venta::getFactura(){
