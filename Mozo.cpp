@@ -1,4 +1,5 @@
 #include "Mozo.h"
+#include "ManejadorMesa.h"
 
 Mozo::Mozo(){}
 Mozo::Mozo(string id,string nombre, list<Mesa*> mesas):Empleado(id,nombre){
@@ -26,11 +27,16 @@ list<int> Mozo::mesasAsignadasSinVenta(){
 }
 
 //pendiente - rcastro
-// void Mozo::asignarMesas(list<int>,VentaLocal){
-//     for (list<Mesa*>::iterator it=mesas.begin(); it!=mesas.end(); ++it){
-//         Mesa* m = this->mesas.(*it);
-//         m->setVentaLocal(vl);
-//     }
-// }
+void Mozo::asignarMesas(list<int> listamesas){
+    ManejadorMesa* mM = ManejadorMesa::getInstancia();
+    int me;
+    Mesa* m;
+    for (list<int>::iterator it=listamesas.begin(); it!=listamesas.end(); ++it){
+        me=*it;
+        m = mM->getMesa(me);
+        mesas.push_back(m);
+    }
+    
+}
 
 Mozo::~Mozo(){}

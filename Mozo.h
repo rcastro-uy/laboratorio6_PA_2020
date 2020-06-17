@@ -16,7 +16,7 @@ class Mozo:public Empleado{
         list<Mesa*> getMesas();
         void setMesas(list<Mesa*>);
         list<int> mesasAsignadasSinVenta();
-        void asignarMesas(list<int>,VentaLocal);
+        void asignarMesas(list<int>);
         ~Mozo();
 };
 

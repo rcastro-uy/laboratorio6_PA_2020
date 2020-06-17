@@ -12,7 +12,7 @@ using namespace std;
 class VentaLocal: public Venta{
     public:
         VentaLocal();
-        VentaLocal(string, list<VentaProducto*>);
+        VentaLocal(string);
         bool tieneElProducto (string);
         void agregarProducto (DtProductoCantidad);
         void incrementar (DtProductoCantidad);

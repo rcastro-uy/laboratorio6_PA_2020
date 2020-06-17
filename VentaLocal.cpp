@@ -1,7 +1,7 @@
 #include "VentaLocal.h"
 
 VentaLocal::VentaLocal(){}
-VentaLocal::VentaLocal(string codigo, list<VentaProducto*> ventaProductos):Venta(codigo, ventaProductos){}
+VentaLocal::VentaLocal(string codigo):Venta(codigo){}
 
 void VentaLocal::eliminarProducto(string codigo){
 //this->ventaProductos es un Set(VentaProducto*), pseudoatibuto
