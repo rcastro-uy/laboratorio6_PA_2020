@@ -7,6 +7,17 @@
 
 ControladorAltaProducto::ControladorAltaProducto(){};
 
+list<DtProductoBase> ControladorAltaProducto::listarProductos(){
+    ManejadorProducto* mP=ManejadorProducto::getInstancia();
+    list<Producto*> productos=mP->getProductos();
+    list<DtProductoBase> dtproductos;
+    for (list<Producto*>::iterator it=productos.begin(); it != productos.end(); it++){
+        DtProductoBase dtpb=(*it)->getDtProductoBase();
+        dtproductos.push_back(dtpb);
+    }
+    return dtproductos;
+}
+
 list<DtProductoBase> ControladorAltaProducto::listarProductosComunes(){
     ManejadorProducto* mP=ManejadorProducto::getInstancia();
     list<Producto*> productos=mP->getProductos();
@@ -82,6 +93,15 @@ void ControladorAltaProducto::cancelarProductoMenu(){
     this->codMenu.clear();
     this->descMenu.clear();
     this->ProductoComun.clear();
+}
+
+bool ControladorAltaProducto::existeProducto(string cod){
+    ManejadorProducto* mP=ManejadorProducto::getInstancia();
+    return mP->existeProducto(cod);
+}
+
+DtProductoBase ControladorAltaProducto::detallesProducto(string){
+    //find del Producto buscado y retorno en un DtProductoBase
 }
 
 ControladorAltaProducto::~ControladorAltaProducto(){};

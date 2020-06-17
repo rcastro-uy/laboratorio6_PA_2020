@@ -37,6 +37,8 @@ void bajaProducto();
 
 void cargarDatos(); //pruebas y final
 
+void informacionDeUnProducto();
+
 void menu();
 
 //CU ALTA PRODUCTO
@@ -206,8 +208,6 @@ void imprimirListaProductos(list<DtProductoBase> lProd){
 }
 
 
-
-
 //CU AGREGAR PRODUCTO A UNA VENTA
 //Faltan excepciones para cuando la Venta asociada a esa Mesa ya fue Facturada
 void agregarProductoAUnaVenta(){
@@ -277,8 +277,6 @@ void agregarProductoAUnaVenta(){
 };
 
 
-
-
 //CU INICIAR VENTA EN MESA
 //Falta excepcion para cuando la/s mesa/s ingresada/s por el usuario ya tienen una venta iniciada
 //No hay que controlar que el mozo exista porque ya viene cargado.
@@ -334,9 +332,6 @@ void iniciarVenta(){
 		}
 	}
 };
-
-
-
 
 
 //CU QUITAR PRODUCTO DE UNA VENTA
@@ -414,10 +409,6 @@ bool existeProducto(string cod, list<DtProducto>& listProd){
 }
 
 
-
-
-
-
 //CU BAJA PRODUCTO
 //Falta comprobar que el producto exista en el sistema (manejador), con try catch para excepcion, o un simple if.
 void bajaProducto(){
@@ -461,9 +452,6 @@ void bajaProducto(){
 }
 
 
-
-
-
 //CU FACTURAR
 //incompleto: falta imprimir && controlar que la mesa ingresada tenga una Venta asociada.
 void facturar(){
@@ -489,6 +477,47 @@ void facturar(){
 //Carga de datos de prueba
 void cargarDatos(){
 	iconDATOS->cargarDatos();
+}
+
+void informacionDeUnProducto(){
+	system("clear");
+	cout <<"_____________________________________________" <<endl;
+	cout <<"______I N F O R M A C I O N__D E__U N__P R O D U C T O______"<< endl;
+    int opcion;
+	string cod;
+
+	DtProductoBase prod;
+	bool existe;
+    list<DtProductoBase> lstDTPB;
+
+	cout << "Productos en el Sistema: ";
+
+	lstDTPB = iconALTAP->listarProductos();
+	imprimirListaProductos(lstDTPB);
+	opcion = 1;	//para entrar al wihle 
+	while (opcion != 2){
+		cout <<"1. Ver detalle de un Producto"<<endl;
+		cout <<"2. Finalizar consulta de Productos"<<endl;
+		cin >> opcion;
+		switch (opcion){
+			case 1:
+				cout << "Ingrese el Identificador del Producto a mostrar: ";
+				cin >> cod;
+				existe = iconALTAP->existeProducto(cod);
+				if (existe){
+					prod=iconALTAP->detallesProducto(cod);
+				}else{
+					cout << "ATENCION: Ese producto no existe.";
+				}
+				break;
+			case 2:
+				system("clear");
+				break;
+			default:
+				cout <<"ATENCION: Opción incorrecta. Intente nuevamente:"<<endl;
+				break;
+		}
+	}
 }
 
 
@@ -536,7 +565,9 @@ int main(){
 				break;
            	case 7: cargarDatos();
 				break;  
-			case 8: system("exit");
+			case 8: informacionDeUnProducto();
+				break;
+			case 9: system("exit");
 				cout << "SALIENDO..." << endl;
 			default:
 				cout << "OPCIÓN INCORRECTA" << endl;

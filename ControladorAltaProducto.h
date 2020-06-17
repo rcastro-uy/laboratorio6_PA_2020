@@ -16,6 +16,7 @@ class ControladorAltaProducto: public IControladorAltaProducto{
         
     public:
         ControladorAltaProducto();
+        list<DtProductoBase> listarProductos();
         list<DtProductoBase> listarProductosComunes();
         list<DtProductoBase> listarProductosMenu();
         void datosProductoComun(string, string, float);
@@ -25,6 +26,8 @@ class ControladorAltaProducto: public IControladorAltaProducto{
         void agregarAlProductoMenu(DtProductoCantidad);
         void confirmarProductoMenu();
         void cancelarProductoMenu();
+        bool existeProducto(string);
+        DtProductoBase detallesProducto(string);
 
 
 
