@@ -24,6 +24,8 @@ class Menu: public Producto{
         void incrementarPrecio(float);
         void aplicarDescuento();
         void incrementarCantComunes(int);
+        list<ProductoMenu*> getListaProductos();
+        void setListaProductos(list<ProductoMenu*>);
         ~Menu();
 };
 #endif

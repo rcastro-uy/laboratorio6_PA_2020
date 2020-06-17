@@ -3,9 +3,9 @@
 #include <iostream>
 #include <string>
 #include <list>
-#include "DtProducto.h"
+#include "DtProductoComun.h"
 #include "DtProductoCantidad.h"
-#include "DtProductoBase.h"
+#include "DtProductoMenu.h"
 
 using namespace std;
 

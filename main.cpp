@@ -486,14 +486,13 @@ void informacionDeUnProducto(){
 	string cod;
 
 	DtProducto prod;
-	bool existe;
     list<DtProductoBase> lstDTPB;
 
 	cout << "Productos en el Sistema: ";
 
 	lstDTPB = iconALTAP->listarProductos();
 	imprimirListaProductos(lstDTPB);
-	opcion = 1;	//para entrar al wihle 
+	opcion = 1;	//para entrar al while 
 	while (opcion != 2){
 		cout <<"1. Ver detalle de un Producto"<<endl;
 		cout <<"2. Finalizar consulta de Productos"<<endl;
@@ -502,8 +501,7 @@ void informacionDeUnProducto(){
 			case 1:
 				cout << "Ingrese el Identificador del Producto a mostrar: ";
 				cin >> cod;
-				existe = iconALTAP->existeProducto(cod);
-				if (existe){
+				if (iconALTAP->existeProducto(cod)){
 					prod=iconALTAP->detallesProducto(cod);
 				}else{
 					cout << "ATENCION: Ese producto no existe.";

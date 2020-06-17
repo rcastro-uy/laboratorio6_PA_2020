@@ -61,4 +61,12 @@ void Menu::calcularPrecio(){
     }
     this->aplicarDescuento();
 }
+
+list<ProductoMenu*> Menu::getListaProductos(){
+    return this->listaProductos;
+}
+void Menu::setListaProductos(list<ProductoMenu*> lista){
+    this->listaProductos=lista;
+}
+
 Menu::~Menu(){}
