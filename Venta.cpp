@@ -14,7 +14,6 @@ void Venta::setCodigo(string codigo){
 }
 
 list<VentaProducto*> Venta::getVentaProductos(){
-    return this->ventaProductos;
     list<VentaProducto*> lstVtaProd;
     for (list<VentaProducto*>::iterator it=this->ventaProductos.begin(); it!=ventaProductos.end(); ++it)
         lstVtaProd.push_back(*it);

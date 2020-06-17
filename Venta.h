@@ -14,7 +14,7 @@ class Venta{
         Factura* factura;
     public:
         Venta();
-        Venta(string, list<VentaProducto*>);
+        Venta(string);
         string getCodigo();
         void setCodigo(string);
         list<VentaProducto*> getVentaProductos();
