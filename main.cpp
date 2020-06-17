@@ -223,11 +223,13 @@ void agregarProductoAUnaVenta(){
 
 	cout << "Ingrese un Identificador de Mesa: ";
 	cin >> mesa;
+	iconAP->seleccionarMesa(mesa);
 	lstDTPB = iconAP->listarProductos();
-	for (list<DtProductoBase>::iterator it = lstDTPB.begin(); it != lstDTPB.end(); it++){
-		//cout << (*it) << endl;
-	}
-
+	// for (list<DtProductoBase>::iterator it = lstDTPB.begin(); it != lstDTPB.end(); it++){
+	// 	cout << (*it) << endl;
+	// }
+	//para que imprimir si ya se imprime arriba?
+	
 	opcion = 1;	//para entrar al wihle 
 	while (opcion != 2){
 		cout <<"1. Ingresar un Producto a la Venta"<<endl;
@@ -247,11 +249,13 @@ void agregarProductoAUnaVenta(){
 				}else{
 					cout << "ATENCION: Ese producto no existe.";
 				}
+				break;
 			case 2:
-			break;
+				system("clear");
+				break;
 			default:
 				cout <<"ATENCION: Opción incorrecta. Intente nuevamente:"<<endl;
-			break;
+				break;
 		}
 	}
 

@@ -10,7 +10,8 @@ list<DtProductoBase> ControladorAgregarProducto::listarProductos(){
     list<DtProductoBase> dtproductos;
     for (list<Producto*>::iterator it=productos.begin(); it != productos.end(); it++){
         DtProductoBase dtpb=(*it)->getDtProductoBase();
-        dtproductos.push_back(dtpb);
+        cout << (*it) << endl;
+        //dtproductos.push_back(dtpb); //esto no es para imprimir
     }
     return dtproductos;
 }

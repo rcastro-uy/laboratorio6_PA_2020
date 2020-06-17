@@ -15,9 +15,10 @@ void Venta::setCodigo(string codigo){
 }
 
 list<VentaProducto*> Venta::getVentaProductos(){
-    list<VentaProducto*> lstVtaProd;
-    for (list<VentaProducto*>::iterator it=this->ventaProductos.begin(); it!=ventaProductos.end(); ++it)
-        lstVtaProd.push_back(*it); //revisar
-    return lstVtaProd;
+    return this->ventaProductos;
+    // list<VentaProducto*> lstVtaProd;
+    // for (list<VentaProducto*>::iterator it=this->ventaProductos.begin(); it!=ventaProductos.end(); ++it)
+    //     lstVtaProd.push_back(*it); //revisar
+    // return lstVtaProd;
 }
 Venta::~Venta(){}
