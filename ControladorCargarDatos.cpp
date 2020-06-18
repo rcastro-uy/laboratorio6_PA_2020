@@ -4,6 +4,9 @@
 #include "ControladorIniciarVenta.h"
 #include "ManejadorMesa.h"
 #include "ManejadorEmpleado.h"
+#include "ManejadorVenta.h"
+
+#include "Mozo.h"
 
 using namespace std;
 
@@ -96,11 +99,42 @@ void ControladorCargarDatos::cargarDatos(){
 	conALTA->agregarAlProductoMenu(m5pc3);
 	conALTA->agregarAlProductoMenu(m5pc4);
 	conALTA->confirmarProductoMenu();
+	
 	ManejadorMesa* mP=ManejadorMesa::getInstancia();
 	Mesa* a = new Mesa(1);
+	Mesa* b = new Mesa(2);
+	Mesa* c = new Mesa(3);
+	Mesa* d = new Mesa(4);
+	Mesa* e = new Mesa(5);
 	mP->agregarMesa(a);
-	//ManejadorEmpleado* mE=ManejadorEmpleado::getInstancia();
+	mP->agregarMesa(b);
+	mP->agregarMesa(c);
+	mP->agregarMesa(d);
+	mP->agregarMesa(e);
 	
+	ManejadorVenta* mV = ManejadorVenta::getInstancia();
+	Venta* v1 = new VentaLocal("vl1");
+	Venta* v2 = new VentaLocal("vl2");
+	Venta* v3 = new VentaLocal("vl3");
+	Venta* v4 = new VentaLocal("vl4");
+	Venta* v5 = new VentaLocal("vl5");
+	mV->agregarVenta(v1);
+	mV->agregarVenta(v2);
+	mV->agregarVenta(v3);
+	mV->agregarVenta(v4);
+	mV->agregarVenta(v5);
+
+	ManejadorEmpleado* mE = ManejadorEmpleado::getInstancia();
+	Mozo* m1 = new Mozo("m1","Nicolas",mP->getMesas());
+	Mozo* m2 = new Mozo("m2","Mauricio",mP->getMesas());
+	Mozo* m3 = new Mozo("m3","Valentin",mP->getMesas());
+	Mozo* m4 = new Mozo("m4","Rodrigo",mP->getMesas());
+	Mozo* m5 = new Mozo("m5","Juan",mP->getMesas());
+	mE->agregarEmpleado(m1);
+	mE->agregarEmpleado(m2);
+	mE->agregarEmpleado(m3);
+	mE->agregarEmpleado(m4);
+	mE->agregarEmpleado(m5);
 	//Faltan las mesas y los mozos o empleados, y asignarles mesas...
 	
 	//Hay que hacer delete? IDK

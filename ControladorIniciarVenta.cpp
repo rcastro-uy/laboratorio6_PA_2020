@@ -24,12 +24,8 @@ void ControladorIniciarVenta::seleccionarMesa(list<int> idMesas) {
 void ControladorIniciarVenta::confirmarIniciarVenta(){
      ManejadorEmpleado* mE=ManejadorEmpleado::getInstancia();
      Mozo *mo = dynamic_cast<Mozo*>((mE->getEmpleado(this->mozo)));
-
-    // VentaLocal* vl= new VentaLocal(mo);
-    list<VentaProducto*> ventasp;
-    VentaLocal* vl=new VentaLocal(mo->getNombre());
-
-    // mo->asignarMesas(this->mesas, vl);
+     VentaLocal* vl=new VentaLocal(mo->getNombre());
+     mo->asignarMesas(this->mesas, vl);
      ManejadorVenta* mV=ManejadorVenta::getInstancia();
      mV->agregarVenta(vl);
 }

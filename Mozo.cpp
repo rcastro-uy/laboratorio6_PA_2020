@@ -27,7 +27,7 @@ list<int> Mozo::mesasAsignadasSinVenta(){
 }
 
 //pendiente - rcastro
-void Mozo::asignarMesas(list<int> listamesas){
+void Mozo::asignarMesas(list<int> listamesas, VentaLocal* vl){
     ManejadorMesa* mM = ManejadorMesa::getInstancia();
     int me;
     Mesa* m;
@@ -36,7 +36,7 @@ void Mozo::asignarMesas(list<int> listamesas){
         m = mM->getMesa(me);
         mesas.push_back(m);
     }
-    
+    m->setVentaLocal(vl);
 }
 
 Mozo::~Mozo(){}

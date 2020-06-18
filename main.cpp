@@ -63,7 +63,22 @@ void altaProducto(){
             cout <<"3. Terminar"<<endl;
             cin >> opcion;
 
-            if(opcion==1){
+			switch(opcion){
+				case 1:
+					imprimirListaProductos(lstDTPB);
+					ingresarComun();
+				break;
+				case 2:
+					ingresarMenu();
+				break;
+				case 3:
+				break;
+				default:
+					cout <<"ATENCION: Opción incorrecta. Intente nuevamente:"<<endl;
+				break;
+			}
+
+           /* if(opcion==1){
 				imprimirListaProductos(lstDTPB);
 				ingresarComun();
 			}else if(opcion==2){
@@ -71,6 +86,7 @@ void altaProducto(){
 			}else{
                 cout <<"ATENCION: Opción incorrecta. Intente nuevamente:"<<endl;
 			}
+			*/
 			
         }else{ //NO HAY NINGUN PRODUCTO COMUN
             cout <<"\n1. Dar de Alta un Producto"<<endl;
