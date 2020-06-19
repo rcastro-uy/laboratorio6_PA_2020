@@ -25,7 +25,7 @@ void ControladorQuitarProducto::confirmarQuitarProductoVenta(){
 }
 
 void ControladorQuitarProducto::cancelarQuitarProductoVenta(){
-    //this->productoVenta.~DtProductoCantidad();
+    this->productoVenta.~DtProductoCantidad(); //ejemplo de cancelar
 }
 
 ControladorQuitarProducto::~ControladorQuitarProducto(){}

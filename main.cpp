@@ -367,13 +367,13 @@ void quitarProductoAUnaVenta(){
 	cin >> mesa;
 	lstDTP = iconQP->listarProductos(mesa);
 	for (list<DtProducto>::iterator it = lstDTP.begin(); it != lstDTP.end(); it++){
-		//cout << (*it) << endl;
+		cout << (*it) << endl;
 	}
 
 	opcion = 1;	//para entrar al wihle 
-	while (opcion != 2){
+	while (opcion != 2){ //este while
 		cout <<"1. Quitar un Producto a la Venta"<<endl;
-		cout <<"2. Finalizar ingreso de productos"<<endl;
+		cout <<"2. Finalizar quitar productos"<<endl;
 		cin >> opcion;
 		switch (opcion){
 			case 1:
@@ -401,26 +401,29 @@ void quitarProductoAUnaVenta(){
 	cout <<"1. Confirmar Borrado de Producto de la Venta"<<endl;
 	cout <<"2. Cancelar Borrado de Producto de la Venta"<<endl;
 	cin >> opcion;
-	switch (opcion){
-		case 1:
-			iconQP->confirmarQuitarProductoVenta();
-		break;
-		case 2:
-			iconQP->cancelarQuitarProductoVenta();
-		break;
-		default:
-			cout << "ATENCION: Opción incorrecta. Intente nuevamente:" << endl;
-		break;
-	}
+	do{
+		switch (opcion){
+			case 1:
+				iconQP->confirmarQuitarProductoVenta();
+			break;
+			case 2:
+				iconQP->cancelarQuitarProductoVenta();
+			break;
+			default:
+				cout << "ATENCION: Opción incorrecta. Intente nuevamente:" << endl;
+			break;
+		}
+	}while(opcion!=1 && opcion!=2);
 };
 
 bool existeProducto(string cod, list<DtProducto>& listProd){
-	bool encontre = false;
-	for (list<DtProducto>::iterator it=listProd.begin(); it != listProd.end(); it++){
-		if (!encontre)	//mientras no coincidan los codigos con la lista de productos
-			encontre = (cod == it->getCodigo());
+	bool encontro = false;
+	list<DtProducto>::iterator it=listProd.begin();
+	while ( (!encontro) && (it != listProd.end())){
+		encontro = (cod == it->getCodigo());
+		it++;
 	}
-	return encontre;
+	return encontro;
 }
 
 
