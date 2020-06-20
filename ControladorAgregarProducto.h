@@ -8,7 +8,7 @@ using namespace std;
 class ControladorAgregarProducto: public IControladorAgregarProducto{
 private:
     int mesa;
-    DtProductoCantidad productoVenta;
+    list<DtProductoCantidad> productoVenta;
 
 public:
     ControladorAgregarProducto();

@@ -2,3 +2,4 @@
 .vscode/launch.json
 *.o
 labo
+.vscode/settings.json

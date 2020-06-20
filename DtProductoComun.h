@@ -8,6 +8,7 @@ class DtProductoComun: public DtProducto{
     public:
     DtProductoComun();
     DtProductoComun(string,string,float,int);
+    friend ostream& operator <<(ostream&,const DtProductoComun&);
     virtual ~DtProductoComun();
     
 };

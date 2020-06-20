@@ -15,6 +15,7 @@ class DtProductoMenu: public DtProducto{
     virtual ~DtProductoMenu();
     list<DtProductoComun*> getProductos();
     void setProductos(list<DtProductoComun*>);
+    friend ostream& operator <<(ostream&,const DtProductoMenu&);
 };
 
 #endif

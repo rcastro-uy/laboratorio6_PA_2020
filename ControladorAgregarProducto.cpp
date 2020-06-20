@@ -17,7 +17,7 @@ list<DtProductoBase> ControladorAgregarProducto::listarProductos(){
 
 
 void ControladorAgregarProducto::seleccionarProducto(DtProductoCantidad& pc){
-    this->productoVenta=pc;
+    this->productoVenta.push_back(pc);
     //this->setProductoVenta(pc);
 }
 
@@ -29,7 +29,10 @@ void ControladorAgregarProducto::seleccionarMesa(int idMesa){
 void ControladorAgregarProducto::confirmarAgregarProductoVenta(){
     ManejadorMesa* mM = ManejadorMesa::getInstancia();
     Mesa* me = mM->getMesa(this->mesa);
-    me->agregarProducto(this->productoVenta);
+    for (list<DtProductoCantidad>::iterator it=this->productoVenta.begin(); it != this->productoVenta.end(); it++){
+        me->agregarProducto(*it);
+    }
+    this->productoVenta.clear();
 }
 
 void ControladorAgregarProducto::cancelarAgregarProductoVenta(){

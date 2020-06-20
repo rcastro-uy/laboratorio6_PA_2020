@@ -6,6 +6,8 @@ Factura::Factura(float subTotal,list<DtProductoFactura> productos,float descuent
     this->productos=productos;
     this->descuento=descuento;
     this->codVenta=codVenta;
+    DtFechaHora fechita = DtFechaHora(21,6,2020,23,59,59);
+    this->fecha=fechita;
 }
 float Factura::getSubTotal(){
     return this->subTotal;

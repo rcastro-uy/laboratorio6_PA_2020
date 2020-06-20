@@ -1,5 +1,6 @@
 #include <stdexcept> //para el invalid_argument
 #include <stdlib.h>  // para el system
+#include <iostream>
 #include "Fabrica.h"
 #include "IControladorAgregarProducto.h"
 #include "IControladorQuitarProducto.h"
@@ -269,7 +270,7 @@ void agregarProductoAUnaVenta(){
 				system("clear");
 				break;
 			default:
-				cout <<"ATENCION: Opción incorrecta. Intente nuevamente:"<<endl;
+				cout <<"ATENCION: Opción incorrecta."<<endl;
 				break;
 		}
 	}
@@ -278,7 +279,8 @@ void agregarProductoAUnaVenta(){
 	cout <<"1. Confirmar Venta de Producto"<<endl;
 	cout <<"2. Cancelar Venta de Producto"<<endl;
 	cin >> opcion;
-	switch (opcion){
+	do{
+		switch (opcion){
 		case 1:
 			iconAP->confirmarAgregarProductoVenta();
 		break;
@@ -288,7 +290,9 @@ void agregarProductoAUnaVenta(){
 		default:
 			cout << "ATENCION: Opción incorrecta. Intente nuevamente:" << endl;
 		break;
-	}
+		}
+	}while(opcion!=1 && opcion!=2);
+	
 };
 
 
@@ -485,10 +489,14 @@ void facturar(){
 	cout << "Ingrese el descuento: ";
 	cin >> desc;
 
+	try{
+		dtfl = iconF->facturar(mesa, desc);
+		cout << "Factura: "<<endl;
+		cout << dtfl << endl;
+	}catch (invalid_argument& e){
+		cout << e.what() << endl;
+	}
 	
-	dtfl = iconF->facturar(mesa, desc);
-	//cout << "Factura: "<<endl;
-	//cout << dtfl << endl;
 }
 
 
