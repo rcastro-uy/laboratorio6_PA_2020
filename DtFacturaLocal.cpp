@@ -59,4 +59,15 @@ string DtFacturaLocal::getNombreMozo(){
 void DtFacturaLocal::setNombreMozo(string nombre){
     this->nombreMozo=nombre;
 }
+
+ostream& operator <<(ostream& salida,const DtFacturaLocal& dfl){
+    list<DtProductoFactura> lista = dfl.productos;
+	cout << "Codigo: " << dfl.codVenta << "\tFecha de Emision: " << dfl.fechaEmision << "\tDescuento aplicado: " << dfl.descuento << "Productos: " << endl;
+    for (list<DtProductoFactura>::iterator it=lista.begin(); it != lista.end(); it++){
+        cout << (*it) ;
+    }
+    cout << "\n" << "Subtotal: " << dfl.subtotal << "\tMonto Total de la Venta sin IVA: " << dfl.montoTotalVenta << "Monto Total de la Venta con IVA incl. : " << dfl.montoTotalVentaConIVA << "Ud. fue atendido por: " << dfl.nombreMozo << endl;
+    return salida;
+}
+
 DtFacturaLocal::~DtFacturaLocal(){}

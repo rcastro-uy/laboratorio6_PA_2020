@@ -34,6 +34,7 @@ bool operator <(const DtFechaHora& dtf1,const DtFechaHora& dtf2){
 	return retorno;
 }
 ostream& operator <<(ostream& salida,const DtFechaHora& dtf){
+	cout << DtFecha(dtf);
 	cout << dtf.hora << "/" << dtf.min << "/" << dtf.seg <<endl;
 	return salida;
 }

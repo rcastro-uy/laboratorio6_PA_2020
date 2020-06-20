@@ -476,7 +476,8 @@ void facturar(){
 	system("clear");
 	cout <<"_____________________________________________" <<endl;
 	cout <<"______F A C T U R A R__V E N T A______"<< endl;
-    int opcion, mesa, desc;
+    int opcion, mesa;
+	float desc;
 	DtFacturaLocal dtfl;
 
 	cout << "Ingrese el Identificador de la Mesa: ";

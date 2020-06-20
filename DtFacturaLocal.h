@@ -36,6 +36,7 @@ class DtFacturaLocal{
         void setMontoTotalVentaConIVA(float);
         string getNombreMozo();
         void setNombreMozo(string);
+        friend ostream& operator <<(ostream&,const DtFacturaLocal&);
         ~DtFacturaLocal();
 };
 #endif

@@ -34,7 +34,7 @@ void Mozo::asignarMesas(list<int> listamesas, VentaLocal* vl){
     for (list<int>::iterator it=listamesas.begin(); it!=listamesas.end(); ++it){
         me=*it;
         m = mM->getMesa(me);
-        mesas.push_back(m);
+        this->mesas.push_back(m);
     }
     m->setVentaLocal(vl);
 }

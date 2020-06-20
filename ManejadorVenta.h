@@ -12,12 +12,14 @@ class ManejadorVenta{
         static ManejadorVenta* instancia;
         map<string,Venta*> ventas;
         ManejadorVenta();
+        int uniqueCodVenta;
     public:
         static ManejadorVenta* getInstancia();
         list<Venta*> getVentas();
         Venta* getVenta(string);
         void removerVenta(Venta*);
         void agregarVenta(Venta*);
+        int getUniqueCodVenta ();
         virtual ~ManejadorVenta();
 };
 

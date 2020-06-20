@@ -7,6 +7,8 @@
 #include "DtProductoCantidad.h"
 using namespace std;
 
+class Mozo;
+class VentaLocal;
 class Mesa{
     private:
         int numero;

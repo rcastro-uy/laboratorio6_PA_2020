@@ -7,6 +7,9 @@
 
 using namespace std;
 
+class VentaLocal;
+class Mesa;
+
 class Mozo:public Empleado{
     private:
         list<Mesa*> mesas;

@@ -7,7 +7,9 @@ using namespace std;
 
 ManejadorVenta* ManejadorVenta:: instancia = NULL;
 
-ManejadorVenta::ManejadorVenta(){}
+ManejadorVenta::ManejadorVenta(){
+    uniqueCodVenta=0;
+}
 
 ManejadorVenta* ManejadorVenta:: getInstancia(){
     if (instancia == NULL) {
@@ -36,6 +38,10 @@ void ManejadorVenta:: removerVenta(Venta* v){
 
 void ManejadorVenta:: agregarVenta(Venta* v){
     ventas.insert(std::pair<string,Venta*>(v->getCodigo(), v));
+    this->uniqueCodVenta++;
 }
 
+int ManejadorVenta::getUniqueCodVenta(){
+    return this->uniqueCodVenta;
+}
 ManejadorVenta::~ManejadorVenta(){}

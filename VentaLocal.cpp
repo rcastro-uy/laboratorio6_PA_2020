@@ -1,7 +1,9 @@
 #include "VentaLocal.h"
 
 VentaLocal::VentaLocal(){}
-VentaLocal::VentaLocal(string codigo):Venta(codigo){}
+VentaLocal::VentaLocal(string codigo, Mozo* mozo):Venta(codigo){
+    this->mozo=mozo;
+}
 
 void VentaLocal::eliminarProducto(string codigo){
 //this->ventaProductos es un Set(VentaProducto*), pseudoatibuto
@@ -83,6 +85,19 @@ list<DtProductoFactura> VentaLocal::getDtProductoFactura(){
         dtproductosFact.push_back(dtpf);
     }
     return dtproductosFact;
+}
+
+string VentaLocal::getNombreMozo(){
+    return this->mozo->getNombre();
+}
+float VentaLocal::getSubTotalVenta(){
+    list<VentaProducto*> prods=this->getVentaProductos();
+    float suma, costoItem;
+    for (list<VentaProducto*>::iterator it=prods.begin(); it!=prods.end(); ++it){
+        costoItem = (*it)->getPrecioProductoEnVenta();
+        suma+=costoItem;
+    }
+    return suma;
 }
 
 VentaLocal::~VentaLocal(){}

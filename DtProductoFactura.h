@@ -19,6 +19,7 @@ class DtProductoFactura{
         int getCantidad();
         void setCantidad(int);
         ~DtProductoFactura();
+        friend ostream& operator <<(ostream&,const DtProductoFactura&);
 };
 
 #endif

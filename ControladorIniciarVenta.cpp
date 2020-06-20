@@ -22,12 +22,13 @@ void ControladorIniciarVenta::seleccionarMesa(list<int> idMesas) {
 }
 
 void ControladorIniciarVenta::confirmarIniciarVenta(){
-     ManejadorEmpleado* mE=ManejadorEmpleado::getInstancia();
-     Mozo *mo = dynamic_cast<Mozo*>((mE->getEmpleado(this->mozo)));
-     VentaLocal* vl=new VentaLocal(mo->getNombre());
-     mo->asignarMesas(this->mesas, vl);
-     ManejadorVenta* mV=ManejadorVenta::getInstancia();
-     mV->agregarVenta(vl);
+    ManejadorEmpleado* mE=ManejadorEmpleado::getInstancia();
+    Mozo *mo = dynamic_cast<Mozo*>((mE->getEmpleado(this->mozo)));
+    ManejadorVenta* mV=ManejadorVenta::getInstancia();
+    string codVenta = to_string(mV->getUniqueCodVenta());
+    VentaLocal* vl=new VentaLocal(codVenta,mo);
+    mV->agregarVenta(vl);
+    mo->asignarMesas(this->mesas, vl);     
 }
 
 void ControladorIniciarVenta::cancelarIniciarVenta(){

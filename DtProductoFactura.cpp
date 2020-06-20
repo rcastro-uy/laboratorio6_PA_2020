@@ -25,5 +25,11 @@ int DtProductoFactura::getCantidad(){
 void DtProductoFactura::setCantidad(int cantidad){
     this->cantidad=cantidad;
 }
+
+ostream& operator <<(ostream& salida,const DtProductoFactura& dpf){
+	cout << "Descripcion: " << dpf.descripcion << "\tPrecio: " << dpf.precio << "\tCantidad: " << dpf.cantidad <<endl;
+	return salida;
+}
+
 DtProductoFactura::~DtProductoFactura(){}
 
