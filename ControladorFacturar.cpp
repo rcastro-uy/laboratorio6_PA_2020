@@ -19,15 +19,16 @@ identico al de la VentaLocal asociada
 -Rodrigo-
 */
 DtFacturaLocal ControladorFacturar::facturar(int idMesa, float descuento){
-    // ManejadorMesa* mM = ManejadorMesa::getInstancia();
-    // Mesa* me = mM->getMesa(idMesa);
-    // VentaLocal* v = me->getVentaLocal();
-    // list<DtProducto> dtProductos = v->getDtProductoFactura();
-    // float subtotal = v->getSubTotalVenta();
-    // Factura* f = new Factura(subtotal,dtProductos,descuento);
-    // v->setFactura(f);
-    // string nomMozo = v->getNombreMozo();
-    // string cod = f->getCodVenta();
-    // DtFechaHora fh = f->getFechaHora();
-    // DtFacturaLocal dtf = DtFacturaLocal(cod,fh,descuento,dtProductos,subtotal,subtotal*(1-descuento),subtotal*(1-descuento)*1.22,nomMozo);
+    ManejadorMesa* mM = ManejadorMesa::getInstancia();
+    Mesa* me = dynamic_cast<Mesa*> ((mM->getMesa(this->idMesa));
+    VentaLocal* v = me->getVentaLocal();
+    list<DtProducto> dtProductos = v->getDtProductoFactura();
+    float subtotal = v->getSubTotalVenta();
+    int codVenta = v->getCodVenta();
+    Factura* f = new Factura(subtotal,dtProductos,descuento);
+    v->setFactura(f);
+    string nomMozo = v->getNombreMozo();
+    string cod = f->getCodVenta();
+    DtFechaHora fh = f->getFechaHora();
+   // DtFacturaLocal dtf = DtFacturaLocal(cod,fh,descuento,dtProductos,subtotal,subtotal*(1-descuento),subtotal*(1-descuento)*1.22,nomMozo);
 }
