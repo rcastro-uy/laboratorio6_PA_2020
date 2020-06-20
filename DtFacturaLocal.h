@@ -10,24 +10,24 @@ using namespace std;
 class DtFacturaLocal{
     private:
         string codVenta;
-        DtFechaHora* fechaEmision;
+        DtFechaHora fechaEmision;
         float descuento;
-        list<DtProductoFactura*> productos;
+        list<DtProductoFactura> productos;
         float subtotal;
         float montoTotalVenta;
         float montoTotalVentaConIVA;
         string nombreMozo;
     public:
         DtFacturaLocal();
-        DtFacturaLocal(string, DtFechaHora*, float,float,float,float,string);
+        DtFacturaLocal(string, DtFechaHora, float,list<DtProductoFactura>,float,float,float,string);
         string getCodVenta();
         void setCodVenta(string);
-        DtFechaHora* getFechaEmision();
-        void setFechaEmision(DtFechaHora*);
+        DtFechaHora getFechaEmision();
+        void setFechaEmision(DtFechaHora);
         float getDescuento();
         void setDescuento(float);
-        list<DtProductoFactura*> getProductos();
-        void setProductos(list<DtProductoFactura*>);
+        list<DtProductoFactura> getProductos();
+        void setProductos(list<DtProductoFactura>);
         float getSubtotal();
         void setSubtotal(float);
         float getMontoTotalVenta();

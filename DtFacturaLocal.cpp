@@ -1,25 +1,26 @@
 #include "DtFacturaLocal.h"
 DtFacturaLocal::DtFacturaLocal(){}
-DtFacturaLocal::DtFacturaLocal(string codVenta, DtFechaHora* fechaEmision, float descuento,float subtotal,float montoTotalVenta,float montoTotalVentaConIVA,string nombreMozo){
+DtFacturaLocal::DtFacturaLocal(string codVenta, DtFechaHora fechaEmision, float descuento,list<DtProductoFactura> productosfac, float subtotal,float montoTotalVenta,float montoTotalVentaConIVA,string nombreMozo){
     this->codVenta=codVenta;
-    this->descuento=descuento;
     this->fechaEmision=fechaEmision;
+    this->descuento=descuento;
+    this->productos=productosfac;
+    this->subtotal=subtotal;
     this->montoTotalVenta=montoTotalVenta;
     this->montoTotalVentaConIVA=montoTotalVentaConIVA;
     this->nombreMozo=nombreMozo;
 
 }
-
 string DtFacturaLocal::getCodVenta(){
     return this->codVenta;
 }
 void DtFacturaLocal::setCodVenta(string cv){
     this->codVenta=cv;
 }
-DtFechaHora* DtFacturaLocal::getFechaEmision(){
+DtFechaHora DtFacturaLocal::getFechaEmision(){
     return this->fechaEmision;
 }
-void DtFacturaLocal::setFechaEmision(DtFechaHora* fe){
+void DtFacturaLocal::setFechaEmision(DtFechaHora fe){
     this->fechaEmision=fe;
 }
 float DtFacturaLocal::getDescuento(){
@@ -28,10 +29,10 @@ float DtFacturaLocal::getDescuento(){
 void DtFacturaLocal::setDescuento(float desc){
     this->descuento=desc;
 }
-list<DtProductoFactura*> DtFacturaLocal::getProductos(){
+list<DtProductoFactura> DtFacturaLocal::getProductos(){
     return this->productos;
 }
-void DtFacturaLocal::setProductos(list<DtProductoFactura*> prods){
+void DtFacturaLocal::setProductos(list<DtProductoFactura> prods){
     this->productos=prods;
 }
 float DtFacturaLocal::getSubtotal(){

@@ -10,23 +10,23 @@ using namespace std;
 class Factura{
     private:
         float subTotal;
-        list<DtProductoFactura*> productos;
+        list<DtProductoFactura> productos;
         float descuento;
-        int codVenta;
-        DtFechaHora* fecha;
+        string codVenta;
+        DtFechaHora fecha;
     public:
         Factura();
-        Factura(float,list<DtProductoFactura*>,float,int);
+        Factura(float,list<DtProductoFactura>,float,string);
         float getSubTotal();
         void setSubTotal(float);
-        list<DtProductoFactura*> getProductos();
-        void setProductos(list<DtProductoFactura*>);
+        list<DtProductoFactura> getProductos();
+        void setProductos(list<DtProductoFactura>);
         float getDescuento();
         void setDescuento(float);
-        int getCodVenta();
-        void setCodVenta(int);
-        DtFechaHora* getFechaHora();
-        void setFechaHora(DtFechaHora*);
+        string getCodVenta();
+        void setCodVenta(string);
+        DtFechaHora getFechaHora();
+        void setFechaHora(DtFechaHora);
         ~Factura();
 };
 

@@ -1,7 +1,7 @@
 #include "Factura.h"
 
 Factura::Factura(){}
-Factura::Factura(float subTotal,list<DtProductoFactura*> productos,float descuento,int codVenta){
+Factura::Factura(float subTotal,list<DtProductoFactura> productos,float descuento,string codVenta){
     this->subTotal=subTotal;
     this->productos=productos;
     this->descuento=descuento;
@@ -13,10 +13,10 @@ float Factura::getSubTotal(){
 void Factura::setSubTotal(float st){
     this->subTotal=st;
 }
-list<DtProductoFactura*> Factura::getProductos(){
+list<DtProductoFactura> Factura::getProductos(){
     return this->productos;
 }
-void Factura::setProductos(list<DtProductoFactura*> prods){
+void Factura::setProductos(list<DtProductoFactura> prods){
     this->productos=prods;
 }
 float Factura::getDescuento(){
@@ -25,16 +25,16 @@ float Factura::getDescuento(){
 void Factura::setDescuento(float d){
     this->descuento=d;
 }
-int Factura::getCodVenta(){
+string Factura::getCodVenta(){
     return this->codVenta;
 }
-void Factura::setCodVenta(int cv){
+void Factura::setCodVenta(string cv){
     this->codVenta=cv;
 }
-DtFechaHora* Factura::getFechaHora(){
-    //pendiente - rcastro
+DtFechaHora Factura::getFechaHora(){
+    return this->fecha;
 }
-void Factura::setFechaHora(DtFechaHora*){
-    //pendiente - rcastro 
+void Factura::setFechaHora(DtFechaHora fh){
+    this->fecha= fh;
 }
 Factura::~Factura(){}
