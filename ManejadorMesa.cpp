@@ -39,4 +39,8 @@ void ManejadorMesa:: agregarMesa(Mesa* me){
     mesas.insert(std::pair<int,Mesa*>(me->getNumero(), me));
 }
 
+bool ManejadorMesa:: mesaTieneVenta(int idMesa){
+    return getMesa(idMesa)->tieneVenta();
+}
+
 ManejadorMesa::~ManejadorMesa(){}

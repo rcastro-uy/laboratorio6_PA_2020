@@ -240,64 +240,69 @@ void agregarProductoAUnaVenta(){
 
 	cout << "Ingrese un Identificador de Mesa: ";
 	cin >> mesa;
-	iconAP->seleccionarMesa(mesa);
-	lstDTPB = iconAP->listarProductos();
-	for (list<DtProductoBase>::iterator it = lstDTPB.begin(); it != lstDTPB.end(); it++){
-	 	cout << (*it) << endl;
-	}
-	
-	opcion = 1;	//para entrar al wihle 
-	while (opcion != 2){
-		cout <<"1. Ingresar un Producto a la Venta"<<endl;
-		cout <<"2. Finalizar ingreso de productos"<<endl;
-		cin >> opcion;
-		switch (opcion){
-			case 1:
-				cout << "Ingrese el Identificador del Producto a agregar: ";
-				cin >> cod;
-				existe = existeProductoBase(cod, lstDTPB);
-				if (existe){
-					cout << "Ingrese la cantidad: ";
-					cin >> cant;
-					if(cant > 0){
-					dtPC.setCodigo(cod);
-					dtPC.setCantidad(cant);
-					iconAP->seleccionarProducto(dtPC);
+	try{
+		iconAP->seleccionarMesa(mesa);
+		lstDTPB = iconAP->listarProductos();
+		for (list<DtProductoBase>::iterator it = lstDTPB.begin(); it != lstDTPB.end(); it++){
+			cout << (*it) << endl;
+		}
+		
+		opcion = 1;	//para entrar al wihle 
+		while (opcion != 2){
+			cout <<"1. Ingresar un Producto a la Venta"<<endl;
+			cout <<"2. Finalizar ingreso de productos"<<endl;
+			cin >> opcion;
+			switch (opcion){
+				case 1:
+					cout << "Ingrese el Identificador del Producto a agregar: ";
+					cin >> cod;
+					existe = existeProductoBase(cod, lstDTPB);
+					if (existe){
+						cout << "Ingrese la cantidad: ";
+						cin >> cant;
+						if(cant > 0){
+						dtPC.setCodigo(cod);
+						dtPC.setCantidad(cant);
+						iconAP->seleccionarProducto(dtPC);
+						}else{
+							cout << "La cantidad debe ser mayor a 0" << endl;
+						}
 					}else{
-						cout << "La cantidad debe ser mayor a 0" << endl;
+						cout << "ATENCION: Ese producto no existe." << endl;
 					}
-				}else{
-					cout << "ATENCION: Ese producto no existe." << endl;
-				}
-				break;
-			case 2:
-				system("clear");
-				break;
-			default:
-				cout <<"ATENCION: Opción incorrecta."<<endl;
-				break;
+					break;
+				case 2:
+					system("clear");
+					break;
+				default:
+					cout <<"ATENCION: Opción incorrecta."<<endl;
+					break;
+			}
 		}
-	}
 
-	//PARTE aceptar/cancelar
-	cout <<"1. Confirmar Venta de Producto"<<endl;
-	cout <<"2. Cancelar Venta de Producto"<<endl;
-	cin >> opcion;
-	do{
-		switch (opcion){
-		case 1:
-			iconAP->confirmarAgregarProductoVenta();
-		break;
-		case 2:
-			iconAP->cancelarAgregarProductoVenta();
-		break;
-		default:
-			cout << "ATENCION: Opción incorrecta. Intente nuevamente:" << endl;
-		break;
-		}
-	}while(opcion!=1 && opcion!=2);
+		//PARTE aceptar/cancelar
+		cout <<"1. Confirmar Venta de Producto"<<endl;
+		cout <<"2. Cancelar Venta de Producto"<<endl;
+		cin >> opcion;
+		do{
+			switch (opcion){
+			case 1:
+				iconAP->confirmarAgregarProductoVenta();
+			break;
+			case 2:
+				iconAP->cancelarAgregarProductoVenta();
+			break;
+			default:
+				cout << "ATENCION: Opción incorrecta. Intente nuevamente:" << endl;
+			break;
+			}
+		}while(opcion!=1 && opcion!=2);
+	}catch (invalid_argument& e){
+		cout << e.what() << endl;
+	}
 	
-};
+	
+}
 
 
 //CU INICIAR VENTA EN MESA
@@ -316,49 +321,53 @@ void iniciarVenta(){
 
 	cout << "Ingrese un Identificador de Mozo: ";
 	cin >> mozo;
-	mesasSinVentaDeMozo = iconIV->ingresarIdMozo(mozo);
-
-	opcion = 0;
-	while (opcion != 2){
-		cout <<"1. Ingresar una Mesa para iniciar su Venta"<<endl;
-		cout <<"2. Finalizar ingreso de Mesas"<<endl;
-		cin >> opcion;
-		switch (opcion){
-			case 1:
-				cout << "Ingrese el Identificador de la Mesa a agregar: ";
-				cin >> mesa;
-				if(mesasEnLista(mesa,mesasSinVentaDeMozo)){
-					mesasSelected.push_back(mesa);
-				}else{
-					cout << "La mesa ya tiene una venta o no corresponde al mozo" << endl;
-					break;	
-				}
-			case 2:
-			break;
-			default:
-				cout <<"ATENCION: Opción incorrecta. Intente nuevamente:"<<endl;
-			break;
+	try{
+		mesasSinVentaDeMozo = iconIV->ingresarIdMozo(mozo);
+		opcion = 0;
+		while (opcion != 2){
+			cout <<"1. Ingresar una Mesa para iniciar su Venta"<<endl;
+			cout <<"2. Finalizar ingreso de Mesas"<<endl;
+			cin >> opcion;
+			switch (opcion){
+				case 1:
+					cout << "Ingrese el Identificador de la Mesa a agregar: ";
+					cin >> mesa;
+					if(mesasEnLista(mesa,mesasSinVentaDeMozo)){
+						mesasSelected.push_back(mesa);
+					}else{
+						cout << "La mesa ya tiene una venta o no corresponde al mozo" << endl;
+						break;	
+					}
+				case 2:
+				break;
+				default:
+					cout <<"ATENCION: Opción incorrecta. Intente nuevamente:"<<endl;
+				break;
+			}
 		}
-	}
-	if (mesasSelected.empty() == false){
-		iconIV->seleccionarMesa(mesasSelected);
+		if (mesasSelected.empty() == false){
+			iconIV->seleccionarMesa(mesasSelected);
 
-		//PARTE aceptar/cancelar
-		cout <<"1. Confirmar Inicio de Venta"<<endl;
-		cout <<"2. Cancelar Inicio de Venta"<<endl;
-		cin >> opcion;
-		switch (opcion){
-			case 1:
-				iconIV->confirmarIniciarVenta();
-			break;
-			case 2:
-				iconIV->cancelarIniciarVenta();
-			break;
-			default:
-				cout << "ATENCION: Opción incorrecta. Intente nuevamente:" << endl;
-			break;
+			//PARTE aceptar/cancelar
+			cout <<"1. Confirmar Inicio de Venta"<<endl;
+			cout <<"2. Cancelar Inicio de Venta"<<endl;
+			cin >> opcion;
+			switch (opcion){
+				case 1:
+					iconIV->confirmarIniciarVenta();
+				break;
+				case 2:
+					iconIV->cancelarIniciarVenta();
+				break;
+				default:
+					cout << "ATENCION: Opción incorrecta. Intente nuevamente:" << endl;
+				break;
+			}
 		}
+	}catch (invalid_argument& e){
+		cout << e.what() << endl;
 	}
+	
 }
 
 bool mesasEnLista(int idMesa,list<int> listaMesa){ //retorna true si la id de la mesa esta en la lista dada

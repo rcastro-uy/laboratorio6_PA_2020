@@ -22,7 +22,13 @@ void ControladorAgregarProducto::seleccionarProducto(DtProductoCantidad& pc){
 }
 
 void ControladorAgregarProducto::seleccionarMesa(int idMesa){
-    this->mesa=idMesa;
+    ManejadorMesa* mM = ManejadorMesa::getInstancia();
+    if (mM->mesaTieneVenta(idMesa)){
+        this->mesa=idMesa;
+    }else{
+        throw invalid_argument ("LA MESA SELECCIONADA NO TIENE UNA VENTA ASOCIADA");
+    }
+    
     //this->setMesa(idMesa);
 }
 

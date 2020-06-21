@@ -39,4 +39,9 @@ void ManejadorEmpleado:: agregarEmpleado(Empleado* em){
     empleados.insert(std::pair<string,Empleado*>(em->getIdEmpleado(), em));
 }
 
+bool ManejadorEmpleado:: existeEmpleado(string em){
+    map<string,Empleado*>::iterator it = this->empleados.find(em); 
+    return (it != this->empleados.end());
+}
+
 ManejadorEmpleado::~ManejadorEmpleado(){}

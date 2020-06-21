@@ -11,11 +11,16 @@ ControladorIniciarVenta::ControladorIniciarVenta(){};
 ControladorIniciarVenta::~ControladorIniciarVenta(){};
 
 list<int> ControladorIniciarVenta::ingresarIdMozo(string idMozo){
-     this->mozo = idMozo;
-     ManejadorEmpleado* mE=ManejadorEmpleado::getInstancia();
-     Mozo *mo = dynamic_cast<Mozo*>((mE->getEmpleado(idMozo)));
-     list<int> mesas=mo->mesasAsignadasSinVenta();
-     return mesas;
+    this->mozo = idMozo;
+    ManejadorEmpleado* mE=ManejadorEmpleado::getInstancia();
+    if(mE->existeEmpleado(idMozo)){
+        Mozo *mo = dynamic_cast<Mozo*>((mE->getEmpleado(idMozo)));
+        list<int> mesas=mo->mesasAsignadasSinVenta();
+        return mesas;
+    }else{
+        throw invalid_argument("NO EXISTE MOZO CON ESE IDENTIFICADOR");
+    }
+     
 }
 
 void ControladorIniciarVenta::seleccionarMesa(list<int> idMesas) {

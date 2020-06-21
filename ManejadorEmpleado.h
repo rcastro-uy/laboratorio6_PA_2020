@@ -19,6 +19,7 @@ class ManejadorEmpleado{
         void removerEmpleado(Empleado*);
         void agregarEmpleado(Empleado*);
         virtual ~ManejadorEmpleado();
+        bool existeEmpleado(string);
 };
 
 #endif

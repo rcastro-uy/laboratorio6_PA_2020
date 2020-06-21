@@ -18,7 +18,9 @@ class ManejadorMesa{
         Mesa* getMesa(int);
         void removerMesa(Mesa*);
         void agregarMesa(Mesa*);
+        bool mesaTieneVenta(int idMesa);
         virtual ~ManejadorMesa();
+        
 };
 
 #endif
