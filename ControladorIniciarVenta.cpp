@@ -37,18 +37,3 @@ void ControladorIniciarVenta::cancelarIniciarVenta(){
     this->mozo.clear();
 }
 
-bool ControladorIniciarVenta::mesaEsDeMozo(int idMesa,string idMozo){
-    ManejadorEmpleado* mE=ManejadorEmpleado::getInstancia();
-    Mozo *mo = dynamic_cast<Mozo*>((mE->getEmpleado(idMozo)));
-    list<Mesa*> mesasMozo = mo->getMesas();
-    list<Mesa*>::iterator it = mesasMozo.begin();
-    bool encontro=false;
-    while ((!encontro)||(it != mesasMozo.end())){
-        if((*it)->getNumero() == idMesa){
-            encontro = true;
-        }else{
-            it++;
-        }  
-    }
-    return encontro;
-}

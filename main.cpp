@@ -318,7 +318,7 @@ void iniciarVenta(){
 	cin >> mozo;
 	mesasSinVentaDeMozo = iconIV->ingresarIdMozo(mozo);
 
-	opcion = 0;	//para entrar al wail
+	opcion = 0;
 	while (opcion != 2){
 		cout <<"1. Ingresar una Mesa para iniciar su Venta"<<endl;
 		cout <<"2. Finalizar ingreso de Mesas"<<endl;
@@ -330,7 +330,7 @@ void iniciarVenta(){
 				if(mesasEnLista(mesa,mesasSinVentaDeMozo)){
 					mesasSelected.push_back(mesa);
 				}else{
-					cout << "La mesa no pertenece al mozo";
+					cout << "La mesa ya tiene una venta o no corresponde al mozo" << endl;
 					break;	
 				}
 			case 2:
@@ -390,56 +390,60 @@ void quitarProductoAUnaVenta(){
 
 	cout << "Ingrese un Identificador de Mesa: ";
 	cin >> mesa;
-	lstDTP = iconQP->listarProductos(mesa);
-	for (list<DtProducto>::iterator it = lstDTP.begin(); it != lstDTP.end(); it++){
-		cout << (*it) << endl;
-	}
+	try{
+		lstDTP = iconQP->listarProductos(mesa);
+		for (list<DtProducto>::iterator it = lstDTP.begin(); it != lstDTP.end(); it++){
+			cout << (*it) << endl;
+		}
 
-	opcion = 1;	//para entrar al wihle 
-	while (opcion != 2){ //este while
-		cout <<"1. Quitar un Producto a la Venta"<<endl;
-		cout <<"2. Finalizar quitar productos"<<endl;
+		opcion = 1;	//para entrar al wihle 
+		while (opcion != 2){ //este while
+			cout <<"1. Quitar un Producto a la Venta"<<endl;
+			cout <<"2. Finalizar quitar productos"<<endl;
+			cin >> opcion;
+			switch (opcion){
+				case 1:
+					cout << "Ingrese el Identificador del Producto a quitar: ";
+					cin >> cod;
+					existe = existeProducto(cod, lstDTP);
+					if (existe){
+						cout << "Ingrese la cantidad: ";
+						cin >> cant;
+						dtPC.setCodigo(cod);
+						dtPC.setCantidad(cant);
+						iconQP->seleccionarProductoEliminar(dtPC);
+					}else{
+						cout << "ATENCION: Ese producto no existe en esa Venta.";
+					}
+				case 2:
+				break;
+				default:
+					cout <<"ATENCION: Opción incorrecta. Intente nuevamente:"<<endl;
+				break;
+			}
+		}
+
+		//PARTE aceptar/cancelar
+		cout <<"1. Confirmar Borrado de Producto de la Venta"<<endl;
+		cout <<"2. Cancelar Borrado de Producto de la Venta"<<endl;
 		cin >> opcion;
-		switch (opcion){
-			case 1:
-				cout << "Ingrese el Identificador del Producto a quitar: ";
-				cin >> cod;
-				existe = existeProducto(cod, lstDTP);
-				if (existe){
-					cout << "Ingrese la cantidad: ";
-					cin >> cant;
-					dtPC.setCodigo(cod);
-					dtPC.setCantidad(cant);
-					iconQP->seleccionarProductoEliminar(dtPC);
-				}else{
-					cout << "ATENCION: Ese producto no existe en esa Venta.";
-				}
-			case 2:
-			break;
-			default:
-				cout <<"ATENCION: Opción incorrecta. Intente nuevamente:"<<endl;
-			break;
-		}
+		do{
+			switch (opcion){
+				case 1:
+					iconQP->confirmarQuitarProductoVenta();
+				break;
+				case 2:
+					iconQP->cancelarQuitarProductoVenta();
+				break;
+				default:
+					cout << "ATENCION: Opción incorrecta. Intente nuevamente:" << endl;
+				break;
+			}
+		}while(opcion!=1 && opcion!=2);
+	}catch(invalid_argument& e){
+		cout << e.what() << endl;
 	}
-
-	//PARTE aceptar/cancelar
-	cout <<"1. Confirmar Borrado de Producto de la Venta"<<endl;
-	cout <<"2. Cancelar Borrado de Producto de la Venta"<<endl;
-	cin >> opcion;
-	do{
-		switch (opcion){
-			case 1:
-				iconQP->confirmarQuitarProductoVenta();
-			break;
-			case 2:
-				iconQP->cancelarQuitarProductoVenta();
-			break;
-			default:
-				cout << "ATENCION: Opción incorrecta. Intente nuevamente:" << endl;
-			break;
-		}
-	}while(opcion!=1 && opcion!=2);
-};
+}
 
 bool existeProducto(string cod, list<DtProducto>& listProd){
 	bool encontro = false;
@@ -525,7 +529,11 @@ void facturar(){
 //Carga de datos de prueba
 void cargarDatos(){
 	system("clear");
-	iconDATOS->cargarDatos();
+	try{
+		iconDATOS->cargarDatos();
+	}catch(invalid_argument& e){
+		cout << e.what() << endl;
+	}
 } 
 
 //FALTA CORREGIR LA IMPRESION EN LA CONSOLA
@@ -578,7 +586,7 @@ void informacionDeUnProducto(){
 
 void menu(){
 		cout << endl <<"_____________________________________________" <<endl;
-		cout <<"____________K E T O R A N T____________"<< endl;
+		cout <<"____________K E A T O R R A N T____________"<< endl;
 		cout <<"1. Dar de Alta un Producto"<<endl;
 		cout <<"2. Iniciar una Venta"<<endl;
 		cout <<"3. Agregar un Producto a una Venta"<<endl;

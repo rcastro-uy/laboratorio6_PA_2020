@@ -9,8 +9,12 @@ list<DtProducto> ControladorQuitarProducto::listarProductos(int idMesa){
     this->mesa=idMesa;
     ManejadorMesa* mM = ManejadorMesa::getInstancia();
     Mesa* me = mM->getMesa(idMesa);
-    list<DtProducto> dtProductos = me->listarProductos();
-    return dtProductos;
+    if(me->getVentaLocal()!=NULL){
+        list<DtProducto> dtProductos = me->listarProductos();
+        return dtProductos;
+    }else{
+        throw invalid_argument("ERROR: ESTA MESA NO TIENE VENTA ASOCIADA O NO TIENE NINGUN PRODUCTO\n");
+    }
 }
 
 void ControladorQuitarProducto::seleccionarProductoEliminar(DtProductoCantidad pc){

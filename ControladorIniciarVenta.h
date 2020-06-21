@@ -17,7 +17,6 @@ public:
     void seleccionarMesa(list<int>);
     void confirmarIniciarVenta();
     void cancelarIniciarVenta();
-    bool mesaEsDeMozo(int,string);
     ~ControladorIniciarVenta();
 };
 
