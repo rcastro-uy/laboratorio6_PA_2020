@@ -106,11 +106,31 @@ void ControladorCargarDatos::cargarDatos(){
 	Mesa* c = new Mesa(3);
 	Mesa* d = new Mesa(4);
 	Mesa* e = new Mesa(5);
+	Mesa* f = new Mesa(6);
+	Mesa* g = new Mesa(7);
+	Mesa* h = new Mesa(8);
+	Mesa* i = new Mesa(9);
+	Mesa* j = new Mesa(10);
+	Mesa* k = new Mesa(11);
+	Mesa* l = new Mesa(12);
+	Mesa* m = new Mesa(13);
+	Mesa* o = new Mesa(14);
+	Mesa* p = new Mesa(15);
 	mP->agregarMesa(a);
 	mP->agregarMesa(b);
 	mP->agregarMesa(c);
 	mP->agregarMesa(d);
 	mP->agregarMesa(e);
+	mP->agregarMesa(f);
+	mP->agregarMesa(g);
+	mP->agregarMesa(h);
+	mP->agregarMesa(i);
+	mP->agregarMesa(j);
+	mP->agregarMesa(k);
+	mP->agregarMesa(l);
+	mP->agregarMesa(m);
+	mP->agregarMesa(o);
+	mP->agregarMesa(p);
 	
 	ManejadorEmpleado* mE = ManejadorEmpleado::getInstancia();
 	Mozo* m1 = new Mozo("m1","Nicolas",mP->getMesas());
@@ -118,23 +138,57 @@ void ControladorCargarDatos::cargarDatos(){
 	Mozo* m3 = new Mozo("m3","Valentin",mP->getMesas());
 	Mozo* m4 = new Mozo("m4","Rodrigo",mP->getMesas());
 	Mozo* m5 = new Mozo("m5","Juan",mP->getMesas());
+
+	list<Mesa*> mdm1;
+	mdm1.push_back(a);
+	mdm1.push_back(b);
+	mdm1.push_back(c);
+	mdm1.push_back(d);
+	m1->setMesas(mdm1);
+
+	mdm1.clear();
+	mdm1.push_back(e);
+	mdm1.push_back(f);
+	mdm1.push_back(g);
+	mdm1.push_back(h);
+	m2->setMesas(mdm1);
+
+	mdm1.clear();
+	mdm1.push_back(i);
+	mdm1.push_back(j);
+	mdm1.push_back(k);
+	m3->setMesas(mdm1);
+
+	mdm1.clear();
+	mdm1.push_back(l);
+	mdm1.push_back(m);
+	m4->setMesas(mdm1);
+
+	mdm1.clear();
+	mdm1.push_back(o);
+	mdm1.push_back(p);
+	m5->setMesas(mdm1);
+
 	mE->agregarEmpleado(m1);
 	mE->agregarEmpleado(m2);
 	mE->agregarEmpleado(m3);
 	mE->agregarEmpleado(m4);
 	mE->agregarEmpleado(m5);
 
-	ManejadorVenta* mV = ManejadorVenta::getInstancia();
-	Venta* v1 = new VentaLocal("vl1",m1);
-	Venta* v2 = new VentaLocal("vl2",m2);
-	Venta* v3 = new VentaLocal("vl3",m3);
-	Venta* v4 = new VentaLocal("vl4",m4);
-	Venta* v5 = new VentaLocal("vl5",m5);
-	mV->agregarVenta(v1);
-	mV->agregarVenta(v2);
-	mV->agregarVenta(v3);
-	mV->agregarVenta(v4);
-	mV->agregarVenta(v5);
+
+
+
+	// ManejadorVenta* mV = ManejadorVenta::getInstancia();
+	// Venta* v1 = new VentaLocal("vl1",m1);
+	// Venta* v2 = new VentaLocal("vl2",m2);
+	// Venta* v3 = new VentaLocal("vl3",m3);
+	// Venta* v4 = new VentaLocal("vl4",m4);
+	// Venta* v5 = new VentaLocal("vl5",m5);
+	// mV->agregarVenta(v1);
+	// mV->agregarVenta(v2);
+	// mV->agregarVenta(v3);
+	// mV->agregarVenta(v4);
+	// mV->agregarVenta(v5);
 
 
 	//Faltan las mesas y los mozos o empleados, y asignarles mesas...

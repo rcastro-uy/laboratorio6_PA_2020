@@ -12,6 +12,7 @@ class IControladorIniciarVenta{
         virtual void seleccionarMesa(list<int>) = 0;
         virtual void confirmarIniciarVenta() = 0;
         virtual void cancelarIniciarVenta() = 0;
+        virtual bool mesaEsDeMozo(int,string) = 0;
 };
 
 #endif

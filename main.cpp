@@ -24,7 +24,7 @@ void ingresarComun();
 void ingresarMenu();
 bool existeProductoBase(string, list<DtProductoBase>&);
 void imprimirListaProductos(list<DtProductoBase>);  //pruebas --> implementar directamente, no como funcion
-
+bool mesasEnLista(int,list<int>);
 void iniciarVenta();
 
 void agregarProductoAUnaVenta();
@@ -46,7 +46,7 @@ void menu();
 //Faltan excepciones para cuando ya existe el producto con el codigo que el usuario esta ingresando (Alta).
 void altaProducto(){
     system("clear");
-	cout <<"_____________________________________________" <<endl;
+	cout << endl <<"_____________________________________________" <<endl;
 	cout <<"______A L T A__D E__P R O D U C T O_______"<< endl;
     int opcion, opAceptar, opContinua;
 	string cod, desc;
@@ -217,7 +217,7 @@ bool existeProductoBase(string cod, list<DtProductoBase>& listProd){
 }
 
 void imprimirListaProductos(list<DtProductoBase> lProd){
-	cout <<"_____________________________________________" <<endl;
+	cout << endl <<"_____________________________________________" <<endl;
 	cout <<"______L I S T A_______"<< endl;
 	for (list<DtProductoBase>::iterator it=lProd.begin(); it != lProd.end(); it++){
 	 	cout << *it;
@@ -229,7 +229,7 @@ void imprimirListaProductos(list<DtProductoBase> lProd){
 //Faltan excepciones para cuando la Venta asociada a esa Mesa ya fue Facturada
 void agregarProductoAUnaVenta(){
 	system("clear");
-	cout <<"_____________________________________________" <<endl;
+	cout << endl <<"_____________________________________________" <<endl;
 	cout <<"______A G R E G A R__P R O D U C T O__A__U N A__V E N T A______"<< endl;
     int opcion, mesa, cant;
 	string cod;
@@ -259,11 +259,15 @@ void agregarProductoAUnaVenta(){
 				if (existe){
 					cout << "Ingrese la cantidad: ";
 					cin >> cant;
+					if(cant > 0){
 					dtPC.setCodigo(cod);
 					dtPC.setCantidad(cant);
 					iconAP->seleccionarProducto(dtPC);
+					}else{
+						cout << "La cantidad debe ser mayor a 0" << endl;
+					}
 				}else{
-					cout << "ATENCION: Ese producto no existe.";
+					cout << "ATENCION: Ese producto no existe." << endl;
 				}
 				break;
 			case 2:
@@ -302,7 +306,7 @@ void agregarProductoAUnaVenta(){
 //Supongo que controlar que el usuario ingrese las mesas que el mozo tiene asignadas se controla acá... no lo tengo claro
 void iniciarVenta(){
 	system("clear");
-	cout <<"_____________________________________________" <<endl;
+	cout << endl <<"_____________________________________________" <<endl;
 	cout <<"______I N I C I A R__V E N T A__E N__M E S A S______"<< endl;
     int opcion, mesa;
 	string mozo;
@@ -323,7 +327,12 @@ void iniciarVenta(){
 			case 1:
 				cout << "Ingrese el Identificador de la Mesa a agregar: ";
 				cin >> mesa;
-				mesasSelected.push_back(mesa);
+				if(mesasEnLista(mesa,mesasSinVentaDeMozo)){
+					mesasSelected.push_back(mesa);
+				}else{
+					cout << "La mesa no pertenece al mozo";
+					break;	
+				}
 			case 2:
 			break;
 			default:
@@ -350,15 +359,27 @@ void iniciarVenta(){
 			break;
 		}
 	}
-};
+}
 
+bool mesasEnLista(int idMesa,list<int> listaMesa){ //retorna true si la id de la mesa esta en la lista dada
+	 list<int>::iterator it = listaMesa.begin();
+    bool encontro=false;
+    while ((!encontro)&&(it != listaMesa.end())){
+        if(*it == idMesa){
+            encontro = true;
+        }else{
+            it++;
+        }  
+    }
+    return encontro;
+}
 
 //CU QUITAR PRODUCTO DE UNA VENTA
 //Faltan excepciones para cuando la Venta asociada a esa Mesa ya fue Facturada
 //El producto a quitar tiene que estar en la Venta, sino no se cumple la precondicion de 'seleccionarProductoEliminar'. Excepcion?
 void quitarProductoAUnaVenta(){
 	system("clear");
-	cout <<"_____________________________________________" <<endl;
+	cout << endl <<"_____________________________________________" <<endl;
 	cout <<"______Q U I T A R__P R O D U C T O__D E__U N A__V E N T A______"<< endl;
     int opcion, mesa, cant;
 	string cod;
@@ -435,7 +456,7 @@ bool existeProducto(string cod, list<DtProducto>& listProd){
 //Falta comprobar que el producto exista en el sistema (manejador), con try catch para excepcion, o un simple if.
 void bajaProducto(){
 	system("clear");
-	cout <<"_____________________________________________" <<endl;
+	cout << endl <<"_____________________________________________" <<endl;
 	cout <<"______B A J A__P R O D U C T O______"<< endl;
     int opcion, mesa, cant;
 	string cod;
@@ -478,7 +499,7 @@ void bajaProducto(){
 //incompleto: falta imprimir && controlar que la mesa ingresada tenga una Venta asociada.
 void facturar(){
 	system("clear");
-	cout <<"_____________________________________________" <<endl;
+	cout << endl <<"_____________________________________________" <<endl;
 	cout <<"______F A C T U R A R__V E N T A______"<< endl;
     int opcion, mesa;
 	float desc;
@@ -503,13 +524,14 @@ void facturar(){
 
 //Carga de datos de prueba
 void cargarDatos(){
+	system("clear");
 	iconDATOS->cargarDatos();
-}
+} 
 
 //FALTA CORREGIR LA IMPRESION EN LA CONSOLA
 void informacionDeUnProducto(){
 	system("clear");
-	cout <<"_____________________________________________" <<endl;
+	cout << endl <<"_____________________________________________" <<endl;
 	cout <<"______I N F O R M A C I O N__D E__U N__P R O D U C T O______"<< endl;
     int opcion;
 	string cod;
@@ -540,7 +562,7 @@ void informacionDeUnProducto(){
 						cout << *menu << endl;
 					}		
 				}else{
-					cout << "ATENCION: Ese producto no existe.";
+					cout << "ATENCION: Ese producto no existe." << endl;
 				}
 				break;
 			case 2:
@@ -555,8 +577,7 @@ void informacionDeUnProducto(){
 
 
 void menu(){
-		//system("clear");
-		cout <<"_____________________________________________" <<endl;
+		cout << endl <<"_____________________________________________" <<endl;
 		cout <<"____________K E T O R A N T____________"<< endl;
 		cout <<"1. Dar de Alta un Producto"<<endl;
 		cout <<"2. Iniciar una Venta"<<endl;
