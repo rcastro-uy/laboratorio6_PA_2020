@@ -45,7 +45,6 @@ void ControladorBajaProducto::eliminarProducto(){//Recuerda codigo
                 }else{ //es comun
                     list<Producto*> listaDeMenus = mP->getProductos();
                     for (list<Producto*>::iterator itm=listaDeMenus.begin(); itm !=listaDeMenus.end(); itm++){
-                        cout << "Se recorre" << endl;
                         if((*itm)->getTipoProducto()==MENU){
                             Menu* men = dynamic_cast<Menu*>((*itm));
                             list<ProductoMenu*> comDeMenu = men->getListaProductos();

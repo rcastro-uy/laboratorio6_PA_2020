@@ -298,11 +298,6 @@ void agregarProductoAUnaVenta(){
 	
 }
 
-
-//CU INICIAR VENTA EN MESA
-//Falta excepcion para cuando la/s mesa/s ingresada/s por el usuario ya tienen una venta iniciada
-//No hay que controlar que el mozo exista porque ya viene cargado.
-//Supongo que controlar que el usuario ingrese las mesas que el mozo tiene asignadas se controla acá... no lo tengo claro
 void iniciarVenta(){
 	system("clear");
 	cout << endl <<"_____________________________________________" <<endl;
@@ -378,8 +373,6 @@ bool mesasEnLista(int idMesa,list<int> listaMesa){ //retorna true si la id de la
 }
 
 //CU QUITAR PRODUCTO DE UNA VENTA
-//Faltan excepciones para cuando la Venta asociada a esa Mesa ya fue Facturada
-//El producto a quitar tiene que estar en la Venta, sino no se cumple la precondicion de 'seleccionarProductoEliminar'. Excepcion?
 void quitarProductoAUnaVenta(){
 	system("clear");
 	cout << endl <<"_____________________________________________" <<endl;
@@ -399,8 +392,8 @@ void quitarProductoAUnaVenta(){
 			cout << (*it) << endl;
 		}
 
-		opcion = 1;	//para entrar al wihle 
-		while (opcion != 2){ //este while
+		opcion = 1;	
+		while (opcion != 2){ 
 			cout <<"1. Quitar un Producto a la Venta"<<endl;
 			cout <<"2. Finalizar quitar productos"<<endl;
 			cin >> opcion;
@@ -460,7 +453,6 @@ bool existeProducto(string cod, list<DtProducto>& listProd){
 
 
 //CU BAJA PRODUCTO
-//Falta comprobar que el producto exista en el sistema (manejador), con try catch para excepcion, o un simple if.
 void bajaProducto(){
 	system("clear");
 	cout << endl <<"_____________________________________________" <<endl;
@@ -507,7 +499,6 @@ void bajaProducto(){
 
 
 //CU FACTURAR
-//incompleto: falta imprimir && controlar que la mesa ingresada tenga una Venta asociada.
 void facturar(){
 	system("clear");
 	cout << endl <<"_____________________________________________" <<endl;
@@ -543,7 +534,6 @@ void cargarDatos(){
 	}
 } 
 
-//FALTA CORREGIR LA IMPRESION EN LA CONSOLA
 void informacionDeUnProducto(){
 	system("clear");
 	cout << endl <<"_____________________________________________" <<endl;
@@ -558,7 +548,7 @@ void informacionDeUnProducto(){
 
 	lstDTPB = iconALTAP->listarProductos();
 	imprimirListaProductos(lstDTPB);
-	opcion = 1;	//para entrar al while 
+	opcion = 1;	
 	while (opcion != 2){
 		cout <<"1. Ver detalle de un Producto"<<endl;
 		cout <<"2. Finalizar consulta de Productos"<<endl;
@@ -569,7 +559,6 @@ void informacionDeUnProducto(){
 				cin >> cod;
 				if (iconALTAP->existeProducto(cod)){
 					prod=iconALTAP->detallesProducto(cod);
-					//CORREGIR LA IMPRESION!!!
 					if (DtProductoComun* comun = dynamic_cast<DtProductoComun*>(prod)){
 						cout << *comun << endl;
 					}else{
@@ -642,7 +631,6 @@ int main(){
 			default:
 				cout << "OPCIÓN INCORRECTA" << endl;
 		}
-		//system("sleep 1");
 		menu();
 		cin >> opcion;
 	}

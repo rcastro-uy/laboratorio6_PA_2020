@@ -25,32 +25,28 @@ int Menu::eliminarComun(string codigo){
         if(cod==codigo){
             this->listaProductos.remove((*it));
             delete (*it);
-            this->decrementarCantComunes(1);//this->cantComunes--;
-            it=this->listaProductos.end();  //fuerza la salida del loop para que no se crashee
+            this->decrementarCantComunes(1);
+            it=this->listaProductos.end();  
         }
     }
-    //int cant = getCantComunes();
-    //return cant;
     return this->cantComunes;
 }
 void Menu::incrementarPrecio(float precio){
     float p = getPrecio();
     p = p + precio;
     setPrecio(p);
-    //this->precio = this->precio + precio;
 }
 void Menu::aplicarDescuento(){
     float p = getPrecio();
     p = p*0.90;
     setPrecio(p);
-    //this->precio=this->precio*0.90;
 }
 void Menu::agregarComunes(list<DtProductoCantidad> productosComunes){
     for (list<DtProductoCantidad>::iterator it=productosComunes.begin(); it != productosComunes.end(); it++){
         ProductoMenu* pm = new ProductoMenu(it->getCantidad());
         pm->asignarComun(it->getCodigo());
         this->listaProductos.push_back(pm);
-        this->incrementarCantComunes(1);//this->cantComunes++;
+        this->incrementarCantComunes(1);
     }
 }
 

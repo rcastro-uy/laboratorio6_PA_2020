@@ -19,7 +19,6 @@ void Mesa::setVentaLocal(VentaLocal* vl){
 bool Mesa::tieneVenta(){
     VentaLocal* vl = this->getVentaLocal();
     return vl!=NULL;
-    //return this->ventaLocal==NULL;
 }
 void Mesa::agregarProducto(DtProductoCantidad pc){
     bool tieneElProducto = this->ventaLocal->tieneElProducto(pc.getCodigo());

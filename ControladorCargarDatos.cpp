@@ -133,11 +133,11 @@ void ControladorCargarDatos::cargarDatos(){
 	mP->agregarMesa(p);
 	
 	ManejadorEmpleado* mE = ManejadorEmpleado::getInstancia();
-	Mozo* m1 = new Mozo("m1","Nicolas",mP->getMesas());
-	Mozo* m2 = new Mozo("m2","Mauricio",mP->getMesas());
-	Mozo* m3 = new Mozo("m3","Valentin",mP->getMesas());
-	Mozo* m4 = new Mozo("m4","Rodrigo",mP->getMesas());
-	Mozo* m5 = new Mozo("m5","Juan",mP->getMesas());
+	Mozo* m1 = new Mozo("m1","Nicolasa",mP->getMesas());
+	Mozo* m2 = new Mozo("m2","Mauricia",mP->getMesas());
+	Mozo* m3 = new Mozo("m3","Valentina",mP->getMesas());
+	Mozo* m4 = new Mozo("m4","Rodriga",mP->getMesas());
+	Mozo* m5 = new Mozo("m5","Juana",mP->getMesas());
 
 	list<Mesa*> mdm1;
 	mdm1.push_back(a);

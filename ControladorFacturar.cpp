@@ -31,7 +31,6 @@ DtFacturaLocal ControladorFacturar::facturar(int idMesa, float descuento){
             v->setFactura(f);
             string nomMozo = v->getNombreMozo();
             DtFechaHora fh = f->getFechaHora();
-            cout << "El subtotal que se pasara a factura es: " << subtotal << endl;
             DtFacturaLocal dtf = DtFacturaLocal(codVenta,fh,descuento,dtProductos,subtotal,(subtotal-subtotal*(descuento/100)),(subtotal-subtotal*(descuento/100))*1.22,nomMozo);
             list<Mesa*> lstMesa = mM->getMesas();
             for (list<Mesa*>::iterator it=lstMesa.begin(); it!=lstMesa.end(); ++it){
