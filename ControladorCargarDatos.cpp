@@ -136,7 +136,7 @@ void ControladorCargarDatos::cargarDatos(){
 	Mozo* m1 = new Mozo("m1","Nicolas",mP->getMesas());
 	Mozo* m2 = new Mozo("m2","Mauricio",mP->getMesas());
 	Mozo* m3 = new Mozo("m3","Valentin",mP->getMesas());
-	Mozo* m4 = new Mozo("m4","Rodrig",mP->getMesas());
+	Mozo* m4 = new Mozo("m4","Rodrigo",mP->getMesas());
 	Mozo* m5 = new Mozo("m5","Juan",mP->getMesas());
 
 	list<Mesa*> mdm1;
