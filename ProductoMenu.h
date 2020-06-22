@@ -13,7 +13,7 @@ class ProductoMenu{
         ProductoMenu(int);
         int getCant();
         string getCodigoComun();
-        string getDescComun(); //Nic: puede servir para algo (o no), en todo caso se borra
+        string getDescComun();
         void asignarComun(string);
         float getPrecio();
         Comun* getComun();

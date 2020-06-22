@@ -73,7 +73,16 @@ void ControladorAltaProducto::datosProductoMenu(string cod, string desc){
 }
 
 void ControladorAltaProducto::agregarAlProductoMenu(DtProductoCantidad pc){
-    this->ProductoComun.push_back(pc);
+    bool yaExisteComun = false;
+    for (list<DtProductoCantidad>::iterator it=ProductoComun.begin(); it != ProductoComun.end(); it++){
+        if (it->getCodigo()==pc.getCodigo()){
+            it->setCantidad(it->getCantidad()+pc.getCantidad());            
+            yaExisteComun = true;
+        }
+    }
+    if(!yaExisteComun)
+        this->ProductoComun.push_back(pc);
+
 }
 
 void ControladorAltaProducto::confirmarProductoMenu(){
@@ -81,11 +90,14 @@ void ControladorAltaProducto::confirmarProductoMenu(){
     bool existe=mP->existeProducto(this->codMenu);
     //try catch antes de confirmarlo
     if(!existe){
-        Menu* m=new Menu(this->codMenu,0,this->descMenu,0);
-        m->agregarComunes(this->ProductoComun);
-        m->calcularPrecio();
-        mP->agregarProducto(m);
-        cancelarProductoMenu();
+        if (this->ProductoComun.size()>1){
+            Menu* m=new Menu(this->codMenu,0,this->descMenu,0);
+            m->agregarComunes(this->ProductoComun);
+            m->calcularPrecio();
+            mP->agregarProducto(m);
+            cancelarProductoMenu();
+        }else
+            throw invalid_argument("ERROR: DEBE INGRESAR AL MENOS 2 PRODUCTOS COMUNES AL MENU\n");
     }else
         throw invalid_argument("ERROR: YA EXISTE UN PRODUCTO CON ESE IDENTIFICADOR\n");
 }

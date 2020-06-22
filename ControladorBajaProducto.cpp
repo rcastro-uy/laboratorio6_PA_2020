@@ -25,12 +25,47 @@ void ControladorBajaProducto::seleccionarProducto(string cod){
 }
 
 
-//NIC: tengo que borrar los COUTs, a menos que encuetre problemas de nuevo
+
 void ControladorBajaProducto::eliminarProducto(){//Recuerda codigo
     ManejadorProducto* mP=ManejadorProducto::getInstancia();
     Producto* pro=mP->getProducto(this->codigo);
+    TipoProducto tp= pro->getTipoProducto();
     ManejadorVenta* mV=ManejadorVenta::getInstancia();
+    list<VentaProducto*> vpList;
     list<Venta*> ventas=mV->getVentas();
+    string codDeComAEliminar;
+    for (list<Venta*>::iterator it=ventas.begin(); it != ventas.end(); it++){
+        if((*it)->getFactura()==NULL){ //todas las ventas deben cumplir que no hayan sido facturadas
+            vpList=(*it)->getVentaProductos();
+            for (list<VentaProducto*>::iterator itb=vpList.begin(); itb !=vpList.end(); itb++){
+                if(tp == MENU){
+                    if((*itb)->getCodigoProducto()==this->codigo){// y si tiene el producto buscado
+                        throw invalid_argument ("No se puede eliminar el producto; pertenece a una venta aun no facturada");
+                    }
+                }else{ //es comun
+                    list<Producto*> listaDeMenus = mP->getProductos();
+                    for (list<Producto*>::iterator itm=listaDeMenus.begin(); itm !=listaDeMenus.end(); itm++){
+                        cout << "Se recorre" << endl;
+                        if((*itm)->getTipoProducto()==MENU){
+                            Menu* men = dynamic_cast<Menu*>((*itm));
+                            list<ProductoMenu*> comDeMenu = men->getListaProductos();
+                            for (list<ProductoMenu*>::iterator itcm=comDeMenu.begin(); itcm !=comDeMenu.end(); itcm++){
+                                codDeComAEliminar = (*itcm)->getCodigoComun();
+                                if(codDeComAEliminar==this->codigo){
+                                    throw invalid_argument ("No se puede eliminar el producto; pertenece a una venta aun no facturada");
+                                }
+                            }
+                        }
+                    }
+                    if((*itb)->getCodigoProducto()==this->codigo){
+                        throw invalid_argument ("No se puede eliminar el producto; pertenece a una venta aun no facturada");
+                    }    
+                //
+                }
+                
+            }
+        }                
+    }
     for (list<Venta*>::iterator it=ventas.begin(); it != ventas.end(); it++){
         (*it)->eliminarProducto(this->codigo);
     }
@@ -39,24 +74,15 @@ void ControladorBajaProducto::eliminarProducto(){//Recuerda codigo
         list<Producto*> productos=mP->getProductos();
         for (list<Producto*>::iterator it=productos.begin(); it != productos.end(); it++){
             if ((*it)->getTipoProducto() == MENU){
-                cout << ">>>>TIPO MENU" << endl;
-                //Castear m a Menu para eso
-                Menu *m = dynamic_cast<Menu*>((*it)); //casteo dinamico
-                cout << ">>>>TIPO MENU CASTEADO" << endl;
-                cout << ">>>>" << m->getCodigo() << endl;
-                // Falta corregir algo en eliminarComun (se caga aca)
+                Menu *m = dynamic_cast<Menu*>((*it));
                 int cant = m->eliminarComun(this->codigo);
-                cout << ">>>>" << m->getCodigo() << " - " << m->getCantComunes() << endl;
                 if (cant==0){
-                    cout << ">>>>MENU TIENE 0 PRODUCTOS" << endl;
                     string codM=m->getCodigo();
                     for (list<Venta*>::iterator it=ventas.begin(); it != ventas.end(); it++){
                         (*it)->eliminarProducto(m->getCodigo());
                     }
                     mP->removerProducto(m);
-                    cout << ">>>>MENU FUERA DE COLECCION" << endl;
                     delete m;
-                    cout << ">>>>MENU BORRADO" << endl;
                 }
                 
             }

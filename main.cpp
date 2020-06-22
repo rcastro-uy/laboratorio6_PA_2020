@@ -79,15 +79,6 @@ void altaProducto(){
 				break;
 			}
 
-           /* if(opcion==1){
-				imprimirListaProductos(lstDTPB);
-				ingresarComun();
-			}else if(opcion==2){
-				ingresarMenu();
-			}else{
-                cout <<"ATENCION: Opción incorrecta. Intente nuevamente:"<<endl;
-			}
-			*/
 			
         }else{ //NO HAY NINGUN PRODUCTO COMUN
             cout <<"\n1. Dar de Alta un Producto"<<endl;
@@ -158,7 +149,7 @@ void ingresarMenu(){
 	imprimirListaProductos(lstDTPB);
 
 	//PARTE agrega comunes al menu
-	opcion = 1;	//para entrar al wihle 
+	opcion = 1; 
 	while (opcion != 2){
 		cout <<"\n1. Ingresar un Producto al Menú"<<endl;
 		cout <<"2. Finalizar ingreso de productos"<<endl;
@@ -171,9 +162,12 @@ void ingresarMenu(){
 				if (existe){
 					cout << "Ingrese la cantidad: ";
 					cin >> cant;
-					dtPCComun.setCodigo(codComun);
-					dtPCComun.setCantidad(cant);
-					iconALTAP->agregarAlProductoMenu(dtPCComun);
+					if (cant >0){
+						dtPCComun.setCodigo(codComun);
+						dtPCComun.setCantidad(cant);
+						iconALTAP->agregarAlProductoMenu(dtPCComun);
+					}else
+						cout << "ATENCION: No se puede ingresar cantidad 0" << endl;
 				}else{
 					cout << "ATENCION: Ese producto no existe.";
 				}
@@ -493,7 +487,11 @@ void bajaProducto(){
 		cin >> opcion;
 		switch (opcion){
 			case 1:
-				iconBAJAP->eliminarProducto();
+				try{
+					iconBAJAP->eliminarProducto();
+				}catch (invalid_argument& e){
+					cout << e.what() << endl;
+				}
 			break;
 			case 2:
 				iconBAJAP->cancelarBajaProducto();

@@ -3,19 +3,27 @@
 VentaLocal::VentaLocal(){}
 VentaLocal::VentaLocal(string codigo, Mozo* mozo):Venta(codigo){
     this->mozo=mozo;
+    this->setFactura(NULL);
 }
 
 void VentaLocal::eliminarProducto(string codigo){
 //this->ventaProductos es un Set(VentaProducto*), pseudoatibuto
-    list<VentaProducto*> lstVtaProd = getVentaProductos();
+    list<VentaProducto*> lstVtaProd = this->getVentaProductos();
+    VentaProducto* prodAEliminar;
+    Producto * prodARemover;
+    bool encontroProd = false;
     for (list<VentaProducto*>::iterator vp=lstVtaProd.begin(); vp != lstVtaProd.end(); ++vp){
         string cod = (*vp)->getCodigoProducto();
         if(cod == codigo){
-            lstVtaProd.erase(vp);
-            //delete vp; ^-- se elimina aqui?
-        
+            prodAEliminar = (*vp);
+            encontroProd = true;
+            break;
         }
     }
+    if(encontroProd){
+        lstVtaProd.remove(prodAEliminar);
+        delete prodAEliminar;
+    }    
 }
 
 bool VentaLocal::tieneElProducto(string cod){
@@ -69,13 +77,10 @@ void VentaLocal::quitarProducto(DtProductoCantidad pc){
         string codigo = (*it)->getCodigoProducto();
         int queda = 0;
         if(codigo == pc.getCodigo()){
-            cout << "Se decrementará de la lista" << endl;
             queda=(*it)->decrementarCantidad(pc.getCantidad());
             if(queda<=0){
-                cout << "Se va a remover de la lista ya que queda vale <=0" << endl;
                 lista.remove(*it);
                 delete (*it);
-                cout << "Termina de eliminar" << endl;
             }
         break;
         }
@@ -100,16 +105,12 @@ float VentaLocal::getSubTotalVenta(){
     list<VentaProducto*> prods(this->getVentaProductos());
     int lista_venta_productos = (this->getVentaProductos()).size();
     int tam_nueva_lista = prods.size();
-    cout << "El largo de lista_venta_productos es: " << lista_venta_productos << endl;
-    cout << "El largo de tam_nueva_lista es: " << tam_nueva_lista << endl; 
     float suma =0;
     float costoItem = 0;
     for (list<VentaProducto*>::iterator it=prods.begin(); it!=prods.end(); ++it){
-        cout << "El costo de este producto es: " << (*it)->getPrecioProductoEnVenta() <<endl;
         costoItem = (*it)->getPrecioProductoEnVenta();
         suma=suma+costoItem;
     }
-    cout << "Se retornará el subtotal: " << suma << endl;
     return suma;
 }
 
