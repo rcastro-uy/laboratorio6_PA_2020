@@ -99,7 +99,7 @@ void ControladorAltaProducto::confirmarProductoMenu(){
         }else
             throw invalid_argument("ERROR: DEBE INGRESAR AL MENOS 2 PRODUCTOS COMUNES AL MENU\n");
     }else
-        throw invalid_argument("ERROR: YA EXISTE UN PRODUCTO CON ESE IDENTIFICADOR\n");
+        throw invalid_argument("ERROR: YA EXISTE UN MENU CON ESE IDENTIFICADOR\n");
 }
 
 void ControladorAltaProducto::cancelarProductoMenu(){

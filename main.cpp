@@ -19,31 +19,41 @@ IControladorIniciarVenta* iconIV;
 IControladorFacturar* iconF;
 IControladorCargarDatos* iconDATOS;
 
+// CU Alta Producto
 void altaProducto();
 void ingresarComun();
 void ingresarMenu();
 bool existeProductoBase(string, list<DtProductoBase>&);
-void imprimirListaProductos(list<DtProductoBase>);  //pruebas --> implementar directamente, no como funcion
-bool mesasEnLista(int,list<int>);
-void iniciarVenta();
+void imprimirListaProductos(list<DtProductoBase>);
 
+// CU Iniciar Venta
+void iniciarVenta();
+void imprimirMesasSinVenta(list<int>);
+bool mesasEnLista(int,list<int>);
+
+// CU Agregar Producto a una Venta
 void agregarProductoAUnaVenta();
 
+// CU Quitar Producto de una Venta
 void quitarProductoAUnaVenta();
 bool existeProducto(string, list<DtProducto>&);
+void imprimirListaDtProductos(list<DtProducto>);
 
+// CU Facturar una Venta
 void facturar();
 
+// CU Baja de Producto
 void bajaProducto();
 
-void cargarDatos(); //pruebas y final
+// Cargar datos de prueba
+void cargarDatos();
 
+// CU Informacion de un Producto
 void informacionDeUnProducto();
 
 void menu();
 
 //CU ALTA PRODUCTO
-//Faltan excepciones para cuando ya existe el producto con el codigo que el usuario esta ingresando (Alta).
 void altaProducto(){
     system("clear");
 	cout << endl <<"_____________________________________________" <<endl;
@@ -78,21 +88,27 @@ void altaProducto(){
 					cout <<"ATENCION: Opción incorrecta. Intente nuevamente:"<<endl;
 				break;
 			}
-
 			
         }else{ //NO HAY NINGUN PRODUCTO COMUN
             cout <<"\n1. Dar de Alta un Producto"<<endl;
             cout <<"2. Terminar"<<endl;
 			cin >> opcion;
-            if(opcion==1){
-				imprimirListaProductos(lstDTPB);
-				ingresarComun();
-			}else{
-                cout <<"ATENCION: Opción incorrecta. Intente nuevamente:"<<endl;
+
+			switch (opcion){
+				case 1:
+					imprimirListaProductos(lstDTPB);
+					ingresarComun();
+				break;
+				case 2:
+				break;
+				default:
+					cout <<"ATENCION: Opción incorrecta. Intente nuevamente:"<<endl;
+				break;
 			}
+
         }
     } while ((hayComun && opcion != 3) || (!hayComun && opcion != 2));
-};
+}
 
 void ingresarComun(){
 	int opcion;
@@ -171,6 +187,7 @@ void ingresarMenu(){
 				}else{
 					cout << "ATENCION: Ese producto no existe.";
 				}
+			break;
 			case 2:
 			break;
 			default:
@@ -218,86 +235,7 @@ void imprimirListaProductos(list<DtProductoBase> lProd){
 	}
 }
 
-
-//CU AGREGAR PRODUCTO A UNA VENTA
-//Faltan excepciones para cuando la Venta asociada a esa Mesa ya fue Facturada
-void agregarProductoAUnaVenta(){
-	system("clear");
-	cout << endl <<"_____________________________________________" <<endl;
-	cout <<"______A G R E G A R__P R O D U C T O__A__U N A__V E N T A______"<< endl;
-    int opcion, mesa, cant;
-	string cod;
-
-	DtProductoCantidad dtPC;
-	bool existe;
-    list<DtProductoBase> lstDTPB;
-
-	cout << "Ingrese un Identificador de Mesa: ";
-	cin >> mesa;
-	try{
-		iconAP->seleccionarMesa(mesa);
-		lstDTPB = iconAP->listarProductos();
-		for (list<DtProductoBase>::iterator it = lstDTPB.begin(); it != lstDTPB.end(); it++){
-			cout << (*it) << endl;
-		}
-		
-		opcion = 1;	//para entrar al wihle 
-		while (opcion != 2){
-			cout <<"1. Ingresar un Producto a la Venta"<<endl;
-			cout <<"2. Finalizar ingreso de productos"<<endl;
-			cin >> opcion;
-			switch (opcion){
-				case 1:
-					cout << "Ingrese el Identificador del Producto a agregar: ";
-					cin >> cod;
-					existe = existeProductoBase(cod, lstDTPB);
-					if (existe){
-						cout << "Ingrese la cantidad: ";
-						cin >> cant;
-						if(cant > 0){
-						dtPC.setCodigo(cod);
-						dtPC.setCantidad(cant);
-						iconAP->seleccionarProducto(dtPC);
-						}else{
-							cout << "La cantidad debe ser mayor a 0" << endl;
-						}
-					}else{
-						cout << "ATENCION: Ese producto no existe." << endl;
-					}
-					break;
-				case 2:
-					system("clear");
-					break;
-				default:
-					cout <<"ATENCION: Opción incorrecta."<<endl;
-					break;
-			}
-		}
-
-		//PARTE aceptar/cancelar
-		cout <<"1. Confirmar Venta de Producto"<<endl;
-		cout <<"2. Cancelar Venta de Producto"<<endl;
-		cin >> opcion;
-		do{
-			switch (opcion){
-			case 1:
-				iconAP->confirmarAgregarProductoVenta();
-			break;
-			case 2:
-				iconAP->cancelarAgregarProductoVenta();
-			break;
-			default:
-				cout << "ATENCION: Opción incorrecta. Intente nuevamente:" << endl;
-			break;
-			}
-		}while(opcion!=1 && opcion!=2);
-	}catch (invalid_argument& e){
-		cout << e.what() << endl;
-	}
-	
-	
-}
-
+// CU Iniciar Venta
 void iniciarVenta(){
 	system("clear");
 	cout << endl <<"_____________________________________________" <<endl;
@@ -312,6 +250,7 @@ void iniciarVenta(){
 	cin >> mozo;
 	try{
 		mesasSinVentaDeMozo = iconIV->ingresarIdMozo(mozo);
+		imprimirMesasSinVenta(mesasSinVentaDeMozo);
 		opcion = 0;
 		while (opcion != 2){
 			cout <<"1. Ingresar una Mesa para iniciar su Venta"<<endl;
@@ -327,6 +266,7 @@ void iniciarVenta(){
 						cout << "La mesa ya tiene una venta o no corresponde al mozo" << endl;
 						break;	
 					}
+				break;
 				case 2:
 				break;
 				default:
@@ -356,7 +296,14 @@ void iniciarVenta(){
 	}catch (invalid_argument& e){
 		cout << e.what() << endl;
 	}
-	
+}
+
+void imprimirMesasSinVenta(list<int> lMesas){
+	cout << endl;
+	cout <<"_________M E S A S _ D I S P O N I B L E S__________"<< endl;
+	for (list<int>::iterator it=lMesas.begin(); it != lMesas.end(); it++){
+	 	cout << "-> " << *it << endl;
+	}
 }
 
 bool mesasEnLista(int idMesa,list<int> listaMesa){ //retorna true si la id de la mesa esta en la lista dada
@@ -370,6 +317,80 @@ bool mesasEnLista(int idMesa,list<int> listaMesa){ //retorna true si la id de la
         }  
     }
     return encontro;
+}
+
+//CU AGREGAR PRODUCTO A UNA VENTA
+void agregarProductoAUnaVenta(){
+	system("clear");
+	cout << endl <<"_____________________________________________" <<endl;
+	cout <<"______A G R E G A R__P R O D U C T O__A__U N A__V E N T A______"<< endl;
+    int opcion, mesa, cant;
+	string cod;
+
+	DtProductoCantidad dtPC;
+	bool existe;
+    list<DtProductoBase> lstDTPB;
+
+	cout << "Ingrese un Identificador de Mesa: ";
+	cin >> mesa;
+	try{
+		iconAP->seleccionarMesa(mesa);
+		lstDTPB = iconAP->listarProductos();
+		imprimirListaProductos(lstDTPB);
+		
+		opcion = 1;	//para entrar al wihle 
+		while (opcion != 2){
+			cout <<"1. Ingresar un Producto a la Venta"<<endl;
+			cout <<"2. Finalizar ingreso de productos"<<endl;
+			cin >> opcion;
+			switch (opcion){
+				case 1:
+					cout << "Ingrese el Identificador del Producto a agregar: ";
+					cin >> cod;
+					existe = existeProductoBase(cod, lstDTPB);
+					if (existe){
+						cout << "Ingrese la cantidad: ";
+						cin >> cant;
+						if(cant > 0){
+						dtPC.setCodigo(cod);
+						dtPC.setCantidad(cant);
+						iconAP->seleccionarProducto(dtPC);
+						}else{
+							cout << "La cantidad debe ser mayor a 0" << endl;
+						}
+					}else{
+						cout << "ATENCION: Ese producto no existe." << endl;
+					}
+				break;
+				case 2:
+					system("clear");
+				break;
+				default:
+					cout <<"ATENCION: Opción incorrecta."<<endl;
+				break;
+			}
+		}
+
+		//PARTE aceptar/cancelar
+		cout <<"1. Confirmar Venta de Producto"<<endl;
+		cout <<"2. Cancelar Venta de Producto"<<endl;
+		cin >> opcion;
+		do{
+			switch (opcion){
+			case 1:
+				iconAP->confirmarAgregarProductoVenta();
+			break;
+			case 2:
+				iconAP->cancelarAgregarProductoVenta();
+			break;
+			default:
+				cout << "ATENCION: Opción incorrecta. Intente nuevamente:" << endl;
+			break;
+			}
+		}while(opcion!=1 && opcion!=2);
+	}catch (invalid_argument& e){
+		cout << e.what() << endl;
+	}
 }
 
 //CU QUITAR PRODUCTO DE UNA VENTA
@@ -388,11 +409,8 @@ void quitarProductoAUnaVenta(){
 	cin >> mesa;
 	try{
 		lstDTP = iconQP->listarProductos(mesa);
-		for (list<DtProducto>::iterator it = lstDTP.begin(); it != lstDTP.end(); it++){
-			cout << (*it) << endl;
-		}
-
-		opcion = 1;	
+		imprimirListaDtProductos(lstDTP);
+		opcion = 1;
 		while (opcion != 2){ 
 			cout <<"1. Quitar un Producto a la Venta"<<endl;
 			cout <<"2. Finalizar quitar productos"<<endl;
@@ -411,6 +429,7 @@ void quitarProductoAUnaVenta(){
 					}else{
 						cout << "ATENCION: Ese producto no existe en esa Venta.";
 					}
+				break;
 				case 2:
 				break;
 				default:
@@ -451,6 +470,36 @@ bool existeProducto(string cod, list<DtProducto>& listProd){
 	return encontro;
 }
 
+void imprimirListaDtProductos(list<DtProducto> lDtProd){
+	cout << endl <<"_____________________________________________" <<endl;
+	cout <<"______L I S T A_______"<< endl;
+	for (list<DtProducto>::iterator it=lDtProd.begin(); it != lDtProd.end(); it++){
+	 	cout << *it;
+	}
+}
+
+//CU FACTURAR
+void facturar(){
+	system("clear");
+	cout << endl <<"_____________________________________________" <<endl;
+	cout <<"______F A C T U R A R__V E N T A______"<< endl;
+    int opcion, mesa;
+	float desc;
+	DtFacturaLocal dtfl;
+
+	cout << "Ingrese el Identificador de la Mesa: ";
+	cin >> mesa;
+	cout << "Ingrese el descuento: ";
+	cin >> desc;
+	
+	try{
+		dtfl = iconF->facturar(mesa, desc);
+		cout << "Factura: "<<endl;
+		cout << dtfl << endl;
+	}catch (invalid_argument& e){
+		cout << e.what() << endl;
+	}	
+}
 
 //CU BAJA PRODUCTO
 void bajaProducto(){
@@ -459,14 +508,11 @@ void bajaProducto(){
 	cout <<"______B A J A__P R O D U C T O______"<< endl;
     int opcion, mesa, cant;
 	string cod;
-
 	bool existe;
     list<DtProductoBase> lstDTPB;
 
 	lstDTPB = iconBAJAP->listarProductos();
-	for (list<DtProductoBase>::iterator it = lstDTPB.begin(); it != lstDTPB.end(); it++){
-		cout << (*it);
-	}
+	imprimirListaProductos(lstDTPB);
 
 	cout << "Ingrese el Identificador del Producto a dar de baja: ";
 	cin >> cod;
@@ -497,34 +543,7 @@ void bajaProducto(){
 	}
 }
 
-
-//CU FACTURAR
-void facturar(){
-	system("clear");
-	cout << endl <<"_____________________________________________" <<endl;
-	cout <<"______F A C T U R A R__V E N T A______"<< endl;
-    int opcion, mesa;
-	float desc;
-	DtFacturaLocal dtfl;
-
-	cout << "Ingrese el Identificador de la Mesa: ";
-	cin >> mesa;
-	cout << "Ingrese el descuento: ";
-	cin >> desc;
-
-	try{
-		dtfl = iconF->facturar(mesa, desc);
-		cout << "Factura: "<<endl;
-		cout << dtfl << endl;
-	}catch (invalid_argument& e){
-		cout << e.what() << endl;
-	}
-	
-}
-
-
-
-//Carga de datos de prueba
+//Cargar datos de prueba
 void cargarDatos(){
 	system("clear");
 	try{
@@ -534,13 +553,13 @@ void cargarDatos(){
 	}
 } 
 
+// CU Informacion de un Producto
 void informacionDeUnProducto(){
 	system("clear");
 	cout << endl <<"_____________________________________________" <<endl;
 	cout <<"______I N F O R M A C I O N__D E__U N__P R O D U C T O______"<< endl;
     int opcion;
 	string cod;
-
 	DtProducto *prod;
     list<DtProductoBase> lstDTPB;
 
@@ -568,17 +587,16 @@ void informacionDeUnProducto(){
 				}else{
 					cout << "ATENCION: Ese producto no existe." << endl;
 				}
-				break;
+			break;
 			case 2:
 				system("clear");
-				break;
+			break;
 			default:
 				cout <<"ATENCION: Opción incorrecta. Intente nuevamente:"<<endl;
-				break;
+			break;
 		}
 	}
 }
-
 
 void menu(){
 		cout << endl <<"_____________________________________________" <<endl;
@@ -627,9 +645,10 @@ int main(){
 			case 8: informacionDeUnProducto();
 				break;
 			case 9: system("exit");
-				cout << "SALIENDO..." << endl;
+			break;
 			default:
 				cout << "OPCIÓN INCORRECTA" << endl;
+			break;
 		}
 		menu();
 		cin >> opcion;
