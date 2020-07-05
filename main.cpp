@@ -220,7 +220,7 @@ void ingresarMenu(){
 
 bool existeProductoBase(string cod, list<DtProductoBase>& listProd){
 	bool encontre = false;
-	for (list<DtProductoBase>::iterator it=listProd.begin(); it != listProd.end(); it++){
+	for (list<DtProductoBase>::iterator it=listProd.begin(); it != listProd.end(); ++it){
 		if (!encontre)	//mientras no coincidan los codigos con la lista de productos
 			encontre = (cod == it->getCodigo());
 	}
@@ -230,7 +230,7 @@ bool existeProductoBase(string cod, list<DtProductoBase>& listProd){
 void imprimirListaProductos(list<DtProductoBase> lProd){
 	cout << endl <<"_____________________________________________" <<endl;
 	cout <<"______L I S T A_______"<< endl;
-	for (list<DtProductoBase>::iterator it=lProd.begin(); it != lProd.end(); it++){
+	for (list<DtProductoBase>::iterator it=lProd.begin(); it != lProd.end(); ++it){
 	 	cout << *it;
 	}
 }
@@ -301,7 +301,7 @@ void iniciarVenta(){
 void imprimirMesasSinVenta(list<int> lMesas){
 	cout << endl;
 	cout <<"_________M E S A S _ D I S P O N I B L E S__________"<< endl;
-	for (list<int>::iterator it=lMesas.begin(); it != lMesas.end(); it++){
+	for (list<int>::iterator it=lMesas.begin(); it != lMesas.end(); ++it){
 	 	cout << "-> " << *it << endl;
 	}
 }
@@ -313,7 +313,7 @@ bool mesasEnLista(int idMesa,list<int> listaMesa){ //retorna true si la id de la
         if(*it == idMesa){
             encontro = true;
         }else{
-            it++;
+            ++it;
         }  
     }
     return encontro;
@@ -465,7 +465,7 @@ bool existeProducto(string cod, list<DtProducto>& listProd){
 	list<DtProducto>::iterator it=listProd.begin();
 	while ( (!encontro) && (it != listProd.end())){
 		encontro = (cod == it->getCodigo());
-		it++;
+		++it;
 	}
 	return encontro;
 }
@@ -473,7 +473,7 @@ bool existeProducto(string cod, list<DtProducto>& listProd){
 void imprimirListaDtProductos(list<DtProducto> lDtProd){
 	cout << endl <<"_____________________________________________" <<endl;
 	cout <<"______L I S T A_______"<< endl;
-	for (list<DtProducto>::iterator it=lDtProd.begin(); it != lDtProd.end(); it++){
+	for (list<DtProducto>::iterator it=lDtProd.begin(); it != lDtProd.end(); ++it){
 	 	cout << *it;
 	}
 }

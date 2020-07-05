@@ -15,7 +15,7 @@ void DtProductoMenu::setProductos(list<DtProductoComun*> prods){
 ostream& operator <<(ostream& salida,const DtProductoMenu& dtpb){
     list<DtProductoComun*> lista = dtpb.productos;
 	cout << (DtProducto)dtpb << endl;
-    for (list<DtProductoComun*>::iterator it=lista.begin(); it != lista.end(); it++){
+    for (list<DtProductoComun*>::iterator it=lista.begin(); it != lista.end(); ++it){
         cout << *(*it);
     }
 	return salida;

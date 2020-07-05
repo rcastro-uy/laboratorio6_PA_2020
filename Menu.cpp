@@ -42,7 +42,7 @@ void Menu::aplicarDescuento(){
     setPrecio(p);
 }
 void Menu::agregarComunes(list<DtProductoCantidad> productosComunes){
-    for (list<DtProductoCantidad>::iterator it=productosComunes.begin(); it != productosComunes.end(); it++){
+    for (list<DtProductoCantidad>::iterator it=productosComunes.begin(); it != productosComunes.end(); ++it){
         ProductoMenu* pm = new ProductoMenu(it->getCantidad());
         pm->asignarComun(it->getCodigo());
         this->listaProductos.push_back(pm);
@@ -51,7 +51,7 @@ void Menu::agregarComunes(list<DtProductoCantidad> productosComunes){
 }
 
 void Menu::calcularPrecio(){
-    for (list<ProductoMenu*>::iterator it=this->listaProductos.begin(); it != this->listaProductos.end(); it++){
+    for (list<ProductoMenu*>::iterator it=this->listaProductos.begin(); it != this->listaProductos.end(); ++it){
         float precioCom = (*it)->getPrecio();
         this->incrementarPrecio(precioCom);
     }

@@ -8,7 +8,7 @@ list<DtProductoBase> ControladorAgregarProducto::listarProductos(){
     ManejadorProducto* mP=ManejadorProducto::getInstancia();
     list<Producto*> productos=mP->getProductos();
     list<DtProductoBase> dtproductos;
-    for (list<Producto*>::iterator it=productos.begin(); it != productos.end(); it++){
+    for (list<Producto*>::iterator it=productos.begin(); it != productos.end(); ++it){
         DtProductoBase dtpb=(*it)->getDtProductoBase();
         dtproductos.push_back(dtpb);
     }
@@ -35,7 +35,7 @@ void ControladorAgregarProducto::seleccionarMesa(int idMesa){
 void ControladorAgregarProducto::confirmarAgregarProductoVenta(){
     ManejadorMesa* mM = ManejadorMesa::getInstancia();
     Mesa* me = mM->getMesa(this->mesa);
-    for (list<DtProductoCantidad>::iterator it=this->productoVenta.begin(); it != this->productoVenta.end(); it++){
+    for (list<DtProductoCantidad>::iterator it=this->productoVenta.begin(); it != this->productoVenta.end(); ++it){
         me->agregarProducto(*it);
     }
     this->productoVenta.clear();

@@ -25,7 +25,7 @@ void ControladorQuitarProducto::seleccionarProductoEliminar(DtProductoCantidad p
 void ControladorQuitarProducto::confirmarQuitarProductoVenta(){
     ManejadorMesa* mM = ManejadorMesa::getInstancia();
     Mesa* me = mM->getMesa(this->mesa);
-    for (list<DtProductoCantidad>::iterator it=this->productoVenta.begin(); it != this->productoVenta.end(); it++){
+    for (list<DtProductoCantidad>::iterator it=this->productoVenta.begin(); it != this->productoVenta.end(); ++it){
         me->quitarProducto(*it);
     }
     this->productoVenta.clear();

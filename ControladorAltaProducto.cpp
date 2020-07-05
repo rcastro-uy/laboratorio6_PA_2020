@@ -12,7 +12,7 @@ list<DtProductoBase> ControladorAltaProducto::listarProductos(){
     ManejadorProducto* mP=ManejadorProducto::getInstancia();
     list<Producto*> productos=mP->getProductos();
     list<DtProductoBase> dtproductos;
-    for (list<Producto*>::iterator it=productos.begin(); it != productos.end(); it++){
+    for (list<Producto*>::iterator it=productos.begin(); it != productos.end(); ++it){
         DtProductoBase dtpb=(*it)->getDtProductoBase();
         dtproductos.push_back(dtpb);
     }
@@ -23,7 +23,7 @@ list<DtProductoBase> ControladorAltaProducto::listarProductosComunes(){
     ManejadorProducto* mP=ManejadorProducto::getInstancia();
     list<Producto*> productos=mP->getProductos();
     list<DtProductoBase> dtproductos;
-    for (list<Producto*>::iterator it=productos.begin(); it != productos.end(); it++){
+    for (list<Producto*>::iterator it=productos.begin(); it != productos.end(); ++it){
         DtProductoBase dtpb=(*it)->getDtProductoBase();
         if ((*it)->getTipoProducto() == COMUN )
             dtproductos.push_back(dtpb);
@@ -35,7 +35,7 @@ list<DtProductoBase> ControladorAltaProducto::listarProductosMenu(){
     ManejadorProducto* mP=ManejadorProducto::getInstancia();
     list<Producto*> productos=mP->getProductos();
     list<DtProductoBase> dtproductos;
-    for (list<Producto*>::iterator it=productos.begin(); it != productos.end(); it++){
+    for (list<Producto*>::iterator it=productos.begin(); it != productos.end(); ++it){
         DtProductoBase dtpb=(*it)->getDtProductoBase();
         if ((*it)->getTipoProducto() == MENU )
             dtproductos.push_back(dtpb);
@@ -74,7 +74,7 @@ void ControladorAltaProducto::datosProductoMenu(string cod, string desc){
 
 void ControladorAltaProducto::agregarAlProductoMenu(DtProductoCantidad pc){
     bool yaExisteComun = false;
-    for (list<DtProductoCantidad>::iterator it=ProductoComun.begin(); it != ProductoComun.end(); it++){
+    for (list<DtProductoCantidad>::iterator it=ProductoComun.begin(); it != ProductoComun.end(); ++it){
         if (it->getCodigo()==pc.getCodigo()){
             it->setCantidad(it->getCantidad()+pc.getCantidad());            
             yaExisteComun = true;
@@ -125,7 +125,7 @@ DtProducto* ControladorAltaProducto::detallesProducto(string cod){
             //Una vez tengo el producto, debo buscar las ventas que tienen venta producto con ese producto y a su vez tienen factura !=NULL
             //Me traigo todas las ventas para preguntarles
             ventas = mV->getVentas();
-            for (list<Venta*>::iterator it=ventas.begin(); it != ventas.end(); it++){
+            for (list<Venta*>::iterator it=ventas.begin(); it != ventas.end(); ++it){
                 if((*it)->getFactura()!=NULL){
                     list<VentaProducto*> vp_list=(*it)->getVentaProductos();
                     for (list<VentaProducto*>::iterator it_vp=vp_list.begin(); it_vp != vp_list.end(); it_vp++){

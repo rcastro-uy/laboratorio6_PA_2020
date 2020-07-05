@@ -11,7 +11,7 @@ list<DtProductoBase> ControladorBajaProducto::listarProductos(){
     ManejadorProducto* mP=ManejadorProducto::getInstancia();
     list<Producto*> productos=mP->getProductos();
     list<DtProductoBase> dtproductos;
-    for (list<Producto*>::iterator it=productos.begin(); it != productos.end(); it++){
+    for (list<Producto*>::iterator it=productos.begin(); it != productos.end(); ++it){
         DtProductoBase dtpb=(*it)->getDtProductoBase();
         dtproductos.push_back(dtpb);
     }
@@ -34,7 +34,7 @@ void ControladorBajaProducto::eliminarProducto(){//Recuerda codigo
     list<VentaProducto*> vpList;
     list<Venta*> ventas=mV->getVentas();
     string codDeComAEliminar;
-    for (list<Venta*>::iterator it=ventas.begin(); it != ventas.end(); it++){
+    for (list<Venta*>::iterator it=ventas.begin(); it != ventas.end(); ++it){
         if((*it)->getFactura()==NULL){ //todas las ventas deben cumplir que no hayan sido facturadas
             vpList=(*it)->getVentaProductos();
             for (list<VentaProducto*>::iterator itb=vpList.begin(); itb !=vpList.end(); itb++){
@@ -65,19 +65,19 @@ void ControladorBajaProducto::eliminarProducto(){//Recuerda codigo
             }
         }                
     }
-    for (list<Venta*>::iterator it=ventas.begin(); it != ventas.end(); it++){
+    for (list<Venta*>::iterator it=ventas.begin(); it != ventas.end(); ++it){
         (*it)->eliminarProducto(this->codigo);
     }
     TipoProducto tipo=pro->getTipoProducto();
     if(tipo==COMUN){
         list<Producto*> productos=mP->getProductos();
-        for (list<Producto*>::iterator it=productos.begin(); it != productos.end(); it++){
+        for (list<Producto*>::iterator it=productos.begin(); it != productos.end(); ++it){
             if ((*it)->getTipoProducto() == MENU){
                 Menu *m = dynamic_cast<Menu*>((*it));
                 int cant = m->eliminarComun(this->codigo);
                 if (cant==0){
                     string codM=m->getCodigo();
-                    for (list<Venta*>::iterator it=ventas.begin(); it != ventas.end(); it++){
+                    for (list<Venta*>::iterator it=ventas.begin(); it != ventas.end(); ++it){
                         (*it)->eliminarProducto(m->getCodigo());
                     }
                     mP->removerProducto(m);
