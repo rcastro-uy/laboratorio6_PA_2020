@@ -20,7 +20,6 @@ list<int> ControladorIniciarVenta::ingresarIdMozo(string idMozo){
     }else{
         throw invalid_argument("NO EXISTE MOZO CON ESE IDENTIFICADOR");
     }
-     
 }
 
 void ControladorIniciarVenta::seleccionarMesa(list<int> idMesas) {

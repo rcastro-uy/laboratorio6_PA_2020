@@ -6,6 +6,7 @@
 #include "ControladorIniciarVenta.h"
 #include "ControladorFacturar.h"
 #include "ControladorCargarDatos.h"
+
 Fabrica* Fabrica::instancia = NULL;
 
 Fabrica::Fabrica(){}

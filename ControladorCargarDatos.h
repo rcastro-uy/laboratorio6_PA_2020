@@ -6,7 +6,7 @@ using namespace std;
 
 class ControladorCargarDatos: public IControladorCargarDatos{
     public:
-    	ControladorCargarDatos();
+        ControladorCargarDatos();
         void cargarDatos();
         ~ControladorCargarDatos();
 };

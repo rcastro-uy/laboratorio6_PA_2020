@@ -65,7 +65,6 @@ VentaLocal.o: VentaLocal.cpp
 
 VentaProducto.o: VentaProducto.cpp
 
-
 main.o: main.cpp
 
 clean:

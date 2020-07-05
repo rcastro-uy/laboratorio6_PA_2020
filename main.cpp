@@ -307,7 +307,7 @@ void imprimirMesasSinVenta(list<int> lMesas){
 }
 
 bool mesasEnLista(int idMesa,list<int> listaMesa){ //retorna true si la id de la mesa esta en la lista dada
-	 list<int>::iterator it = listaMesa.begin();
+	list<int>::iterator it = listaMesa.begin();
     bool encontro=false;
     while ((!encontro)&&(it != listaMesa.end())){
         if(*it == idMesa){
@@ -640,7 +640,7 @@ int main(){
 				break;
 			case 6: bajaProducto();
 				break;
-           	case 7: cargarDatos();
+			case 7: cargarDatos();
 				break;  
 			case 8: informacionDeUnProducto();
 				break;
